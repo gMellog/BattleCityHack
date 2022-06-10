@@ -822,9 +822,6 @@ return
 function BrickRenderer.dispose 2
 push argument 0
 pop pointer 0
-push pointer 0
-call Memory.deAlloc 1
-pop temp 0
 push constant 0
 pop local 0
 label WHILE_EXP0
@@ -849,6 +846,9 @@ goto WHILE_EXP0
 label WHILE_END0
 push this 0
 call DynamicArray.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return

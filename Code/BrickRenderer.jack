@@ -224,7 +224,6 @@ class BrickRenderer {
 		var int i;
 		var Brick brick;
 
-		do Memory.deAlloc(this);
 		let i = 0; 
 		while(i < bricks.getSize())
 		{
@@ -235,6 +234,7 @@ class BrickRenderer {
 
 		do bricks.dispose();
 
+		do Memory.deAlloc(this);
 		return;
 	}
 

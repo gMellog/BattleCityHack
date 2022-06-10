@@ -28,11 +28,6 @@ class FinalBoss {
 	field FinalBossGun leftGun;
 	field FinalBossGun rightGun;
 
-	/*
-		Boss teaser:
-		16 tanks(they can't be attacked,they are just now from aiTanks, they are teaserTanks) groups together and make a final boss
-	*/
-
 	field int bodyRectTLeftX;
 	field int bodyRectTLeftY;
 	field int bodyRectBRightX;
@@ -527,7 +522,7 @@ class FinalBoss {
 		let j = 0;
 		let offsetY = 48;
 
-		while(i < 5)
+		while(i < 6)
 		{
 			let j = 0;
 			let offsetX = 0;
@@ -713,6 +708,32 @@ class FinalBoss {
 
     method void dispose()
 	{
+		var int i;
+		var FinalBossPartTank tank;
+
+		let i = 0;
+
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);	
+
+			do tank.dispose();
+
+			let i = i + 1;
+		}
+
+		do tankParts.dispose();
+
+		if(~(leftGun = null))
+		{
+			do leftGun.dispose();
+		}
+
+		if(~(rightGun = null))
+		{
+			do rightGun.dispose();
+		}
+
 		do Memory.deAlloc(this);
 		return;
 	}
@@ -1482,8 +1503,7 @@ class FinalBoss {
 
 
 	method void tick()
-	{		
-		
+	{			
 			if(shootInAllDirsExceptFaceCounter < shootInAllDirsExceptFaceDelay)
 			{
 				let shootInAllDirsExceptFaceCounter = shootInAllDirsExceptFaceCounter + 1;
@@ -1517,7 +1537,6 @@ class FinalBoss {
 				do move();
 				let stopCounter = 0;
 			}
-		
 
 		return;
 	}

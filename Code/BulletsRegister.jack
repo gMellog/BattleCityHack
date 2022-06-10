@@ -16,16 +16,15 @@ class BulletsRegister {
 	{
         var int i;
 		var Bullet bullet;
-
-		do Memory.deAlloc(this);
+		
 		let i = 0; 
-		while(i < bricks.getSize())
+		while(i < bullets.getSize())
 		{
 			let bullet = bullets.getIndexValue(i);
 			do bullet.dispose();
 			let i = i + 1;
 		}
-
+		
 		do Memory.deAlloc(this);
 		return;
 	}

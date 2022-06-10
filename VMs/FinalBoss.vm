@@ -1311,7 +1311,7 @@ push constant 48
 pop local 4
 label WHILE_EXP0
 push local 1
-push constant 5
+push constant 6
 lt
 not
 if-goto WHILE_END0
@@ -1736,9 +1736,56 @@ push argument 2
 pop this 1
 push constant 0
 return
-function FinalBoss.dispose 0
+function FinalBoss.dispose 2
 push argument 0
 pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 13
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 1
+push local 1
+call FinalBossPartTank.dispose 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push this 13
+call DynamicArray.dispose 1
+pop temp 0
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 14
+call FinalBossGun.dispose 1
+pop temp 0
+label IF_FALSE0
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 15
+call FinalBossGun.dispose 1
+pop temp 0
+label IF_FALSE1
 push pointer 0
 call Memory.deAlloc 1
 pop temp 0

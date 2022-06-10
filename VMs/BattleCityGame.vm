@@ -260,7 +260,7 @@ function BattleCityGame.loseOptionsState 0
 push constant 0
 return
 function BattleCityGame.winState 0
-push constant 1
+push constant 4
 return
 function BattleCityGame.exitWithPauseState 0
 push constant 2
@@ -2780,7 +2780,7 @@ push constant 10000
 add
 pop this 24
 push pointer 0
-call BattleCityGame.playerWon 0
+call BattleCityGame.winState 0
 call BattleCityGame.endGame 2
 pop temp 0
 push constant 0
@@ -3989,7 +3989,7 @@ return
 goto IF_END0
 label IF_FALSE0
 push this 23
-call BattleCityGame.playerWon 0
+call BattleCityGame.winState 0
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
@@ -4367,6 +4367,18 @@ push local 0
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
+push constant 4
+call String.new 1
+push constant 72
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
 call BattleCityGame.exitWithPauseState 0
 pop this 23
 push constant 0
@@ -4511,22 +4523,60 @@ function BattleCityGame.dispose 0
 push argument 0
 pop pointer 0
 push this 9
-call BrickRenderer.dispose 1
-pop temp 0
-push this 11
-call BoomRenderer.dispose 1
-pop temp 0
-push this 10
 push constant 0
 eq
 not
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push this 9
+call BrickRenderer.dispose 1
+pop temp 0
+label IF_FALSE0
+push this 11
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 11
+call BoomRenderer.dispose 1
+pop temp 0
+label IF_FALSE1
+push this 10
+push constant 0
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
 push this 10
 call BaseRenderer.dispose 1
 pop temp 0
-label IF_FALSE0
+label IF_FALSE2
+push this 18
+push constant 0
+eq
+not
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 18
+call BulletsRegister.dispose 1
+pop temp 0
+label IF_FALSE3
+push this 35
+push constant 0
+eq
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 35
+call Teaser.dispose 1
+pop temp 0
+label IF_FALSE4
 push pointer 0
 call BattleCityGame.clearAITanks 1
 pop temp 0
@@ -4537,13 +4587,13 @@ push this 0
 push constant 0
 eq
 not
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
 push this 0
 call Player.dispose 1
 pop temp 0
-label IF_FALSE1
+label IF_FALSE5
 push pointer 0
 call Memory.deAlloc 1
 pop temp 0
@@ -4619,26 +4669,29 @@ pop temp 0
 push this 26
 call BattleCityGame.BOSS_WAVE 0
 eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
 push this 13
 call DynamicArray.getSize 1
 push constant 0
 gt
-and
-if-goto IF_TRUE4
-goto IF_FALSE4
-label IF_TRUE4
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
 push this 13
 push constant 0
 call DynamicArray.getIndexValue 2
 pop local 0
 push local 0
 call FinalBoss.isPlayerDiedCauseOfBoom 1
-if-goto IF_TRUE5
-goto IF_FALSE5
-label IF_TRUE5
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
 push pointer 0
 call BattleCityGame.victory 1
 pop temp 0
+label IF_FALSE6
 label IF_FALSE5
 label IF_FALSE4
 label IF_END1

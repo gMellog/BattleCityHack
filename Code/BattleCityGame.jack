@@ -107,7 +107,6 @@ class BattleCityGame {
 
 		do nextWave();
 
-
 		return this;
 	}
 
@@ -193,7 +192,7 @@ class BattleCityGame {
 
 	function int winState()
 	{
-		return 1;
+		return 4;
 	}
 
 	function int exitWithPauseState()
@@ -772,7 +771,7 @@ class BattleCityGame {
 	{
 			do victoryMessage();
 			let score = score + 10000;
-			do endGame(BattleCityGame.playerWon());
+			do endGame(BattleCityGame.winState());
 
 			return;
 	}
@@ -1005,14 +1004,15 @@ class BattleCityGame {
 	}
 
 	method boolean chooseOptions()
-	{
+	{	
+		
 		if( (exitState = BattleCityGame.loseOptionsState()) | (exitState = BattleCityGame.playerOutOfLives()) | (exitState = BattleCityGame.enemyKilledBase()))
 		{
 			return loseOptions();
 		}
 		else
 		{
-			if(exitState = BattleCityGame.playerWon())
+			if(exitState = BattleCityGame.winState())
 			{
 				return winTime();
 			}
@@ -1024,7 +1024,7 @@ class BattleCityGame {
 				}
 			}
 		}
-
+		
 		return false;
 	}
 
@@ -1185,6 +1185,7 @@ class BattleCityGame {
 
 				if(exitPause)
 				{
+					do Output.printString("HERE");
 					let exitState = BattleCityGame.exitWithPauseState();
 					let _endGame = true;
 					return;
@@ -1276,12 +1277,30 @@ class BattleCityGame {
 
 	method void dispose()
 	{ 
-		do brickRenderer.dispose();
-		do boomRenderer.dispose();
-
+		
+		if(~(brickRenderer = null))
+		{
+			do brickRenderer.dispose();
+		}
+		
+		if(~(boomRenderer = null))
+		{
+			do boomRenderer.dispose();
+		}
+		
 		if(~(baseRenderer = null))
 		{
 			do baseRenderer.dispose();
+		}
+		
+		if(~(bulletsRegister = null))
+		{
+			do bulletsRegister.dispose();
+		}
+		
+		if(~(teaser = null))
+		{
+			do teaser.dispose();
 		}
 
 		do clearAITanks();
@@ -1291,7 +1310,7 @@ class BattleCityGame {
 		{
 			do player.dispose();
 		}
-
+		
 		do Memory.deAlloc(this);
 		return;
 	}
@@ -1329,14 +1348,16 @@ class BattleCityGame {
 				let playerRespawnOutputCounter = 3;
 
 				do createPlayer();
-				
 
-				if((waveCounter = BattleCityGame.BOSS_WAVE()) & (aiTanks.getSize() > 0))
+				if(waveCounter = BattleCityGame.BOSS_WAVE())
 				{
-					let boss = aiTanks.getIndexValue(0);
-					if(boss.isPlayerDiedCauseOfBoom())
+					if(aiTanks.getSize() > 0)
 					{
-						do victory();
+						let boss = aiTanks.getIndexValue(0);
+						if(boss.isPlayerDiedCauseOfBoom())
+						{
+							do victory();
+						}
 					}
 				}
 			}
