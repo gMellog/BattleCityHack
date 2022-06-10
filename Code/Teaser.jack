@@ -1,0 +1,320 @@
+
+
+class Teaser {
+    
+	field DynamicArray tankTeasers;
+	
+	field int drawX;
+	field int drawY;
+
+	field int drawPointCounter;
+
+	field int drawPointDelayCounter;
+	field int drawPointDelay;
+
+	field int showHiDelayCounter;
+	field int showHiDelay;
+
+	field int callBossDelayCounter;
+	field int callBossDelay;
+
+    constructor Teaser new()
+    {
+		do initTankTeasers();
+
+		let drawX = 240;
+		let drawY = 80;
+		let drawPointCounter = 1;
+		let drawPointDelay = 5;
+		let drawPointDelayCounter = -1;
+
+		let showHiDelay = 25;
+		let showHiDelayCounter = -1;
+
+		let callBossDelay = 20;
+		let callBossDelayCounter = -1;
+
+	    return this;    
+    }
+
+	method void drawPoint()
+	{
+		if((~(drawPointCounter < 1)) & (drawPointCounter < 17))
+		{
+			do drawFill(drawX, drawY);
+			let drawX = drawX + 16;
+
+			if(Utils.remainder(drawPointCounter, 4) = 0)
+			{	
+				let drawX = 240;
+				let drawY = drawY + 16;
+			}
+		}
+		else
+		{
+			if(drawPointCounter = 17)
+			{
+				let drawX = 256;
+				do drawFill(drawX, drawY);
+				let drawX = drawX + 16;
+			}
+			else
+			{
+				if(drawPointCounter = 18)
+				{
+					do drawFill(drawX, drawY);
+
+					let drawX = 256;
+					let drawY = drawY + 16;
+				}
+				else
+				{
+					if(drawPointCounter = 19)
+					{
+						do drawGunDown(drawX, drawY);
+						let drawX = drawX + 16;
+					}
+					else 
+					{
+						do drawGunDown(drawX, drawY);
+					}
+				}
+			}
+		}
+
+		let drawPointCounter = drawPointCounter + 1;
+
+		return;
+	}
+
+
+	method AITankTeaser createAITankTeaser(int x, int y, int direction, int toX, int toY, int endDirection)
+	{
+		var AITankTeaser tank;
+
+		let tank = AITankTeaser.new();
+
+		do tank.init(x, y, direction, toX, toY, endDirection);
+
+		return tank;
+	}
+
+	method void initTankTeasers()
+	{
+		var int i;
+		var AITankTeaser tank;
+
+		let tankTeasers = DynamicArray.new();
+		do tankTeasers.reserve(16);
+		
+		do tankTeasers.push_back(createAITankTeaser(96, 0, Utils.DOWN(), 240, 64, Utils.UP()));
+     	do tankTeasers.push_back(createAITankTeaser(192,0, Utils.DOWN(), 256, 64, Utils.UP()));
+		do tankTeasers.push_back(createAITankTeaser(304,0, Utils.DOWN(), 272, 64, Utils.UP()));
+		do tankTeasers.push_back(createAITankTeaser(400,0, Utils.DOWN(), 288, 64, Utils.UP()));
+		
+		do tankTeasers.push_back(createAITankTeaser(0,48, Utils.RIGHT(), 224, 80, Utils.LEFT()));
+		do tankTeasers.push_back(createAITankTeaser(0,96, Utils.RIGHT(), 224, 96, Utils.LEFT()));
+		do tankTeasers.push_back(createAITankTeaser(0,144, Utils.RIGHT(),224, 112, Utils.LEFT()));
+		do tankTeasers.push_back(createAITankTeaser(0,192, Utils.RIGHT(), 224, 128, Utils.LEFT()));
+
+		do tankTeasers.push_back(createAITankTeaser(496,48, Utils.LEFT(), 304, 80, Utils.RIGHT()));
+		do tankTeasers.push_back(createAITankTeaser(496,96, Utils.LEFT(), 304, 96, Utils.RIGHT()));
+		do tankTeasers.push_back(createAITankTeaser(496,144, Utils.LEFT(),  304, 112, Utils.RIGHT()));
+		do tankTeasers.push_back(createAITankTeaser(496,192, Utils.LEFT(),  304, 128, Utils.RIGHT()));
+		
+		do tankTeasers.push_back(createAITankTeaser(96,240, Utils.UP(), 240, 144, Utils.DOWN()));
+		do tankTeasers.push_back(createAITankTeaser(192,240, Utils.UP(), 256, 160, Utils.DOWN()));
+		do tankTeasers.push_back(createAITankTeaser(304,240, Utils.UP(), 272, 160, Utils.DOWN()));
+		do tankTeasers.push_back(createAITankTeaser(400,240, Utils.UP(), 288, 144, Utils.DOWN()));
+
+		let i = 0;
+		while(i < tankTeasers.getSize())
+		{
+			let tank = tankTeasers.getIndexValue(i);
+
+			do tank.start();
+			let i = i + 1;
+		}
+		
+		return;
+	}
+
+    method void dispose()
+	{	
+		var int i;
+		var AITankTeaser tank;
+
+		let i = 0;
+
+		while(i < tankTeasers.getSize())
+		{
+			let tank = tankTeasers.getIndexValue(i);	
+
+			do tank.dispose();
+
+			let i = i + 1;
+		}
+
+		do tankTeasers.dispose();
+
+		do Output.moveCursor(16,25);
+		do Output.printString("   ");
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method boolean allTanksAtPlace()
+	{
+		var int i;
+		var AITankTeaser tank;
+		
+		let i = 0;
+		while(i < tankTeasers.getSize())
+		{
+			let tank = tankTeasers.getIndexValue(i);	
+			if(~(tank.isCameToPlace()))
+			{
+				return false;
+			}
+
+			let i = i + 1;
+		}
+
+		return true;
+	}
+
+	method void drawFill(int x, int y)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -1);
+		do Memory.poke(memAddress + 32, -1);
+		do Memory.poke(memAddress + 64, -1);
+		do Memory.poke(memAddress + 96, -1);
+		do Memory.poke(memAddress + 128, -1);
+		do Memory.poke(memAddress + 160, -1);
+		do Memory.poke(memAddress + 192, -1);
+		do Memory.poke(memAddress + 224, -1);
+		do Memory.poke(memAddress + 256, -1);
+		do Memory.poke(memAddress + 288, -1);
+		do Memory.poke(memAddress + 320, -1);
+		do Memory.poke(memAddress + 352, -1);
+		do Memory.poke(memAddress + 384, -1);
+		do Memory.poke(memAddress + 416, -1);
+		do Memory.poke(memAddress + 448, -1);
+		do Memory.poke(memAddress + 480, -1);
+
+		return;
+	}
+
+	method void drawGunDown(int x, int y)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 384);
+		do Memory.poke(memAddress + 32, 384);
+		do Memory.poke(memAddress + 64, 384);
+		do Memory.poke(memAddress + 96, 384);
+		do Memory.poke(memAddress + 128, 384);
+		do Memory.poke(memAddress + 160, 384);
+		do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, 384);
+		do Memory.poke(memAddress + 256, 384);
+		do Memory.poke(memAddress + 288, 384);
+		do Memory.poke(memAddress + 320, 384);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void ifItsEndTeaserCallBoss()
+	{
+		var BattleCityGame game;
+
+		if(~(callBossDelayCounter = -1))
+		{
+			if(callBossDelayCounter < callBossDelay)
+			{
+				let callBossDelayCounter = callBossDelayCounter + 1;
+			}
+			else
+			{
+					let game = BattleCityGame.get();
+					do game.notifyEndTeaser();
+			}
+		}
+
+		return;
+	}
+
+	method void tick()
+	{
+		var int i;
+		var AITankTeaser tank;
+
+		let i = 0;
+
+		while(i < tankTeasers.getSize())
+		{
+			let tank = tankTeasers.getIndexValue(i);	
+
+			do tank.tick();
+
+			let i = i + 1;
+		}
+
+		if(drawPointDelayCounter = -1)
+		{
+			if(allTanksAtPlace())
+			{	
+				let drawPointDelayCounter = 0;
+			}
+		}
+		else
+		{
+			if(drawPointDelayCounter < drawPointDelay)
+			{
+				let drawPointDelayCounter = drawPointDelayCounter + 1;
+			}
+			else
+			{
+				do drawPoint();
+
+				let drawPointDelayCounter = 0;
+
+				if(drawPointCounter = 19)
+				{
+					let drawPointDelayCounter = -2;
+					let showHiDelayCounter = 0;
+				}
+			}
+		}
+
+		if(~(showHiDelayCounter = -1))
+		{
+			if(showHiDelayCounter < showHiDelay)
+			{
+				let showHiDelayCounter = showHiDelayCounter + 1;
+			}
+			else
+			{
+					do Output.moveCursor(16,25);
+					do Output.printString("Hi!");
+					let showHiDelayCounter = -1;
+					let callBossDelayCounter = 0;
+			}
+		}
+
+		do ifItsEndTeaserCallBoss();
+
+		return;
+	}
+
+}

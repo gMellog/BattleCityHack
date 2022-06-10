@@ -1,0 +1,749 @@
+
+
+class AITankSecondWave {
+    
+    field int x;
+	field int y;
+	field int speed;
+
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field int shootsBullets;
+	field int maxShootsBullets;
+
+	field BrickRenderer brickRenderer;
+
+	field boolean startWork;
+
+	field int behaviourType;
+	field int behaviourDir;
+
+	field int stopAnythingDelay;
+	field int stopCounter;
+
+	field BulletsRegister bulletsRegister;
+
+
+    constructor AITankSecondWave new()
+    {
+		var BattleCityGame game;
+		let game = BattleCityGame.get();
+
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let brickRenderer = game.getBrickRenderer();
+		let bulletsRegister = game.getBulletsRegister();
+
+		let direction = 0;
+		let startWork = false;
+		let behaviourType = -1;
+		let behaviourDir = -1;
+
+		let stopAnythingDelay = 3;
+		let stopCounter = stopAnythingDelay;
+
+		let shootsBullets = 0;
+		let maxShootsBullets = 1;
+
+		return this;    
+    }
+
+	function int verticalBehaviour()
+	{
+		return 0;
+	}
+
+	function int horizontalBehaviour()
+	{
+		return 1;
+	}
+
+	function int startLeftDir()
+	{
+		return 0;
+	}
+
+	function int startRightDir()
+	{
+		return 1;
+	}
+
+	function int startUpDir()
+	{
+		return 0;
+	}
+
+	function int startDownDir()
+	{
+		return 1;
+	}
+
+	method void drawTankUp()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 384);
+
+	    do Memory.poke(memAddress + 128, 384);
+	    do Memory.poke(memAddress + 160, 384);
+	    do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, -3697);
+	    
+		do Memory.poke(memAddress + 256, -1);
+	    do Memory.poke(memAddress + 288, -25159);
+	    do Memory.poke(memAddress + 320, -1);
+	    do Memory.poke(memAddress + 352, -26647);
+	    
+		do Memory.poke(memAddress + 384, -1057);
+	    do Memory.poke(memAddress + 416, -25543);
+	    do Memory.poke(memAddress + 448, -1);
+	    do Memory.poke(memAddress + 480, -4081);
+
+		return;
+	}
+
+	method void drawTankDown()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -4081);
+	    do Memory.poke(memAddress + 32, -1);
+	    do Memory.poke(memAddress + 64, -24583);
+	    do Memory.poke(memAddress + 96, -577);
+	    
+		do Memory.poke(memAddress + 128, -24583);
+	    do Memory.poke(memAddress + 160, -2065);
+	    do Memory.poke(memAddress + 192, -26599);
+	    do Memory.poke(memAddress + 224, -1);
+	    
+		do Memory.poke(memAddress + 256, -3697);
+	    do Memory.poke(memAddress + 288, 384);
+	    do Memory.poke(memAddress + 320, 384);
+	    do Memory.poke(memAddress + 352, 384);
+
+	    do Memory.poke(memAddress + 384, 384);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+		
+		return;
+	}
+
+	method void drawTankLeft()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -128);
+	    do Memory.poke(memAddress + 32, -10880);
+	    do Memory.poke(memAddress + 64, -10880);
+	    do Memory.poke(memAddress + 96, -128);
+	    
+		do Memory.poke(memAddress + 128, 32512);
+	    do Memory.poke(memAddress + 160, 32512);
+	    do Memory.poke(memAddress + 192, 27392);
+	    do Memory.poke(memAddress + 224, 32760);
+	    
+		do Memory.poke(memAddress + 256, 24056);
+	    do Memory.poke(memAddress + 288, 25344);
+	    do Memory.poke(memAddress + 320, 32512);
+	    do Memory.poke(memAddress + 352, 32512);
+
+	    do Memory.poke(memAddress + 384, -128);
+	    do Memory.poke(memAddress + 416, -10880);
+	    do Memory.poke(memAddress + 448, -10880);
+	    do Memory.poke(memAddress + 480, -128);
+		
+		return;
+	}
+
+	method void drawTankRight()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 511);
+	    do Memory.poke(memAddress + 32, 427);
+	    do Memory.poke(memAddress + 64, 427);
+	    do Memory.poke(memAddress + 96, 511);
+
+	    do Memory.poke(memAddress + 128, 254);
+	    do Memory.poke(memAddress + 160, 254);
+	    do Memory.poke(memAddress + 192, 214);
+	    do Memory.poke(memAddress + 224, 8190);
+
+	    do Memory.poke(memAddress + 256, 8122);
+	    do Memory.poke(memAddress + 288, 198);
+	    do Memory.poke(memAddress + 320, 254);
+	    do Memory.poke(memAddress + 352, 254);
+	    
+		do Memory.poke(memAddress + 384, 511);
+	    do Memory.poke(memAddress + 416, 427);
+	    do Memory.poke(memAddress + 448, 427);
+	    do Memory.poke(memAddress + 480, 511);
+	
+		return;
+	}
+
+	method void clearCurrCell()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void die()
+	{
+		var BattleCityGame game;
+        var BoomRenderer boomRenderer;
+
+        do clearCurrCell();
+        do render();
+
+        let game = BattleCityGame.get();
+        let boomRenderer = game.getBoomRenderer();
+        
+        do boomRenderer.registerBoom(x, y);
+
+		return;
+	}
+
+	method void init(int initSpeed, int initBehaviourType, int initBehaviourDir)
+	{
+		if((x = -1) | (y = -1))
+		{
+			return;
+		}
+
+		let startWork = true;
+		let speed = initSpeed;
+		let behaviourType = initBehaviourType;
+		let behaviourDir = initBehaviourDir;
+
+		do initDirection();
+		do render();
+
+		return;
+	}
+
+	method void setSpeed(int newSpeed)
+	{
+		let speed = newSpeed;
+		return;
+	}
+
+	method int getSpeed()
+	{
+		return speed;
+	}
+	
+    method void setLocation(int pX, int pY)
+    {
+		let x = Utils.clampValue(pX, 0, 496);
+		let y = Utils.clampValue(pY, 0, 240);
+
+        return;
+    }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method boolean collideWith(int pX, int pY)
+    {
+        return (pX = x) & (pY = y);
+    }
+
+	method void moveUp()
+	{	
+		var int newY;
+		let newY = y - speed;
+
+		if(~(direction = 0))
+		{
+			let direction = 0;
+			do render();
+		}
+		
+		if((~checkCollideWithPlayer(x,newY)) & (~checkCollideWithBase(x, newY)) )
+		{
+			do clearCurrCell();
+			do setLocation(x, newY);
+			do render();
+		}
+
+		return;
+	}
+
+	method void moveDown()
+	{
+		var int newY;
+		let newY = y + speed;
+
+		if(~(direction = 1))
+		{
+			let direction = 1;
+			do render();
+		}
+		
+		if((~checkCollideWithPlayer(x, newY)) & (~checkCollideWithBase(x, newY)) )
+		{
+			do clearCurrCell();
+			do setLocation(x, newY);
+			do render();
+		}
+		
+		return;
+	}
+
+	method void moveRight()
+	{		
+		var int newX;
+		let newX = x + speed;
+
+		if(~(direction = 2))
+		{
+			let direction = 2;
+			do render();
+		}
+
+		if((~checkCollideWithPlayer(newX, y)) & (~checkCollideWithBase(newX, y)))
+		{
+			do clearCurrCell();
+			do setLocation(newX, y);
+			do render();
+		}
+
+		return;
+	}
+
+
+	method void moveLeft()
+	{
+		var int newX;
+		let newX = x - speed;
+
+		if(~(direction = 3))
+		{
+			let direction = 3;
+			do render();
+		}
+		
+		if((~checkCollideWithPlayer(newX, y)) & (~checkCollideWithBase(newX, y)))
+		{
+			do clearCurrCell();
+			do setLocation(newX, y);
+			do render();
+		}
+		
+		return;
+	}
+
+	method boolean checkCollideWithBricks(int pX, int pY)
+	{
+		return ~(brickRenderer.checkCollideWith(pX,pY) = -1);
+	}
+
+	method boolean checkCollideWithBase(int pX, int pY)
+	{
+		var BattleCityGame game;
+		var BaseRenderer baseRenderer;
+
+		let game = BattleCityGame.get();
+		let baseRenderer = game.getBaseRenderer();
+
+		return baseRenderer.collideWith(pX, pY);
+	}
+
+	
+    method void render()
+    {   
+		if(direction = 0)
+		{
+			do drawTankUp();
+		}
+		else 
+		{
+			if(direction = 1)
+			{
+				do drawTankDown();
+			}
+			else
+			{
+				if(direction = 2)
+				{
+					do drawTankRight();
+				}
+				else
+				{
+					if(direction = 3)
+					{
+						do drawTankLeft();
+					}
+				}
+			}
+		}
+		
+		return;
+    }
+
+	method void notifyBulletDied()
+	{
+		let shootsBullets = Utils.clampValue(shootsBullets - 1, 0, maxShootsBullets);
+		return;
+	}
+
+	method void fire()
+	{
+		var Bullet bullet;
+	
+		let bullet = Bullet.new();
+		do bullet.setEnemy(this);
+		
+		do bulletsRegister.registerBullet(bullet, direction, speed, x, y);
+		let shootsBullets = shootsBullets + 1;
+		let stopCounter = 0;
+
+
+		return;
+	}
+
+	method boolean couldShoot()
+	{
+		return shootsBullets < maxShootsBullets;
+	}
+
+	method int getNextX()
+	{
+		if((direction = Utils.UP() | direction = Utils.DOWN()))
+		{
+			return x;
+		}
+		else
+		{
+			if(direction = Utils.LEFT())
+			{
+				return x - speed;
+			}
+			else
+			{
+				return x + speed;
+			}
+		}
+	}
+
+	method int getNextY()
+	{
+		if((direction = Utils.LEFT() | direction = Utils.RIGHT()))
+		{
+			return y;
+		}
+		else
+		{
+			if(direction = Utils.UP())
+			{
+				return y - speed;
+			}
+			else
+			{
+				return y + speed;
+			}
+		}
+	}
+
+	method boolean isBoundYTop()
+	{
+		return (y = 0);
+	}
+
+	method boolean isBoundYDown()
+	{
+		return (y = (Utils.getScreenHeight() - 16));
+	}
+
+
+	method boolean isBoundXLeft()
+	{
+		return (x = 0);
+	}
+
+	method boolean isBoundXRight()
+	{
+		return (x = (Utils.getScreenWidth() - 16));
+	}
+
+	method boolean isPlayerOnPatrolLine()
+	{
+		var BattleCityGame game;
+		var Player player;
+		var int playerX;
+		var int playerY;
+
+		let game = BattleCityGame.get();
+		let player = game.getPlayer();
+
+		if(~(player = null))
+		{
+			let playerX = player.getX();
+			let playerY = player.getY();
+
+			if(behaviourType = AITank.verticalBehaviour())
+			{
+				if((x = playerX) & (  (Math.abs(y - playerY)) > (Math.abs(getNextY() - playerY)) ))
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if((y = playerY) & (  (Math.abs(x - playerX)) > (Math.abs(getNextX() - playerX)) ))
+				{
+					return true;
+				}
+			}
+		}
+
+
+		return false;
+	}
+
+	method boolean checkCollideWithPlayer(int pX, int pY)
+	{
+		var Player player;
+		var BattleCityGame game;
+
+		let game = BattleCityGame.get();
+		let player = game.getPlayer();
+
+		
+		if(~(player = null))
+		{
+			return player.collideWith(pX, pY);
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	method boolean checkCollideWithOtherTeammates(int pX, int pY)
+	{
+		var BattleCityGame game;
+		var DynamicArray teammates;
+		var AITank aiTank;
+		var int i;
+
+		let game = BattleCityGame.get();
+		let teammates = game.getAITanks();
+
+		let i = 0;
+		while(i < teammates.getSize())
+		{
+			let aiTank = teammates.getIndexValue(i);
+
+			if((~(aiTank = this)) & aiTank.collideWith(pX,pY))
+			{
+				return true;
+			}
+
+			let i = i + 1;
+		}
+
+		return false;
+	}
+	
+	method void initDirection()
+	{
+		if((behaviourType = 0) & (behaviourDir = 0))
+		{
+			let direction = 0;
+		}
+		else
+		{
+			if((behaviourType = 1) & (behaviourDir = 0))
+			{
+				let direction = 3;
+			}
+			else
+			{
+				if((behaviourType = 0) & (behaviourDir = 1))
+				{
+					let direction = 1;
+				}
+				else
+				{
+					let direction = 2;
+				}
+			}
+		}
+
+		return;
+	}
+
+	method void randomizeTypeAndDir()
+	{
+		var int range;
+		var int randValue;
+
+		let range = 99;
+		let randValue = Random.randRange(range);
+		
+		if( (~(randValue < 0)) & (randValue < 25) )
+		{
+			let behaviourType = 0;
+			let behaviourDir = 0;
+		}
+		else
+		{
+			if( (~(randValue < 25)) & (randValue < 50) )
+			{
+				let behaviourType = 1;
+				let behaviourDir = 0;
+			}
+			else
+			{
+				if( (~(randValue < 50)) & (randValue < 75) )
+				{
+						let behaviourType = 0;
+						let behaviourDir = 1;
+				}
+				else
+				{
+						let behaviourType = 1;
+						let behaviourDir = 1;
+				}
+			}
+		}
+
+		do initDirection();
+		do render();
+
+		return;
+	}
+
+	method void tick()
+	{	
+		do render();
+
+		if(startWork)
+		{	
+			if(stopCounter < stopAnythingDelay)
+			{
+				let stopCounter = stopCounter + 1;
+			}
+			else
+			{
+						if(isPlayerOnPatrolLine() & couldShoot())
+						{
+							do fire();
+						}
+						else
+						{	
+								
+								if(behaviourType = AITank.verticalBehaviour())
+								{
+
+									if(behaviourDir = AITank.startUpDir())
+									{
+										if((~(checkCollideWithBricks(x, y - speed))) & (~(isBoundYTop()) ) & (~checkCollideWithOtherTeammates(x, y - speed)) )
+										{
+											do moveUp();
+										}
+										else
+										{
+											do randomizeTypeAndDir();
+										}
+									}
+									else
+									{
+										if(behaviourDir = AITank.startDownDir())
+										{
+											if((~(checkCollideWithBricks(x, y + speed))) & ( ~(isBoundYDown()) ) & (~checkCollideWithOtherTeammates(x, y + speed)) )
+											{
+												do moveDown();
+											}
+											else
+											{
+											    do randomizeTypeAndDir();
+											}
+										}
+									}
+								}
+								else
+								{
+									if(behaviourDir = AITank.startLeftDir())
+									{
+										if((~(checkCollideWithBricks(x - speed, y))) & (~(isBoundXLeft())) & (~checkCollideWithOtherTeammates(x - speed, y)))
+										{
+											do moveLeft();
+										}
+										else
+										{
+											do  randomizeTypeAndDir();
+										}
+									}
+									else
+									{
+										if(behaviourDir = AITank.startRightDir())
+										{
+											if((~(checkCollideWithBricks(x + speed, y))) & (~(isBoundXRight())) & (~checkCollideWithOtherTeammates(x + speed, y)))
+											{
+												do moveRight();
+											}
+											else
+											{
+												do	randomizeTypeAndDir();
+											}
+										}
+									}
+								}
+							}
+					     }
+				}
+		
+
+		
+		return;
+	}
+
+}
+
+

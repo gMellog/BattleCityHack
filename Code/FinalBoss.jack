@@ -1,0 +1,1527 @@
+
+
+class FinalBoss {
+    
+    field int x;
+	field int y;
+	field int speed;
+
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field int behaviourType;
+	field int behaviourDir;
+
+	field int stopAnythingDelay;
+	field int stopCounter;
+
+	field BulletsRegister bulletsRegister;
+
+	field int turnToDirection;
+	field boolean cameToPlace;
+
+	field int shootInAllDirsExceptFaceCounter;
+	field int shootInAllDirsExceptFaceDelay;
+
+	field DynamicArray tankParts;
+
+	field FinalBossGun leftGun;
+	field FinalBossGun rightGun;
+
+	/*
+		Boss teaser:
+		16 tanks(they can't be attacked,they are just now from aiTanks, they are teaserTanks) groups together and make a final boss
+	*/
+
+	field int bodyRectTLeftX;
+	field int bodyRectTLeftY;
+	field int bodyRectBRightX;
+	field int bodyRectBRightY;
+
+	field int faceRectTLeftX;
+	field int faceRectTLeftY;
+	field int faceRectBRightX;
+	field int faceRectBRightY;
+
+	field int shootWithFaceCounter;
+	field int shootWithFaceDelay;
+
+	field BattleCityGame game;
+	
+	field int smackMoveCounter;
+	field int smackMoveDuration;
+
+	field int smackMoveCooldownCounter;
+	field int smackMoveCooldownDelay;
+
+	field boolean isPlayerDied;
+
+    constructor FinalBoss new()
+    {
+		let game = BattleCityGame.get();
+
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let bulletsRegister = game.getBulletsRegister();
+
+		let direction = 0;
+		let behaviourType = -1;
+		let behaviourDir = -1;
+
+		let stopAnythingDelay = 10;
+		let stopCounter = stopAnythingDelay;
+
+		let shootInAllDirsExceptFaceCounter = 0;
+		let shootInAllDirsExceptFaceDelay = 15; 
+		let shootWithFaceDelay = 2;
+		let shootWithFaceCounter = shootWithFaceDelay;
+
+		let tankParts = DynamicArray.new();
+
+		let leftGun = FinalBossGun.new(this);
+		let rightGun = FinalBossGun.new(this);
+
+		let smackMoveDuration = 100;
+		let smackMoveCounter = -1;
+
+		let smackMoveCooldownCounter = -1;
+		let smackMoveCooldownDelay = 30;
+
+		let isPlayerDied = false;
+
+		return this;    
+    }
+	
+	method void phase2()
+	{
+		let stopAnythingDelay = 2;
+		let shootInAllDirsExceptFaceDelay = 5;
+
+		return;
+	}
+
+	method void phase3()
+	{
+		let stopAnythingDelay = 0;
+		let shootInAllDirsExceptFaceDelay = 3;
+
+		return;
+	}
+
+	method int getHP()
+	{
+		var int r;
+
+		let r = tankParts.getSize();
+
+		if(~(leftGun = null))
+		{
+			let r = r + 1;
+		}
+
+		if(~(rightGun = null))
+		{
+			let r = r + 1;
+		}
+
+		return r;
+	}
+
+	method void drawFill(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, -1);
+		do Memory.poke(memAddress + 32, -1);
+		do Memory.poke(memAddress + 64, -1);
+		do Memory.poke(memAddress + 96, -1);
+		do Memory.poke(memAddress + 128, -1);
+		do Memory.poke(memAddress + 160, -1);
+		do Memory.poke(memAddress + 192, -1);
+		do Memory.poke(memAddress + 224, -1);
+		do Memory.poke(memAddress + 256, -1);
+		do Memory.poke(memAddress + 288, -1);
+		do Memory.poke(memAddress + 320, -1);
+		do Memory.poke(memAddress + 352, -1);
+		do Memory.poke(memAddress + 384, -1);
+		do Memory.poke(memAddress + 416, -1);
+		do Memory.poke(memAddress + 448, -1);
+		do Memory.poke(memAddress + 480, -1);
+
+		return;
+	}
+
+	method void drawGunUp(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 384);
+		do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, 384);
+		do Memory.poke(memAddress + 256, 384);
+		do Memory.poke(memAddress + 288, 384);
+		do Memory.poke(memAddress + 320, 384);
+		do Memory.poke(memAddress + 352, 384);
+		do Memory.poke(memAddress + 384, 384);
+		do Memory.poke(memAddress + 416, 384);
+		do Memory.poke(memAddress + 448, 384);
+		do Memory.poke(memAddress + 480, 384);
+
+		return;
+	}
+
+	method void drawGunDown(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, 384);
+		do Memory.poke(memAddress + 32, 384);
+		do Memory.poke(memAddress + 64, 384);
+		do Memory.poke(memAddress + 96, 384);
+		do Memory.poke(memAddress + 128, 384);
+		do Memory.poke(memAddress + 160, 384);
+		do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, 384);
+		do Memory.poke(memAddress + 256, 384);
+		do Memory.poke(memAddress + 288, 384);
+		do Memory.poke(memAddress + 320, 384);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawGunRight(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 0);
+		do Memory.poke(memAddress + 224, 2047);
+		do Memory.poke(memAddress + 256, 2047);
+		do Memory.poke(memAddress + 288, 0);
+		do Memory.poke(memAddress + 320, 0);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawGunLeft(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 0);
+		do Memory.poke(memAddress + 224, -32);
+		do Memory.poke(memAddress + 256, -32);
+		do Memory.poke(memAddress + 288, 0);
+		do Memory.poke(memAddress + 320, 0);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawAIUp()
+	{	
+		do drawCommonPart();
+
+		let faceRectTLeftX = x + 32;
+		let faceRectTLeftY = y + 32;
+		let faceRectBRightX = x + 48;
+		let faceRectBRightY = y + 32;
+
+		do drawFill(x + 32, y + 32);
+		do drawFill(x + 48, y + 32);
+
+		return;
+	}
+
+
+	method void drawAIRight()
+	{
+		do drawCommonPart();
+
+		let faceRectTLeftX = x + 80;
+		let faceRectTLeftY = y + 64;
+		let faceRectBRightX = x + 80;
+		let faceRectBRightY = y + 80;
+
+		do drawFill(x + 80, y + 64);
+		do drawFill(x + 80, y + 80);
+		
+		return;
+	}
+
+	method void drawAIDown()
+	{
+	
+		do drawCommonPart();
+		
+		let faceRectTLeftX = x + 32;
+		let faceRectTLeftY = y + 112;
+		let faceRectBRightX = x + 48;
+		let faceRectBRightY = y + 112;
+
+		do drawFill(x + 32, y + 112);
+		do drawFill(x + 48, y + 112);
+
+		return;
+	}
+
+	method void drawAILeft()
+	{
+		
+		do drawCommonPart();
+
+		let faceRectTLeftX = x;
+		let faceRectTLeftY = y + 64;
+		let faceRectBRightX = x;
+		let faceRectBRightY = y + 80;
+		
+		do drawFill(x, y + 64);
+		do drawFill(x, y + 80);
+
+		return;
+	}
+
+	method void drawCommonPart()
+	{
+		var int i;
+		var int j;
+
+		var int offsetX;
+		var int offsetY;
+
+		var FinalBossPartTank tank;
+
+		let bodyRectTLeftX = x + 16;
+		let bodyRectTLeftY = y + 48;
+		let bodyRectBRightX = x + 64;
+		let bodyRectBRightY = y + 96;
+
+		let i = 0;
+		let j = 0;
+		let offsetY = 48;
+
+		while(i < 4)
+		{
+			let j = 0;
+			let offsetX = 16;
+			while(j < 4)
+			{
+				do drawFill(x + offsetX, y + offsetY);
+				
+				let j = j + 1;
+				let offsetX = offsetX + 16; 
+			}
+
+			let i = i + 1;
+			let offsetY = offsetY + 16;
+		}
+		
+		let i = 0;
+
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);
+			
+			do tank.renderBasedOnBoss(x, y, direction);
+
+			let i = i + 1;
+		}
+
+		if(~(leftGun = null))
+		{
+			do leftGun.renderBasedOnBoss(x, y, direction);
+		}
+
+		if(~(rightGun = null))
+		{
+			do rightGun.renderBasedOnBoss(x, y, direction);
+		}
+
+
+		return;
+	}
+
+	method boolean valueInRectRange(int pX, int pY, int leftTRectX, int leftTRectY, int rightBRectX, int rightBRectY)
+	{
+		return inRangeEquals(pX, leftTRectX, rightBRectX) & inRangeEquals(pY, leftTRectY, rightBRectY);
+	}
+
+	method void clearCell(int pX, int pY)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(pX,pY);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+
+	method void clearCurrCell()
+	{
+		var int i;
+		var int j;
+
+		var int offsetX;
+		var int offsetY;
+
+		var FinalBossPartTank tank;
+
+		let i = 0;
+		let j = 0;
+		let offsetY = 48;
+
+		while(i < 4)
+		{
+			let j = 0;
+			let offsetX = 16;
+			while(j < 4)
+			{
+				do clearCell(x + offsetX, y + offsetY);
+				
+				let j = j + 1;
+				let offsetX = offsetX + 16; 
+			}
+
+			let i = i + 1;
+			let offsetY = offsetY + 16;
+		}
+
+		let i = 0;
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);
+			do tank.clearCurrCell();
+			let i = i + 1;
+		}
+
+		if(~(leftGun = null))
+		{
+			do leftGun.clearCurrCell();
+		}
+
+		if(~(rightGun = null))
+		{
+			do rightGun.clearCurrCell();
+		}
+
+		if(direction = Utils.DOWN())
+		{	
+			do clearCell(x + 32, y + 112);
+			do clearCell(x + 48, y + 112);
+		}
+		else
+		{
+			if(direction = Utils.UP())
+			{
+				do clearCell(x + 32, y + 32);
+				do clearCell(x + 48, y + 32);
+			}
+			else
+			{
+				if(direction = Utils.RIGHT())
+				{
+					do clearCell(x + 80, y + 64);
+					do clearCell(x + 80, y + 80);
+				}
+				else
+				{
+					if(direction = Utils.LEFT())
+					{
+						do clearCell(x, y + 64);
+						do clearCell(x, y + 80);
+					}
+				}
+			}
+		}
+
+		return;
+	}
+
+	method boolean isPlayerInsideBoom(int leftRectTX, int leftRectTY, int rightRectBX, int rightRectBY)
+	{
+		
+		var Player player;
+
+		let player = game.getPlayer();
+		
+		if(~(player = null))
+		{
+			if(valueInRectRange(player.getX(), player.getY(), leftRectTX, leftRectTY, rightRectBX, rightRectBY))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	method boolean isPlayerDiedCauseOfBoom()
+	{
+		return isPlayerDied;
+	}
+
+	method void die()
+	{
+        var BoomRenderer boomRenderer;
+		var int i;
+		var int j;
+		var int offsetX;
+		var int offsetY;
+
+        let game = BattleCityGame.get();
+		let boomRenderer = game.getBoomRenderer();
+		
+		let i = 0;
+		let j = 0;
+		let offsetY = 48;
+
+		while(i < 5)
+		{
+			let j = 0;
+			let offsetX = 0;
+			while(j < 7)
+			{
+				do boomRenderer.registerBoom(x + offsetX, y + offsetY);
+				
+				let j = j + 1;
+				let offsetX = offsetX + 16; 
+			}
+
+			let i = i + 1;
+			let offsetY = offsetY + 16;
+		}
+
+		let isPlayerDied = isPlayerInsideBoom(x, y + 48, x + (offsetX - 16), y + (offsetY - 16) );
+
+		return;
+	}
+
+	method FinalBossPartTank createPart(int lOffX, int lOffY, int lDir,
+										int rOffX, int rOffY, int rDir,
+										int dOffX, int dOffY, int dDir,
+										int uOffX, int uOffY, int uDir
+										)
+	{
+		var FinalBossPartTank tank;
+
+		let tank = FinalBossPartTank.new();
+		
+		do tank.setLeftPart(lOffX, lOffY, lDir);
+		do tank.setRightPart(rOffX, rOffY, rDir);
+		do tank.setDownPart(dOffX, dOffY, dDir);
+		do tank.setUpPart(uOffX, uOffY, uDir);
+
+		return tank;
+	}
+
+	method void initParts()
+	{
+		var FinalBossPartTank tank;
+		
+		do leftGun.setLeftPart(-16, 80);
+		do leftGun.setRightPart(96, 64);
+		do leftGun.setDownPart(48, 128);
+		do leftGun.setUpPart(32, 16);
+
+
+		do rightGun.setLeftPart(-16, 64);
+		do rightGun.setRightPart(96, 80);
+		do rightGun.setDownPart(32, 128);
+		do rightGun.setUpPart(48, 16);
+
+		do tankParts.reserve(14);
+	
+		let tank = createPart(
+				0, 96, Utils.LEFT(),
+				80,48, Utils.RIGHT(),
+				64,112,Utils.DOWN(),
+				16,32,Utils.UP());
+
+		do tank.setShootBulletsDelay(0);
+		do tankParts.push_back(tank);
+		
+		let tank = createPart(
+				0, 48, Utils.LEFT(),
+				80,96, Utils.RIGHT(),
+				16,112,Utils.DOWN(),
+				64,32,Utils.UP()
+				);
+	
+		do tank.setShootBulletsDelay(0);
+		do tankParts.push_back(tank);
+
+			do tankParts.push_back(createPart(
+				16, 112, Utils.DOWN(),
+				64,32, Utils.UP(),
+				80,96,Utils.RIGHT(),
+				0,48,Utils.LEFT()
+			));
+		
+			do tankParts.push_back(createPart(
+				32, 112, Utils.DOWN(),
+				48,32, Utils.UP(),
+				80,80,Utils.RIGHT(),
+				0,64,Utils.LEFT()
+				));
+	
+			do tankParts.push_back(createPart(
+				48, 112, Utils.DOWN(),
+				32,32, Utils.UP(),
+				80,64,Utils.RIGHT(),
+				0,80,Utils.LEFT()
+				));
+
+			do tankParts.push_back(createPart(
+				64, 112, Utils.DOWN(),
+				16,32, Utils.UP(),
+				80,48,Utils.RIGHT(),
+				0,96,Utils.LEFT()
+				));
+
+			do tankParts.push_back(createPart(
+				16, 32, Utils.UP(),
+				64,112, Utils.DOWN(),
+				0,96,Utils.LEFT(),
+				80,48,Utils.RIGHT()
+				));
+
+			do tankParts.push_back(createPart(
+				32, 32, Utils.UP(),
+				48,112, Utils.DOWN(),
+				0,80,Utils.LEFT(),
+				80,64,Utils.RIGHT()
+				));
+
+			do tankParts.push_back(createPart(
+				48, 32, Utils.UP(),
+				32,112, Utils.DOWN(),
+				0,48,Utils.LEFT(),
+				80,80,Utils.RIGHT()
+				));
+
+			do tankParts.push_back(createPart(
+				64, 32, Utils.UP(),
+				16,112, Utils.DOWN(),
+				0,64,Utils.LEFT(),
+				80,96,Utils.RIGHT()
+				));
+
+			do tankParts.push_back(createPart(
+				80, 96, Utils.RIGHT(),
+				0,48, Utils.LEFT(),
+				64,32,Utils.UP(),
+				64,112,Utils.DOWN()
+				));
+
+			do tankParts.push_back(createPart(
+				80, 80, Utils.RIGHT(),
+				0,64, Utils.LEFT(),
+				48,32,Utils.UP(),
+				48,112,Utils.DOWN()
+				));
+
+			do tankParts.push_back(createPart(
+				80, 64, Utils.RIGHT(),
+				0,80, Utils.LEFT(),
+				32,32,Utils.UP(),
+				32,112,Utils.DOWN()
+				));
+			do tankParts.push_back(createPart(
+				80, 48, Utils.RIGHT(),
+				0,96, Utils.LEFT(),
+				16,32,Utils.UP(),
+				16,112,Utils.DOWN()
+				));
+	
+		return;
+	}
+
+	method void init(int pX, int pY)
+	{
+		let x = pX;
+		let y = pY;
+		
+		let behaviourType = AITank.verticalBehaviour();
+		let behaviourDir = AITank.startDownDir();
+		do initDirection();
+		
+		do initParts();
+		do render();
+
+		return;
+	}
+	
+    method void setLocation(int pX, int pY)
+    {
+		let x = pX;
+		let y = pY;
+
+        return;
+    }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method boolean inBody(int pX, int pY)
+	{	
+		return valueInRectRange(pX, pY, bodyRectTLeftX, bodyRectTLeftY, bodyRectBRightX, bodyRectBRightY);
+	}
+
+	method boolean inFace(int pX, int pY)
+	{
+		 return valueInRectRange(pX,pY, faceRectTLeftX, faceRectTLeftY, faceRectBRightX, faceRectBRightY);
+	}
+
+	method DynamicArray getTankParts()
+	{
+		return tankParts;
+	}
+
+	method void ifNoGunsEndGame()
+	{
+		if((leftGun = null) & (rightGun = null))
+		{
+			do game.killEnemy(0);
+		}
+
+		return;
+	}
+
+	method FinalBossGun getLeftGun()
+	{
+		return leftGun;
+	}
+
+	method FinalBossGun getRightGun()
+	{
+		return rightGun;
+	}
+
+	method void killGun(FinalBossGun gun)
+	{
+		if(~(getHP() > 2))
+		{
+			do gun.die();
+			
+			if(leftGun = gun)
+			{
+				let leftGun = null;
+			}
+			else
+			{
+				if(rightGun = gun)
+				{
+					let rightGun = null;
+				}
+			}
+
+			do ifNoGunsEndGame();
+		}
+				
+		return;
+	}
+
+	method boolean collideWith(int pX, int pY)
+	{
+		var FinalBossPartTank tank;
+		var int i;
+		var Player player;
+
+		let player = game.getPlayer();
+		let i = 0;
+
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);
+
+			if(tank.collideWith(pX, pY))
+			{	
+				return true;
+			}
+
+			let i = i + 1;
+		}
+
+		if(~(leftGun = null))
+		{
+			if(leftGun.collideWith(pX, pY))
+			{
+				return true;
+			}
+		}
+	
+		if(~(rightGun = null))
+		{
+			if(rightGun.collideWith(pX, pY))
+			{	
+				return true;
+			}
+		}
+		
+
+		if(inBody(pX, pY) | inFace(pX,pY))
+		{
+			return true;
+		}
+
+		return false;
+    }
+
+	method void moveUp()
+	{	
+		var int newY;
+		let newY = y - speed;
+
+		if(~(direction = 0))
+		{
+			let direction = 0;
+			do render();
+		}
+
+		do clearCurrCell();
+		do setLocation(x, newY);
+		do render();
+
+		return;
+	}
+
+	method void moveDown()
+	{
+		var int newY;
+		let newY = y + speed;
+
+		if(~(direction = 1))
+		{
+			let direction = 1;
+			do render();
+		}
+
+		do clearCurrCell();
+		do setLocation(x, newY);
+
+		do render();
+
+		return;
+	}
+
+	method void moveRight()
+	{		
+		var int newX;
+		let newX = x + speed;
+
+		if(~(direction = 2))
+		{
+			let direction = 2;
+			do render();
+		}
+
+		do clearCurrCell();
+		do setLocation(newX, y);
+		do render();
+
+		return;
+	}
+
+
+	method void moveLeft()
+	{
+		var int newX;
+		let newX = x - speed;
+
+		if(~(direction = 3))
+		{
+			let direction = 3;
+			do render();
+		}
+
+
+		do clearCurrCell();
+		do setLocation(newX, y);
+		do render();
+		
+		return;
+	}
+
+	
+    method void render()
+    {   
+		if(direction = 0)
+		{
+			do drawAIUp();
+		}
+		else 
+		{
+			if(direction = 1)
+			{
+				do drawAIDown();
+			}
+			else
+			{
+				if(direction = 2)
+				{
+					do drawAIRight();
+				}
+				else
+				{
+					if(direction = 3)
+					{
+						do drawAILeft();
+					}
+					else 
+					{	
+						if(direction = 4)
+						{
+							do clearCurrCell();
+						}
+					}
+				}
+			}
+		}
+		return;
+    }
+
+	method void fire(int pX, int pY)
+	{
+		var Bullet bullet;
+	
+		let bullet = Bullet.new();
+		do bullet.setMovementDelay(0);
+
+		do bulletsRegister.registerBullet(bullet, direction, speed, pX, pY);
+
+		return;
+	}
+
+	method boolean checkCollideWithPlayer(int pX, int pY)
+	{
+		var Player player;
+
+		let player = game.getPlayer();
+
+		if(~(player = null))
+		{
+			return player.collideWith(pX, pY);
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	method void shootAllDirsExcept(int pDir)
+	{
+		var int i;
+		var FinalBossPartTank tank;
+
+		let i = 0;
+
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);
+			
+			if(~(tank.getDir() = pDir))
+			{
+				do tank.fire();
+			}
+
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	method void shootAllDirsLeft()
+	{
+		do shootAllDirsExcept(Utils.LEFT());
+		return;
+	}
+
+	method void shootAllDirsRight()
+	{	
+		do shootAllDirsExcept(Utils.RIGHT());
+		return;
+	}
+
+	method void shootAllDirsUp()
+	{
+		do shootAllDirsExcept(Utils.UP());
+		return;
+	}
+
+	method void shootAllDirsDown()
+	{	
+		do shootAllDirsExcept(Utils.DOWN());
+		return;
+	}
+
+	method void shootFourDirections()
+	{
+		if(direction = Utils.LEFT())
+		{
+			do shootAllDirsLeft();
+		}
+		else
+		{
+			if(direction = Utils.RIGHT())
+			{
+				do shootAllDirsRight();
+			}
+			else
+			{
+				if(direction = Utils.UP())
+				{
+					do shootAllDirsUp();
+				}
+				else
+				{
+					do shootAllDirsDown();
+				}
+			}
+		}
+		return;
+	}
+	
+	method void initDirection()
+	{
+		if((behaviourType = 0) & (behaviourDir = 0))
+		{
+			let direction = 0;
+		}
+		else
+		{
+			if((behaviourType = 1) & (behaviourDir = 0))
+			{
+				let direction = 3;
+			}
+			else
+			{
+				if((behaviourType = 0) & (behaviourDir = 1))
+				{
+					let direction = 1;
+				}
+				else
+				{
+					let direction = 2;
+				}
+			}
+		}
+
+		return;
+	}
+
+	method void randomizeTypeAndDir()
+	{
+
+		var int range;
+		var int randValue;
+
+		let range = 99;
+		let randValue = Random.randRange(range);
+		
+		if( (~(randValue < 0)) & (randValue < 25) )
+		{
+			let behaviourType = 0;
+			let behaviourDir = 0;
+		}
+		else
+		{
+			if( (~(randValue < 25)) & (randValue < 50) )
+			{
+				let behaviourType = 1;
+				let behaviourDir = 0;
+			}
+			else
+			{
+				if( (~(randValue < 50)) & (randValue < 75) )
+				{
+						let behaviourType = 0;
+						let behaviourDir = 1;
+				}
+				else
+				{
+						let behaviourType = 1;
+						let behaviourDir = 1;
+				}
+			}
+		}
+
+		do clearCurrCell();
+		do initDirection();
+		do render();
+
+		return;
+	}
+
+	method void move()
+	{
+		var FinalBossGun pivotGun;
+
+		if(~(leftGun = null))
+		{
+			let pivotGun = leftGun;
+		}
+
+		if(~(rightGun = null))
+		{
+			let pivotGun = rightGun;
+		}
+
+		if(behaviourType = AITank.verticalBehaviour())
+		{
+			if(behaviourDir = AITank.startUpDir())
+			{
+				if( ~((pivotGun.getY() - speed) < 0) )
+				{
+					do moveUp();
+				}
+				else
+				{	
+					do randomizeTypeAndDir();
+				}
+			}
+			else
+			{
+				if(behaviourDir = AITank.startDownDir())
+				{
+					if(~((pivotGun.getY() + speed) > 240))
+					{
+						do moveDown();
+					}
+					else
+					{
+						do randomizeTypeAndDir();
+					}
+				}
+			}
+		}
+		else
+		{
+			if(behaviourDir = AITank.startLeftDir())
+			{
+				if( ~( (pivotGun.getX() - speed) < 0) )
+				{
+					do moveLeft();
+				}
+				else
+				{	
+					do  randomizeTypeAndDir();
+				}
+			}
+			else
+			{
+				if(behaviourDir = AITank.startRightDir())
+				{
+					if(~((pivotGun.getX() + speed) > 496))
+					{
+						do moveRight();
+					}
+					else
+					{
+						do	randomizeTypeAndDir();
+					}
+				}
+			}
+		}					
+
+		if(isPlayerInside())
+		{
+			do game.killPlayer(Player.SMACKED());
+		}
+		
+		return;
+	}
+
+	method int getNextX()
+	{
+		if((direction = Utils.UP() | direction = Utils.DOWN()))
+		{
+			return x;
+		}
+		else
+		{
+			if(direction = Utils.LEFT())
+			{
+				return x - speed;
+			}
+			else
+			{
+				return x + speed;
+			}
+		}
+	}
+
+	method int getNextY()
+	{
+		if((direction = Utils.LEFT() | direction = Utils.RIGHT()))
+		{
+			return y;
+		}
+		else
+		{
+			if(direction = Utils.UP())
+			{
+				return y - speed;
+			}
+			else
+			{
+				return y + speed;
+			}
+		}
+	}
+
+	method boolean inRangeEquals(int value, int low, int high)
+	{
+		return ( ( ~(value < low) ) & (~(value > high)) ); // low <= value <= high
+	}
+
+	method boolean isFaceToPlayer(int coordBoss, int nextCoordBoss, int coordPlayer)
+	{
+		return ( Math.abs(coordBoss - coordPlayer) > (Math.abs(nextCoordBoss - coordPlayer)) );
+	}
+
+	method boolean isPlayerOnPatrolLine()
+	{
+		var Player player;
+		var int playerX;
+		var int playerY;
+		
+		var int yStart;
+		var int yEnd;
+
+		var int xStart;
+		var int xEnd;
+
+		let player = game.getPlayer();
+
+		if(~(player = null))
+		{
+			let playerX = player.getX();
+			let playerY = player.getY();
+
+			if(direction = Utils.LEFT())
+			{
+				if(~(leftGun = null))
+				{
+					let yStart = leftGun.getY() - 32;		
+					let yEnd = leftGun.getY() + 16;
+				}
+				else
+				{
+					let yStart = rightGun.getY() - 16;		
+					let yEnd = rightGun.getY() + 32;
+				}
+			}
+			else
+			{
+				if(direction = Utils.RIGHT())
+				{	
+					if(~(leftGun = null))
+					{
+						let yStart = leftGun.getY() - 16;
+						let yEnd = leftGun.getY() + 32;
+					}
+					else
+					{
+						let yStart = rightGun.getY() - 32;		
+						let yEnd = rightGun.getY() + 16;
+					}
+				}
+				else
+				{
+					if(direction = Utils.UP())
+					{
+						if(~(leftGun = null))
+						{
+							let xStart = leftGun.getX() - 16;		
+							let xEnd = leftGun.getX() + 32;
+						}
+						else
+						{
+							let xStart = rightGun.getX() - 32;		
+							let xEnd = rightGun.getX() + 16;
+						}
+					}
+					else
+					{	
+						if(~(leftGun = null))
+						{
+							let xStart = leftGun.getX() - 32;		
+							let xEnd = leftGun.getX() + 16;
+						}
+						else
+						{
+							let xStart = rightGun.getX() - 16;		
+							let xEnd = rightGun.getX() + 32;
+						}
+					}
+				}
+			}
+
+			if( (direction = Utils.LEFT()) | (direction = Utils.RIGHT()))
+			{
+				if( inRangeEquals(playerY, yStart, yEnd) &  isFaceToPlayer(x, getNextX(), playerX) )
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if( inRangeEquals(playerX, xStart, xEnd) &  isFaceToPlayer(y, getNextY(), playerY) )
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	method void killTankOnIndex(int index)
+	{
+		var FinalBossPartTank bossTank;
+		var int tanksLeft;
+
+		let bossTank = tankParts.getIndexValue(index);
+		do tankParts.remove(index);
+		do bossTank.die();
+		do bossTank.dispose();
+
+		let tanksLeft = tankParts.getSize();
+
+		if(tanksLeft = 8)
+		{
+			do phase2();
+		}
+
+		if(tanksLeft = 3)
+		{
+			do phase3();
+		}
+
+		return;
+	}
+
+	method int getShootOffsetX()
+	{
+		if(direction = Utils.LEFT())
+		{	
+			return -16;
+		}
+		else
+		{	
+			if(direction = Utils.RIGHT())
+			{
+				return 16;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+	method int getShootOffsetY()
+	{
+		if(direction = Utils.UP())
+		{	
+			return -16;
+		}
+		else
+		{	
+			if(direction = Utils.DOWN())
+			{
+				return 16;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+	method boolean isPlayerInside()
+	{
+		var Player player;
+
+		let player = game.getPlayer();
+		
+		if(~(player = null))
+		{
+			if(collideWith(player.getX(), player.getY()))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	method void shootWithFace()
+	{
+		var FinalBossPartTank tank;
+		var int i;
+
+		let i = 0;
+		while(i < tankParts.getSize())
+		{
+			let tank = tankParts.getIndexValue(i);
+
+			if(tank.getDir() = direction)
+			{
+				do tank.setShootOffsetX(getShootOffsetX());
+				do tank.setShootOffsetY(getShootOffsetY());
+
+				do tank.fire();
+			}
+
+			let i = i + 1;
+		}
+
+		if(~(leftGun = null))
+		{
+			do leftGun.setShootOffsetX(getShootOffsetX());
+			do leftGun.setShootOffsetY(getShootOffsetY());
+			do leftGun.fire();
+		}
+
+		if(~(rightGun = null))
+		{
+			do rightGun.setShootOffsetX(getShootOffsetX());
+			do rightGun.setShootOffsetY(getShootOffsetY());
+			do rightGun.fire();
+		}
+
+		return;
+	}
+
+	method void prepareForSmackMove()
+	{
+		let stopAnythingDelay = 0;
+		return;
+	}
+
+	method void smack()
+	{
+		if(stopCounter < stopAnythingDelay)
+		{
+			let stopCounter = stopCounter + 1;
+		}
+		else
+		{
+			do move();
+			let stopCounter = 0;
+		}
+
+		return;
+	}
+
+
+	method void tick()
+	{		
+		
+			if(shootInAllDirsExceptFaceCounter < shootInAllDirsExceptFaceDelay)
+			{
+				let shootInAllDirsExceptFaceCounter = shootInAllDirsExceptFaceCounter + 1;
+			}
+			else
+			{
+				do shootFourDirections();
+				let shootInAllDirsExceptFaceCounter = 0;
+			}
+
+			if(isPlayerOnPatrolLine())
+			{
+				if(shootWithFaceCounter = shootWithFaceDelay)
+				{
+					do shootWithFace();
+					let shootWithFaceCounter = 0;
+				}
+				else
+				{
+					let shootWithFaceCounter = shootWithFaceCounter + 1;
+				}
+
+			}
+
+			if(stopCounter < stopAnythingDelay)
+			{
+				let stopCounter = stopCounter + 1;
+			}
+			else
+			{
+				do move();
+				let stopCounter = 0;
+			}
+		
+
+		return;
+	}
+}
+
+
+

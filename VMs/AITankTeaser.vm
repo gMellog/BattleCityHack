@@ -1,0 +1,1056 @@
+function AITankTeaser.new 0
+push constant 17
+call Memory.alloc 1
+pop pointer 0
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push constant 0
+pop this 3
+push constant 3
+pop this 4
+push this 4
+pop this 5
+push constant 0
+pop this 11
+push constant 0
+pop this 12
+push constant 40
+pop this 13
+push constant 0
+pop this 16
+push pointer 0
+return
+function AITankTeaser.drawTankUp 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25159
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 26647
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1057
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 25543
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankTeaser.drawTankDown 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 577
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2065
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 26599
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankTeaser.drawTankLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 27392
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32760
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 24056
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25344
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankTeaser.drawTankRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 214
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8122
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 198
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankTeaser.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankTeaser.init 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push argument 2
+pop this 1
+push argument 3
+pop this 3
+push argument 4
+pop this 14
+push argument 5
+pop this 15
+push argument 6
+pop this 10
+push pointer 0
+call AITankTeaser.calcRoute 1
+pop temp 0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.start 0
+push argument 0
+pop pointer 0
+push constant 0
+not
+pop this 16
+push constant 0
+return
+function AITankTeaser.calcRoute 0
+push argument 0
+pop pointer 0
+push pointer 0
+push this 0
+push this 14
+call AITankTeaser.calcDir 3
+pop this 7
+push pointer 0
+push this 1
+push this 15
+call AITankTeaser.calcDir 3
+pop this 9
+push this 0
+push this 14
+sub
+call Math.abs 1
+push constant 16
+call Math.divide 2
+pop this 6
+push this 1
+push this 15
+sub
+call Math.abs 1
+push constant 16
+call Math.divide 2
+pop this 8
+push constant 0
+return
+function AITankTeaser.calcDir 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+sub
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+neg
+return
+goto IF_END0
+label IF_FALSE0
+push argument 1
+push argument 2
+sub
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+return
+goto IF_END1
+label IF_FALSE1
+push constant 0
+return
+label IF_END1
+label IF_END0
+function AITankTeaser.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function AITankTeaser.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function AITankTeaser.setLocation 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+push constant 496
+call Utils.clampValue 3
+pop this 0
+push argument 2
+push constant 0
+push constant 240
+call Utils.clampValue 3
+pop this 1
+push constant 0
+return
+function AITankTeaser.moveUp 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+sub
+pop local 0
+push this 3
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 3
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call AITankTeaser.setLocation 3
+pop temp 0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.moveDown 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+add
+pop local 0
+push this 3
+push constant 1
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+pop this 3
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call AITankTeaser.setLocation 3
+pop temp 0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.moveRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+pop local 0
+push this 3
+push constant 2
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 2
+pop this 3
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call AITankTeaser.setLocation 3
+pop temp 0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.moveLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+sub
+pop local 0
+push this 3
+push constant 3
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 3
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call AITankTeaser.setLocation 3
+pop temp 0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+return
+function AITankTeaser.render 0
+push argument 0
+pop pointer 0
+push this 3
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankTeaser.drawTankUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankTeaser.drawTankDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankTeaser.drawTankRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankTeaser.drawTankLeft 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 3
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call AITankTeaser.clearCurrCell 1
+pop temp 0
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function AITankTeaser.moveHorizontally 0
+push argument 0
+pop pointer 0
+push this 7
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankTeaser.moveLeft 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.moveRight 1
+pop temp 0
+label IF_END0
+push this 6
+push constant 1
+sub
+pop this 6
+push constant 0
+return
+function AITankTeaser.moveVertically 0
+push argument 0
+pop pointer 0
+push this 9
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankTeaser.moveUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call AITankTeaser.moveDown 1
+pop temp 0
+label IF_END0
+push this 8
+push constant 1
+sub
+pop this 8
+push constant 0
+return
+function AITankTeaser.moveToPoint 1
+push argument 0
+pop pointer 0
+push this 6
+push constant 0
+eq
+not
+push this 8
+push constant 0
+eq
+not
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Random.rand 0
+push constant 2
+call Utils.remainder 2
+pop local 0
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankTeaser.moveHorizontally 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push pointer 0
+call AITankTeaser.moveVertically 1
+pop temp 0
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push this 6
+push constant 0
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankTeaser.moveHorizontally 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 8
+push constant 0
+gt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankTeaser.moveVertically 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 10
+pop this 3
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+push constant 0
+not
+pop this 11
+label IF_END3
+label IF_END2
+label IF_END0
+push constant 0
+return
+function AITankTeaser.isCameToPlace 0
+push argument 0
+pop pointer 0
+push this 11
+return
+function AITankTeaser.tick 0
+push argument 0
+pop pointer 0
+push this 11
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankTeaser.render 1
+pop temp 0
+label IF_FALSE0
+push this 16
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 11
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 5
+push this 4
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankTeaser.moveToPoint 1
+pop temp 0
+push constant 0
+pop this 5
+goto IF_END3
+label IF_FALSE3
+push this 5
+push constant 1
+add
+pop this 5
+label IF_END3
+label IF_FALSE2
+label IF_FALSE1
+push constant 0
+return

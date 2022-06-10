@@ -1,0 +1,84 @@
+
+
+class BlockRender {
+	
+	//remainder is based only on x, i think that caveat is around this.
+    function void render(Array rep, int repSize, int x, int y, boolean clearState)
+    {
+		var int divR;
+		var int remainder;
+		var int i;
+		var int address;
+		var int offsetLeft;
+		var int offsetRight;
+		var int temp;
+		var int memAddress;
+		var int setValue;
+		var int memValue;
+		var boolean once;
+
+		let once = false;
+		let divR = x / 16; //where we should put right most bits
+		let remainder = Utils.remainder(x, 16); //its how many right bits, other bits should be added on the left word 
+	
+
+
+		let offsetLeft = 16 - remainder;
+		let offsetRight = remainder;
+
+		let i = 0;
+		let address = 0;
+
+		let memAddress = Utils.getMemAddress(divR, y);
+		while(i < repSize)
+		{
+			
+			let temp = Utils.hackBitRightShitfing(rep[i], remainder);
+			do Memory.poke(memAddress + address, temp);
+
+			let temp = Utils.hackBitLeftShitfing(rep[i], 16 - remainder);
+			do Memory.poke(memAddress + address + 1, temp);
+
+			let i = i + 1;
+			let address = address + 32;
+		}
+
+		return;
+    }
+
+	function void simpleRender(Array rep, int repSize, int x, int y)
+	{
+		var int divR;
+		var int remainder;
+		var int i;
+		var int address;
+		var int offsetLeft;
+		var int offsetRight;
+		var int temp;
+		var int memAddress;
+		var int setValue;
+
+		let divR = x / 16; //where we should put right most bits
+		let remainder = Utils.remainder(x, 16); //its how many right bits, other bits should be added on the left word 
+	
+		
+		let offsetLeft = 16 - remainder;
+		let offsetRight = remainder;
+
+		let i = 0;
+		let address = 0;
+
+		let memAddress = Utils.getMemAddress(divR, y);
+		while(i < repSize)
+		{
+			let setValue = rep[i];
+			do Memory.poke(memAddress + address, setValue);
+
+			let i = i + 1;
+			let address = address + 32;
+		}
+
+		return;
+	}
+
+}

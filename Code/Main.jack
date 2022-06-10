@@ -1,0 +1,26 @@
+
+
+class Main {
+    function void main() {
+        
+        var BattleCityGame game;
+
+        do BattleCityGame.mentionRules();
+
+        while(true)
+        {   
+            do Screen.clearScreen();
+            let game = BattleCityGame.new();
+	        do game.startGame();
+
+            if(~(game.chooseOptions()))
+            {
+                do game.dispose();
+
+                return;
+            }
+        }
+
+        return;
+    }
+}

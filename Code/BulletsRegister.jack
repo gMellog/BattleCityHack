@@ -1,0 +1,120 @@
+
+
+class BulletsRegister {
+    
+    field DynamicArray bullets;
+
+    constructor BulletsRegister new()
+    {
+        let bullets = DynamicArray.new();
+        do bullets.reserve(20);
+
+	    return this;    
+    }
+ 
+    method void dispose()
+	{
+        var int i;
+		var Bullet bullet;
+
+		do Memory.deAlloc(this);
+		let i = 0; 
+		while(i < bricks.getSize())
+		{
+			let bullet = bullets.getIndexValue(i);
+			do bullet.dispose();
+			let i = i + 1;
+		}
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+    method void registerBullet(Bullet bullet, int direction, int speed, int x, int y)
+	{
+		if( ( ((x - speed) < 0) & (direction = Utils.LEFT()) ) |
+			( ((x + speed) > (Utils.getScreenWidth() - 16)) & (direction = Utils.RIGHT()) ) |
+            ( ((y - speed) < 0) & (direction = Utils.UP()) ) | 
+			( ((y + speed) > (Utils.getScreenHeight() - 16)) & (direction = Utils.DOWN()) )
+            )
+		{
+			do bullet.die();
+			do bullet.dispose();
+			return;
+		}
+
+		do bullets.push_back(bullet);
+
+		if(direction = Utils.UP())
+		{
+			do bullet.fireTime(x, y - speed, direction);
+		}
+		else
+		{	
+			if(direction = Utils.DOWN())
+			{
+				do bullet.fireTime(x, y + speed, direction);
+			}
+			else
+			{
+				if(direction = Utils.RIGHT())
+				{
+					do bullet.fireTime(x + speed, y, direction);
+				}
+				else
+				{
+					if(direction = Utils.LEFT())
+					{
+						do bullet.fireTime(x - speed, y, direction);
+					}
+				}
+			}
+		}
+
+		return;
+	}
+
+	method DynamicArray getBullets()
+	{
+		return bullets;
+	}
+
+	method void killBullet(int index)
+	{
+		var Bullet bullet;
+		
+		let bullet = bullets.getIndexValue(index);
+		do bullets.remove(index);
+
+		do bullet.clearCurrCell();
+		do bullet.die();
+		do bullet.dispose();
+
+		return;
+	}
+
+	method void tick()
+	{
+		var int i;
+		var Bullet bullet;
+
+		let i = 0;
+		while(i < bullets.getSize())
+		{
+			let bullet = bullets.getIndexValue(i);
+
+			if(bullet.isAlive())
+			{
+				do bullet.tick();
+				let i = i + 1;		
+			}
+			else
+			{
+				do bullets.remove(i);
+				do bullet.dispose();
+			}
+		}
+
+		return;
+	}
+}

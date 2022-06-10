@@ -1,0 +1,501 @@
+
+
+class Bullet {
+    
+    field int x;
+    field int y;
+	
+    //0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+    field int dir;
+    field boolean alive;
+    field int speed;
+    field Player player;
+    field AITank enemy;
+
+    field BrickRenderer brickRenderer;
+    field BaseRenderer baseRenderer;
+    field BattleCityGame game;
+    field int cellsMovement;
+
+    field int movementDelayCounter;
+    field int movementDelay;
+
+    constructor Bullet new()
+    {
+        let game = BattleCityGame.get();
+
+        let x = -1;
+        let y = -1;
+        let dir = 0;
+        let speed = 16;
+        let player = null;
+        let enemy = null;
+        let cellsMovement = 2;
+        let movementDelay = 0;
+        let movementDelayCounter = movementDelay;
+
+        let alive = false;
+        let brickRenderer = game.getBrickRenderer();
+        let baseRenderer = game.getBaseRenderer();
+
+	    return this;    
+    }
+
+    method void setMovementDelay(int newMovementDelay)
+    {
+        let movementDelay = newMovementDelay;
+        return;
+    }
+
+    method void setCellsMovement(int newCellsMovement)
+    {
+        let cellsMovement = newCellsMovement;
+        return;
+    }
+
+    method void setPlayer(Player pPlayer)
+    {
+        let player = pPlayer;
+        return;
+    }
+
+    method void setEnemy(AITank pEnemy)
+    {
+        let enemy = pEnemy;
+        return;
+    }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+    method int getX()
+    {
+	    return x;
+    }
+
+    method int getY()
+    {
+	    return y;
+    }
+
+    method void fireTime(int pX, int pY, int pDir)
+    {
+        let x = Utils.clampValue(pX, 0, Utils.getScreenWidth() - 16);
+        let y = Utils.clampValue(pY, 0, Utils.getScreenHeight() - 16);
+
+        let dir = pDir;
+        let alive = true;
+        
+        do drawBullet();
+
+        return;
+    }
+
+
+    method void drawBullet()
+    {
+        var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+        do Memory.poke(memAddress + 224, 384);
+	    do Memory.poke(memAddress + 256, 384);
+        
+        return;
+    }
+
+    method void clearCurrCell()
+    {
+        var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+
+        return;
+    }
+
+
+    method void fly()
+    {
+        var int newX;
+        var int newY;
+
+        let newX = x;
+        let newY = y;
+
+        if(dir = Utils.UP())
+        {
+            let newY = Utils.clampValue(newY - speed, -16, Utils.getScreenHeight());
+        }
+        else
+        {
+            if(dir = Utils.DOWN())
+            {
+                let newY = Utils.clampValue(newY + speed, -16, Utils.getScreenHeight());
+            }
+            else
+            {
+                if(dir = Utils.RIGHT())
+                {
+                    let newX =  Utils.clampValue(newX + speed, -16, Utils.getScreenWidth());
+                }
+                else
+                {
+                    if(dir = Utils.LEFT())
+                    {
+                        let newX = Utils.clampValue(newX - speed, -16, Utils.getScreenWidth() );
+                    }
+                }
+            }
+        }
+
+        if((newY = -16) | (newY = Utils.getScreenHeight()) | (newX = -16) | (newX = Utils.getScreenWidth()))
+        {
+            do clearCurrCell();
+            do die();
+        }
+        else
+        {
+            let x = newX;
+            let y = newY;
+        }
+
+        return;
+    }
+
+    method int getNextX()
+	{
+		if((dir = Utils.UP() | dir = Utils.DOWN()))
+		{
+			return x;
+		}
+		else
+		{
+			if(dir = Utils.LEFT())
+			{
+				return x - speed;
+			}
+			else
+			{
+				return x + speed;
+			}
+		}
+	}
+
+	method int getNextY()
+	{
+		if((dir = Utils.LEFT() | dir = Utils.RIGHT()))
+		{
+			return y;
+		}
+		else
+		{
+			if(dir = Utils.UP())
+			{
+				return y - speed;
+			}
+			else
+			{
+				return y + speed;
+			}
+		}
+	}
+
+
+    method boolean collideWithEnemyTank()
+    {
+        var DynamicArray aiTanks;
+        var AITank aiTank;
+        var FinalBossPartTank bossTank;
+        var FinalBoss boss;
+        var int i;
+            
+        let aiTanks = game.getAITanks();
+        
+        if(~(game.getWaveCounter() = BattleCityGame.BOSS_WAVE()))
+        {
+            while(i < aiTanks.getSize())
+            {
+                let aiTank = aiTanks.getIndexValue(i);
+                
+                if(aiTank.collideWith(x,y))
+                {
+                    do game.killEnemy(i);
+                    do addScoreToPlayerForAI();
+
+                    return true;
+                }
+
+                let i = i + 1;
+            }
+        }
+        else
+        {
+            if(aiTanks.getSize() > 0)
+            {
+                let boss = aiTanks.getIndexValue(i);
+                if(boss.collideWith(x,y) & (~game.isEndGame()))
+                {   
+                    let aiTanks = boss.getTankParts();
+
+                    while(i < aiTanks.getSize())
+                    {
+                        let bossTank = aiTanks.getIndexValue(i);
+                        if( (x = bossTank.getX()) & (y = bossTank.getY()) )
+                        {
+                            do boss.killTankOnIndex(i);
+                            do addScoreToPlayerForAI();
+
+                            return true;
+                        }
+                        let i = i + 1;
+                    }
+                   
+                   if(collideWithTheGun(boss.getLeftGun()))
+                   {
+                        do boss.killGun(boss.getLeftGun());
+                   }
+                   else
+                   {
+                        if(collideWithTheGun(boss.getRightGun()))
+                        {
+                            do boss.killGun(boss.getRightGun());
+                        }
+                   }
+
+                     return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    method boolean collideWithTheGun(FinalBossGun gun)
+    {
+        if(~(gun = null))
+        {
+            return gun.collideWith(x,y);
+        }
+
+        return false;
+    }
+
+
+    method boolean checkCollideWithOtherBullets()
+    {
+        var BulletsRegister bulletsRegister;
+        var DynamicArray bullets;
+        var Bullet bullet;
+        var int i;
+
+        let bulletsRegister = game.getBulletsRegister();
+        let bullets = bulletsRegister.getBullets();
+
+        let i = 0;
+        while(i < bullets.getSize())
+        {
+            let bullet = bullets.getIndexValue(i);
+
+            if((~(bullet = this)) & bullet.collideWith(x,y))
+            {
+                do bulletsRegister.killBullet(i);
+                return true;
+            }
+
+            let i = i + 1;
+        }
+
+        return false;
+    }
+    
+    method boolean collideWith(int pX, int pY)
+    {
+        return (pX = x) & (pY = y);
+    }
+
+    method int checkCollideWithBrick(int pX, int pY)
+    {
+        if(~(brickRenderer = null))
+        {   
+            return brickRenderer.checkCollideWith(pX,pY);  
+        }
+
+        return false;
+    }
+
+    method void addScoreToPlayer(int value)
+    {
+        var BattleCityGame game;
+        var int currScore;
+
+        if(~(player = null))
+		{
+            let game = BattleCityGame.get();
+            let currScore = game.getScore();
+            do game.setScore(currScore + value);
+        }
+
+        return;
+    }
+
+    method void addScoreToPlayerForBrick()
+    {
+        do addScoreToPlayer(10);
+        return;
+    }
+
+    method void addScoreToPlayerForAI()
+    {
+        do addScoreToPlayer(300);
+        return;
+    }
+
+    method void minusScoreToPlayerForBaseKill()
+    {   
+        var BattleCityGame game;
+        
+        let game = BattleCityGame.get();
+
+        if( ~( (brickRenderer.getBricksSize() = 0) & (game.getWaveCounter() = BattleCityGame.PREPARE_TIME()) ) )
+        {
+            do addScoreToPlayer(-3000);
+        }
+
+        return;
+    }
+
+    method boolean collideWithPlayer()
+    {
+        var Player player;
+
+        let player = game.getPlayer();
+        
+		if(~(player = null))
+		{
+            if(player.collideWith(x,y))
+            {
+                do game.killPlayer(Player.KILLED_WITH_BULLET());
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    method boolean checkCollide()
+    {
+        var int brickIndex;
+
+            if(collideWithEnemyTank() | collideWithPlayer())
+            {
+                do die();
+                return true;
+            }
+
+            let brickIndex = checkCollideWithBrick(x,y);
+
+            if(~(brickIndex = -1))
+            {   
+                do brickRenderer.killBrick(brickIndex);
+                do die();
+                do addScoreToPlayerForBrick();
+             
+                return true;
+            }
+            
+            if(~(baseRenderer = null))
+            {
+                if( baseRenderer.collideWith(x,y) )
+                {
+                    do baseRenderer.die();
+                    do die();
+                    if(~(player = null))
+                    {
+                        do minusScoreToPlayerForBaseKill();
+                        do game.endGame(BattleCityGame.playerKilledBase());
+                    }
+                    else
+                    {   
+                        do game.endGame(BattleCityGame.enemyKilledBase());
+                    }
+
+                    return true;
+                }
+            }
+
+     
+            if(checkCollideWithOtherBullets())
+            {   
+                do clearCurrCell();
+                do die();
+                return true;
+            }
+
+
+            return false;
+    }
+
+    method void tick()
+    {   
+        if(alive)
+        {
+            if(movementDelayCounter = movementDelay)
+            {        
+                if(checkCollide())
+                {
+                    return;
+                }
+                   
+                do clearCurrCell();
+                do fly();
+
+                if(checkCollide())
+                {
+                    return;
+                }
+                 
+                if(alive)
+                {
+                    do drawBullet();               
+                }
+                let movementDelayCounter = 0;
+            }
+            else
+            {
+              let movementDelayCounter = movementDelayCounter + 1;
+            }
+        }         
+        return;
+    }
+
+    method boolean isAlive()
+    {
+        return alive;
+    }
+
+    method void die()
+    {
+        let alive = false;
+
+        if(~(player = null))
+        {
+            do player.notifyBulletDied();
+        }
+        else
+        {
+            //heh, it should work all enemies
+
+            if( (~(game.getWaveCounter() = BattleCityGame.BOSS_WAVE()))  & (~(enemy = null)) )
+            {
+                do enemy.notifyBulletDied();
+            }
+        }
+        
+
+        return;
+    }
+}

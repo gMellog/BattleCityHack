@@ -1,0 +1,188 @@
+
+
+class Utils {
+    
+    function int remainder(int x, int y)
+    {
+        var int divR;
+        let divR = x / y;
+        
+        return x - (y * divR);
+    }
+
+	function int UP()
+	{
+		return 0;
+	}
+	
+	function int DOWN()
+	{
+		return 1;
+	}
+	
+	function int RIGHT()
+	{
+		return 2;
+	}
+	
+	function int LEFT()
+	{
+		return 3;
+	}
+
+    function int getScreenHeight()
+    {
+        return 256;
+    }
+
+    function int getScreenWidth()
+    {
+        return 512;
+    }
+    	//CAUTION
+	//MSB is on the same location but its displayed on the right (on the Hack display)
+
+	function int bitRightShifting(int v, int times)
+	{
+		var int value;
+		var int i;
+		var int MSB;
+		var boolean isThereMSB;
+
+		let value = v;
+		let MSB = (~32767);
+
+		if(times = 0)
+		{
+			return value;
+		}
+
+		let isThereMSB = value & MSB;
+		let value = value & 32767;
+		let value = value / 2;
+
+		if(isThereMSB)
+		{
+			let value = value | 16384;
+		}
+
+		let i = 1;
+
+		while(i < times)
+		{
+			let value = value / 2;
+			let i = i + 1;
+		}
+
+		return value;
+	}
+
+	function int bitLeftShifting(int v, int times)
+	{
+		var int value;
+		var int i;
+
+		let value = v;
+
+		if(times = 0)
+		{
+			return value;
+		}
+
+		let i = 0;
+		while(i < times)
+		{
+			let value = value & 32767;	
+			let value = value * 2;
+			let i = i + 1;
+		}
+
+		return value;
+	}
+
+	
+	function int hackBitRightShitfing(int v, int times)
+	{
+		return Utils.bitLeftShifting(v, times);
+	}
+
+	function int hackBitLeftShitfing(int v, int times)
+	{
+		return Utils.bitRightShifting(v, times);
+	}
+
+	function int hackBitAssignLeftValue(int value)
+	{
+		var int i;
+		var int bitCounterRight;
+		var int bitCounterLeft;
+		var int r;
+
+		let bitCounterRight = (~32767);
+		let bitCounterLeft = 1;
+		let i = 0;
+		let r = 0;
+		
+		while(i < 16)
+		{
+			if(value & bitCounterLeft)
+			{
+				let r = r | bitCounterRight;
+			}
+
+			let bitCounterLeft = Utils.bitLeftShifting(bitCounterLeft, 1);
+			let bitCounterRight = Utils.bitRightShifting(bitCounterRight, 1);
+			let i = i + 1;
+		}
+
+
+		return r;
+	}
+
+	function int clampValue(int value, int min, int max)
+	{
+		if(value < min)
+		{
+			return min;
+		}
+
+		if(value > max)
+		{
+			return max;
+		}
+
+		return value;
+	}
+
+	function boolean checkBit(int x, int y)
+	{
+		var int divR;
+		var int remainder;
+		var int memAddress;
+		var int memValue;
+		var int value;
+
+		let divR = x / 16;
+		let remainder = Utils.remainder(x, 16);
+
+		if(remainder = 15)
+		{
+			let value = (~32767);
+		}
+		else
+		{
+			let value = 1;
+			let value = Utils.bitLeftShifting(value, remainder);	
+		}
+
+		let memAddress = Utils.getMemAddress(divR, y);
+		let memValue = Memory.peek(memAddress);
+		
+		return memValue & value;
+	}
+
+	function int getMemAddress(int x, int y)
+	{
+		return 16384 + (y * 32) + (x / 16);
+	}
+}

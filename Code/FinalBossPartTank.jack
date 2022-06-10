@@ -1,0 +1,372 @@
+
+
+class FinalBossPartTank {
+    
+    field int x;
+	field int y;
+	field int speed;
+
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field BulletsRegister bulletsRegister;
+
+	field int leftOffsetX;
+	field int leftOffsetY;
+
+	field int rightOffsetX;
+	field int rightOffsetY;
+
+	field int upOffsetX;
+	field int upOffsetY;
+
+	field int downOffsetX;
+	field int downOffsetY;
+
+	field int leftDir;
+	field int rightDir;
+	field int downDir;
+	field int upDir;
+
+	field int shootBulletsDelay;
+
+	field int shootOffsetX;
+	field int shootOffsetY;
+
+    constructor FinalBossPartTank new()
+    {
+		var BattleCityGame game;
+		let game = BattleCityGame.get();
+
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let bulletsRegister = game.getBulletsRegister();
+
+		let direction = 0;
+		let shootBulletsDelay = 3;
+
+		let shootOffsetX = 0;
+		let shootOffsetY = 0;
+
+		return this;    
+    }
+
+	method void drawTankUp()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 384);
+
+	    do Memory.poke(memAddress + 128, 384);
+	    do Memory.poke(memAddress + 160, 384);
+	    do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, -3697);
+	    
+		do Memory.poke(memAddress + 256, -1);
+	    do Memory.poke(memAddress + 288, -25159);
+	    do Memory.poke(memAddress + 320, -1);
+	    do Memory.poke(memAddress + 352, -26647);
+	    
+		do Memory.poke(memAddress + 384, -1057);
+	    do Memory.poke(memAddress + 416, -25543);
+	    do Memory.poke(memAddress + 448, -1);
+	    do Memory.poke(memAddress + 480, -4081);
+
+		return;
+	}
+
+	method void drawTankDown()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -4081);
+	    do Memory.poke(memAddress + 32, -1);
+	    do Memory.poke(memAddress + 64, -24583);
+	    do Memory.poke(memAddress + 96, -577);
+	    
+		do Memory.poke(memAddress + 128, -24583);
+	    do Memory.poke(memAddress + 160, -2065);
+	    do Memory.poke(memAddress + 192, -26599);
+	    do Memory.poke(memAddress + 224, -1);
+	    
+		do Memory.poke(memAddress + 256, -3697);
+	    do Memory.poke(memAddress + 288, 384);
+	    do Memory.poke(memAddress + 320, 384);
+	    do Memory.poke(memAddress + 352, 384);
+
+	    do Memory.poke(memAddress + 384, 384);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+		
+		return;
+	}
+
+	method void drawTankLeft()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -128);
+	    do Memory.poke(memAddress + 32, -10880);
+	    do Memory.poke(memAddress + 64, -10880);
+	    do Memory.poke(memAddress + 96, -128);
+	    
+		do Memory.poke(memAddress + 128, 32512);
+	    do Memory.poke(memAddress + 160, 32512);
+	    do Memory.poke(memAddress + 192, 27392);
+	    do Memory.poke(memAddress + 224, 32760);
+	    
+		do Memory.poke(memAddress + 256, 24056);
+	    do Memory.poke(memAddress + 288, 25344);
+	    do Memory.poke(memAddress + 320, 32512);
+	    do Memory.poke(memAddress + 352, 32512);
+
+	    do Memory.poke(memAddress + 384, -128);
+	    do Memory.poke(memAddress + 416, -10880);
+	    do Memory.poke(memAddress + 448, -10880);
+	    do Memory.poke(memAddress + 480, -128);
+		
+		return;
+	}
+
+	method void drawTankRight()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 511);
+	    do Memory.poke(memAddress + 32, 427);
+	    do Memory.poke(memAddress + 64, 427);
+	    do Memory.poke(memAddress + 96, 511);
+
+	    do Memory.poke(memAddress + 128, 254);
+	    do Memory.poke(memAddress + 160, 254);
+	    do Memory.poke(memAddress + 192, 214);
+	    do Memory.poke(memAddress + 224, 8190);
+
+	    do Memory.poke(memAddress + 256, 8122);
+	    do Memory.poke(memAddress + 288, 198);
+	    do Memory.poke(memAddress + 320, 254);
+	    do Memory.poke(memAddress + 352, 254);
+	    
+		do Memory.poke(memAddress + 384, 511);
+	    do Memory.poke(memAddress + 416, 427);
+	    do Memory.poke(memAddress + 448, 427);
+	    do Memory.poke(memAddress + 480, 511);
+	
+		return;
+	}
+
+	method void clearCurrCell()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void die()
+	{
+		var BattleCityGame game;
+        var BoomRenderer boomRenderer;
+		
+        do clearCurrCell();
+
+        let game = BattleCityGame.get();
+		
+		let boomRenderer = game.getBoomRenderer();
+		
+		do boomRenderer.registerBoom(x, y);
+
+		return;
+	}
+
+	method void setLeftPart(int pX, int pY, int pDir)
+	{
+		let leftOffsetX = pX;
+		let leftOffsetY = pY;
+		let leftDir = pDir;
+
+		return;
+	}
+
+	method void setRightPart(int pX, int pY, int pDir)
+	{
+		let rightOffsetX = pX;
+		let rightOffsetY = pY;
+		let rightDir = pDir;
+
+		return;
+	}
+
+	method void setUpPart(int pX, int pY, int pDir)
+	{
+		let upOffsetX = pX;
+		let upOffsetY = pY;
+		let upDir = pDir;
+
+		return;
+	}
+
+	method void setDownPart(int pX, int pY, int pDir)
+	{
+		let downOffsetX = pX;
+		let downOffsetY = pY;
+		let downDir = pDir;
+
+		return;
+	}
+
+	method void setShootBulletsDelay(int newShootBulletsDelay)
+	{
+		let shootBulletsDelay = newShootBulletsDelay;
+
+		return;
+	}
+
+	method void renderBasedOnBoss(int bossX, int bossY, int bossDir)
+	{
+		if(bossDir = Utils.LEFT())
+		{
+			let direction = leftDir;
+			let x = bossX + leftOffsetX;
+			let y = bossY + leftOffsetY;
+		}
+		else
+		{
+			if(bossDir = Utils.RIGHT())
+			{
+				let direction = rightDir;
+				let x = bossX + rightOffsetX;
+				let y = bossY + rightOffsetY;
+			}
+			else
+			{
+				if(bossDir = Utils.UP())
+				{
+					let direction = upDir;		
+					let x = bossX + upOffsetX;
+					let y = bossY + upOffsetY;
+				}
+				else
+				{
+					let direction = downDir;			
+					let x = bossX + downOffsetX;
+					let y = bossY + downOffsetY;
+				}
+			}
+		}
+
+		do render();
+		
+		return;
+	}
+
+	method int getDir()
+	{
+		return direction;
+	}
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method boolean collideWith(int pX, int pY)
+    {
+        return (pX = x) & (pY = y);
+    }
+
+    method void render()
+    {   
+		if(direction = Utils.UP())
+		{
+			do drawTankUp();
+		}
+		else 
+		{
+			if(direction = Utils.DOWN())
+			{
+				do drawTankDown();
+			}
+			else
+			{
+				if(direction = Utils.RIGHT())
+				{
+					do drawTankRight();
+				}
+				else
+				{
+					if(direction = Utils.LEFT())
+					{
+						do drawTankLeft();
+					}
+				}
+			}
+		}
+		
+		return;
+    }
+
+	method void setShootOffsetX(int newShootOffsetX)
+	{
+		let shootOffsetX = newShootOffsetX;
+		return;
+	}
+
+	method void setShootOffsetY(int newShootOffsetY)
+	{
+		let shootOffsetY = newShootOffsetY;
+		return;
+	}
+
+	method void fire()
+	{
+		var Bullet bullet;
+	
+		let bullet = Bullet.new();
+		do bullet.setMovementDelay(0);
+
+		do bulletsRegister.registerBullet(bullet, direction, speed, shootOffsetX + x, shootOffsetY + y);
+
+		return;
+	}
+}
+
+

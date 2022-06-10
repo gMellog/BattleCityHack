@@ -1,0 +1,244 @@
+function Utils.remainder 1
+push argument 0
+push argument 1
+call Math.divide 2
+pop local 0
+push argument 0
+push argument 1
+push local 0
+call Math.multiply 2
+sub
+return
+function Utils.UP 0
+push constant 0
+return
+function Utils.DOWN 0
+push constant 1
+return
+function Utils.RIGHT 0
+push constant 2
+return
+function Utils.LEFT 0
+push constant 3
+return
+function Utils.getScreenHeight 0
+push constant 256
+return
+function Utils.getScreenWidth 0
+push constant 512
+return
+function Utils.bitRightShifting 4
+push argument 0
+pop local 0
+push constant 32767
+not
+pop local 2
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+return
+label IF_FALSE0
+push local 0
+push local 2
+and
+pop local 3
+push local 0
+push constant 32767
+and
+pop local 0
+push local 0
+push constant 2
+call Math.divide 2
+pop local 0
+push local 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 16384
+or
+pop local 0
+label IF_FALSE1
+push constant 1
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 2
+call Math.divide 2
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Utils.bitLeftShifting 2
+push argument 0
+pop local 0
+push argument 1
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+return
+label IF_FALSE0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push argument 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push constant 32767
+and
+pop local 0
+push local 0
+push constant 2
+call Math.multiply 2
+pop local 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Utils.hackBitRightShitfing 0
+push argument 0
+push argument 1
+call Utils.bitLeftShifting 2
+return
+function Utils.hackBitLeftShitfing 0
+push argument 0
+push argument 1
+call Utils.bitRightShifting 2
+return
+function Utils.hackBitAssignLeftValue 4
+push constant 32767
+not
+pop local 1
+push constant 1
+pop local 2
+push constant 0
+pop local 0
+push constant 0
+pop local 3
+label WHILE_EXP0
+push local 0
+push constant 16
+lt
+not
+if-goto WHILE_END0
+push argument 0
+push local 2
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 3
+push local 1
+or
+pop local 3
+label IF_FALSE0
+push local 2
+push constant 1
+call Utils.bitLeftShifting 2
+pop local 2
+push local 1
+push constant 1
+call Utils.bitRightShifting 2
+pop local 1
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push local 3
+return
+function Utils.clampValue 0
+push argument 0
+push argument 1
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+return
+label IF_FALSE0
+push argument 0
+push argument 2
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 2
+return
+label IF_FALSE1
+push argument 0
+return
+function Utils.checkBit 5
+push argument 0
+push constant 16
+call Math.divide 2
+pop local 0
+push argument 0
+push constant 16
+call Utils.remainder 2
+pop local 1
+push local 1
+push constant 15
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 32767
+not
+pop local 4
+goto IF_END0
+label IF_FALSE0
+push constant 1
+pop local 4
+push local 4
+push local 1
+call Utils.bitLeftShifting 2
+pop local 4
+label IF_END0
+push local 0
+push argument 1
+call Utils.getMemAddress 2
+pop local 2
+push local 2
+call Memory.peek 1
+pop local 3
+push local 3
+push local 4
+and
+return
+function Utils.getMemAddress 0
+push constant 16384
+push argument 1
+push constant 32
+call Math.multiply 2
+add
+push argument 0
+push constant 16
+call Math.divide 2
+add
+return

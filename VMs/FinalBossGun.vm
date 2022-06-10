@@ -1,0 +1,799 @@
+function FinalBossGun.new 1
+push constant 16
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push argument 0
+pop this 15
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push local 0
+call BattleCityGame.getBulletsRegister 1
+pop this 4
+push constant 0
+pop this 3
+push constant 0
+pop this 13
+push constant 0
+pop this 14
+push pointer 0
+return
+function FinalBossGun.drawGunUp 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossGun.drawGunDown 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossGun.drawGunRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 2047
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2047
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossGun.drawGunLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossGun.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossGun.die 2
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBossGun.clearCurrCell 1
+pop temp 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBoomRenderer 1
+pop local 1
+push local 1
+push this 0
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+push constant 0
+return
+function FinalBossGun.setLeftPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 5
+push argument 2
+pop this 6
+push constant 0
+return
+function FinalBossGun.setRightPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 7
+push argument 2
+pop this 8
+push constant 0
+return
+function FinalBossGun.setUpPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 9
+push argument 2
+pop this 10
+push constant 0
+return
+function FinalBossGun.setDownPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 11
+push argument 2
+pop this 12
+push constant 0
+return
+function FinalBossGun.renderBasedOnBoss 0
+push argument 0
+pop pointer 0
+push argument 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push this 5
+add
+pop this 0
+push argument 2
+push this 6
+add
+pop this 1
+goto IF_END0
+label IF_FALSE0
+push argument 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push this 7
+add
+pop this 0
+push argument 2
+push this 8
+add
+pop this 1
+goto IF_END1
+label IF_FALSE1
+push argument 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 1
+push this 9
+add
+pop this 0
+push argument 2
+push this 10
+add
+pop this 1
+goto IF_END2
+label IF_FALSE2
+push argument 1
+push this 11
+add
+pop this 0
+push argument 2
+push this 12
+add
+pop this 1
+label IF_END2
+label IF_END1
+label IF_END0
+push argument 3
+pop this 3
+push pointer 0
+call FinalBossGun.render 1
+pop temp 0
+push constant 0
+return
+function FinalBossGun.getDir 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function FinalBossGun.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function FinalBossGun.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function FinalBossGun.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function FinalBossGun.collideWith 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+eq
+push argument 2
+push this 1
+eq
+and
+return
+function FinalBossGun.render 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call FinalBossGun.drawGunUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call FinalBossGun.drawGunDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call FinalBossGun.drawGunRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call FinalBossGun.drawGunLeft 1
+pop temp 0
+label IF_FALSE3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function FinalBossGun.setShootOffsetX 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 13
+push constant 0
+return
+function FinalBossGun.setShootOffsetY 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 14
+push constant 0
+return
+function FinalBossGun.fire 1
+push argument 0
+pop pointer 0
+call Bullet.new 0
+pop local 0
+push local 0
+push constant 0
+call Bullet.setMovementDelay 2
+pop temp 0
+push this 4
+push local 0
+push this 3
+push this 2
+push this 13
+push this 0
+add
+push this 14
+push this 1
+add
+call BulletsRegister.registerBullet 6
+pop temp 0
+push constant 0
+return

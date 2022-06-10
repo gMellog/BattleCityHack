@@ -1,0 +1,480 @@
+
+
+class AITankTeaser {
+    
+    field int x;
+	field int y;
+	field int speed;
+
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field int stopAnythingDelay;
+	field int stopCounter;
+
+	field int xSteps;
+	field int xDir;
+
+	field int ySteps;
+	field int yDir;
+
+	field int turnToDirection;
+	field boolean cameToPlace;
+
+	field int blinkTimeCounter;
+	field int blinkTime;
+
+	field int moveToX;
+	field int moveToY;
+
+	field boolean startWork;
+
+    constructor AITankTeaser new()
+	{
+		
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let direction = 0;
+
+		let stopAnythingDelay = 3;
+		let stopCounter = stopAnythingDelay;
+		let cameToPlace = false;
+
+		let blinkTimeCounter = 0;
+		let blinkTime = 40;
+		let startWork = false;
+
+		return this;    
+    }
+	
+	method void drawTankUp()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 384);
+
+	    do Memory.poke(memAddress + 128, 384);
+	    do Memory.poke(memAddress + 160, 384);
+	    do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, -3697);
+	    
+		do Memory.poke(memAddress + 256, -1);
+	    do Memory.poke(memAddress + 288, -25159);
+	    do Memory.poke(memAddress + 320, -1);
+	    do Memory.poke(memAddress + 352, -26647);
+	    
+		do Memory.poke(memAddress + 384, -1057);
+	    do Memory.poke(memAddress + 416, -25543);
+	    do Memory.poke(memAddress + 448, -1);
+	    do Memory.poke(memAddress + 480, -4081);
+
+		return;
+	}
+
+	method void drawTankDown()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -4081);
+	    do Memory.poke(memAddress + 32, -1);
+	    do Memory.poke(memAddress + 64, -24583);
+	    do Memory.poke(memAddress + 96, -577);
+	    
+		do Memory.poke(memAddress + 128, -24583);
+	    do Memory.poke(memAddress + 160, -2065);
+	    do Memory.poke(memAddress + 192, -26599);
+	    do Memory.poke(memAddress + 224, -1);
+	    
+		do Memory.poke(memAddress + 256, -3697);
+	    do Memory.poke(memAddress + 288, 384);
+	    do Memory.poke(memAddress + 320, 384);
+	    do Memory.poke(memAddress + 352, 384);
+
+	    do Memory.poke(memAddress + 384, 384);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+		
+		return;
+	}
+
+	method void drawTankLeft()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, -128);
+	    do Memory.poke(memAddress + 32, -10880);
+	    do Memory.poke(memAddress + 64, -10880);
+	    do Memory.poke(memAddress + 96, -128);
+	    
+		do Memory.poke(memAddress + 128, 32512);
+	    do Memory.poke(memAddress + 160, 32512);
+	    do Memory.poke(memAddress + 192, 27392);
+	    do Memory.poke(memAddress + 224, 32760);
+	    
+		do Memory.poke(memAddress + 256, 24056);
+	    do Memory.poke(memAddress + 288, 25344);
+	    do Memory.poke(memAddress + 320, 32512);
+	    do Memory.poke(memAddress + 352, 32512);
+
+	    do Memory.poke(memAddress + 384, -128);
+	    do Memory.poke(memAddress + 416, -10880);
+	    do Memory.poke(memAddress + 448, -10880);
+	    do Memory.poke(memAddress + 480, -128);
+		
+		return;
+	}
+
+	method void drawTankRight()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 511);
+	    do Memory.poke(memAddress + 32, 427);
+	    do Memory.poke(memAddress + 64, 427);
+	    do Memory.poke(memAddress + 96, 511);
+
+	    do Memory.poke(memAddress + 128, 254);
+	    do Memory.poke(memAddress + 160, 254);
+	    do Memory.poke(memAddress + 192, 214);
+	    do Memory.poke(memAddress + 224, 8190);
+
+	    do Memory.poke(memAddress + 256, 8122);
+	    do Memory.poke(memAddress + 288, 198);
+	    do Memory.poke(memAddress + 320, 254);
+	    do Memory.poke(memAddress + 352, 254);
+	    
+		do Memory.poke(memAddress + 384, 511);
+	    do Memory.poke(memAddress + 416, 427);
+	    do Memory.poke(memAddress + 448, 427);
+	    do Memory.poke(memAddress + 480, 511);
+	
+		return;
+	}
+
+	method void clearCurrCell()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void init(int pX, int pY, int pDir, int toX, int toY, int endDirection)
+	{
+		let x = pX;
+		let y = pY;
+		let direction = pDir;
+
+		let moveToX = toX;
+		let moveToY = toY;
+		let turnToDirection = endDirection;
+		do calcRoute();
+
+		do render();
+
+		return;
+	}
+
+	method void start()
+	{
+		let startWork = true;
+		return;
+	}
+
+	method void calcRoute()
+	{	
+		let xDir = calcDir(x, moveToX);
+		let yDir = calcDir(y, moveToY);
+
+		let xSteps = Math.abs(x - moveToX) / 16;
+		let ySteps = Math.abs(y - moveToY) / 16;
+
+		return;
+	}
+
+	method int calcDir(int from, int to)
+	{
+		if((from - to) > 0)
+		{
+			return -1;
+		}
+		else
+		{
+			if((from - to) < 0)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+	}
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method void setLocation(int pX, int pY)
+    {
+		let x = Utils.clampValue(pX, 0, 496);
+		let y = Utils.clampValue(pY, 0, 240);
+
+        return;
+    }
+
+	method void moveUp()
+	{	
+		var int newY;
+		let newY = y - speed;
+
+		if(~(direction = 0))
+		{
+			let direction = 0;
+		}
+		
+		do clearCurrCell();
+		do setLocation(x, newY);
+		do render();
+
+		return;
+	}
+
+	method void moveDown()
+	{
+		var int newY;
+		let newY = y + speed;
+
+		if(~(direction = 1))
+		{
+			let direction = 1;
+		}
+
+		do clearCurrCell();
+		do setLocation(x, newY);
+		do render();
+		
+		return;
+	}
+
+	method void moveRight()
+	{		
+		var int newX;
+		let newX = x + speed;
+
+		if(~(direction = 2))
+		{
+			let direction = 2;
+		}
+
+		do clearCurrCell();
+		do setLocation(newX, y);
+		do render();
+
+		return;
+	}
+
+
+	method void moveLeft()
+	{
+		var int newX;
+		let newX = x - speed;
+
+		if(~(direction = 3))
+		{
+			let direction = 3;
+		}
+		
+		do clearCurrCell();
+		do setLocation(newX, y);
+		do render();
+		
+		return;
+	}
+
+    method void render()
+    {   
+		if(direction = 0)
+		{
+			do drawTankUp();
+		}
+		else 
+		{
+			if(direction = 1)
+			{
+				do drawTankDown();
+			}
+			else
+			{
+				if(direction = 2)
+				{
+					do drawTankRight();
+				}
+				else
+				{
+					if(direction = 3)
+					{
+						do drawTankLeft();
+					}
+					else 
+					{	
+						if(direction = 4)
+						{
+							do clearCurrCell();
+						}
+					}
+				}
+			}
+		}
+		
+		return;
+    }
+
+
+	method void moveHorizontally()
+	{
+		if(xDir = -1)
+		{
+			do moveLeft();
+		}
+		else
+		{
+			do moveRight();
+		}
+
+		let xSteps = xSteps - 1;
+
+		return;
+	}
+
+	method void moveVertically()
+	{
+		if(yDir = -1)
+		{
+			do moveUp();
+		}
+		else
+		{
+			do moveDown();
+		}
+
+		let ySteps = ySteps - 1;
+		
+		return;
+	}
+
+	method void moveToPoint()
+	{
+	    var int randChoose;
+
+		if( (~(xSteps = 0)) & (~(ySteps = 0)))
+		{
+			let randChoose = Utils.remainder(Random.rand(), 2);
+
+			if(randChoose = 0)
+			{
+				do moveHorizontally();
+			}
+			else
+			{
+				do moveVertically();
+			}
+		}
+		else
+		{
+			if(xSteps > 0)
+			{
+				do moveHorizontally();
+			}
+			else
+			{
+				if(ySteps > 0)
+				{
+					do moveVertically();
+				}
+				else
+				{
+					let direction = turnToDirection;
+					do render();
+					let cameToPlace = true;
+				}
+			}
+		}
+	
+		return;
+	}
+
+	method boolean isCameToPlace()
+	{
+		return cameToPlace;
+	}
+
+	method void tick()
+	{	
+		if(~cameToPlace)
+		{
+			do render();
+		}
+
+		if(startWork)
+		{
+			if(~cameToPlace)
+			{
+				if(stopCounter = stopAnythingDelay)
+				{
+					do moveToPoint();
+					let stopCounter = 0;
+				}	
+				else
+				{
+					let stopCounter = stopCounter + 1;
+				}
+			}
+		}
+		
+		
+		return;
+	}
+
+}
+
+

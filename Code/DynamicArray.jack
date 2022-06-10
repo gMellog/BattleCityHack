@@ -1,0 +1,189 @@
+
+
+class DynamicArray {
+    
+    field int allocSize;
+    field int currSize;
+    field Array arr;
+
+    constructor DynamicArray new()
+    {
+	    let allocSize = 0;
+        let currSize = 0;
+        let arr = null;
+
+	    return this;    
+    }
+ 
+    method void reserve(int newAllocSize)
+    {
+        if(allocSize < newAllocSize)
+        {
+            let allocSize = newAllocSize;
+            do allocAndCopyArray();
+        }
+
+        return;
+    }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+        return;
+	}
+    
+    method void add(int x, int index)
+    {
+        var int i;
+
+        if(~(index < currSize))
+        {   
+            if(~(index < allocSize))
+            {   
+                if(allocSize = 0)
+                {
+                    let allocSize = 1;
+                }
+
+                while(~(index < allocSize))
+                {
+                    let allocSize = allocSize * 2;
+                }
+
+                do allocAndCopyArray();
+            }
+            
+            let currSize = index + 1;
+                
+            let arr[index] = x;
+        }
+        else
+        {
+            do addBetween(x, index);
+        }
+
+        return;
+    }
+
+
+    method void addBetween(int x, int index)
+    {
+        var int i;
+
+        let currSize = currSize + 1;
+
+        if(currSize > allocSize)
+        {
+            let allocSize = allocSize * 2;
+            do allocAndCopyArray();
+        }            
+
+        let i = index;
+
+        while(i < currSize)
+        {
+            let arr[i + 1] = arr[i];
+            let i = i + 1;
+        }
+
+        let arr[index] = x;
+
+        return;
+    }
+
+    method void allocAndCopyArray()
+    {
+        var Array newArr;
+        var int i;
+
+        let i = 0;
+        let newArr = Array.new(allocSize);
+
+        while(i < currSize)
+        {
+            let newArr[i] = arr[i];
+            let i = i + 1;
+        }
+
+        if(~(arr = null))
+        {
+            do arr.dispose();
+        }
+
+        let arr = newArr;
+
+        return;
+    }
+    
+    method void remove(int index)
+    {
+        var int i;
+        var int divR;
+
+        if(((index > 0) | (index = 0)) & (index < currSize))
+        {
+            let i = index;
+            
+            while(i < currSize)
+            {
+                let arr[i] = arr[i + 1];
+
+                let i = i + 1;
+            }
+
+            let currSize = currSize - 1;
+            
+            if(~(currSize = 0))
+            {
+                let divR = allocSize / currSize;
+
+                if((divR > 2) | (divR = 2))
+                {
+                    let allocSize = currSize;
+                    do allocAndCopyArray();
+                }
+            }
+            
+       }
+
+        return;
+    }
+
+    method void push_back(int x)
+    {
+        do add(x, currSize);
+        return;
+    }
+
+    method void shrink_to_fit()
+    {
+        if(allocSize > currSize)
+        {
+            let allocSize = currSize;
+            do allocAndCopyArray();
+        }
+
+        return;
+    }
+
+    method int getSize()
+    {
+        return currSize;
+    }
+
+    method int getAllocSize()
+    {
+        return allocSize;
+    }
+
+    method int getIndexValue(int index)
+    {
+        return arr[index];
+    }
+
+    method void setIndexValue(int x, int index)
+    {
+        let arr[index] = x;
+        return;
+    }
+}

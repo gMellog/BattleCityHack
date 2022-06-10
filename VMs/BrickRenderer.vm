@@ -1,0 +1,2671 @@
+function BrickRenderer.new 0
+push constant 1
+call Memory.alloc 1
+pop pointer 0
+call DynamicArray.new 0
+pop this 0
+push this 0
+push constant 128
+call DynamicArray.reserve 2
+pop temp 0
+push pointer 0
+call BrickRenderer.initLeftColumn 1
+pop temp 0
+push pointer 0
+call BrickRenderer.initTopRow 1
+pop temp 0
+push pointer 0
+call BrickRenderer.initBottomRow 1
+pop temp 0
+push pointer 0
+call BrickRenderer.initRightColumn 1
+pop temp 0
+push pointer 0
+call BrickRenderer.initBaseBricks 1
+pop temp 0
+push pointer 0
+call BrickRenderer.initGreeting 1
+pop temp 0
+push pointer 0
+return
+function BrickRenderer.getBricksSize 0
+push argument 0
+pop pointer 0
+push this 0
+call DynamicArray.getSize 1
+return
+function BrickRenderer.initBaseBricks 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 240
+push constant 224
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 240
+push constant 208
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 256
+push constant 208
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 272
+push constant 208
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 272
+push constant 224
+call Brick.LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.initLeftColumn 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 0
+push constant 0
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 16
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 32
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 48
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 64
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 80
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 96
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 112
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 128
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 144
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 160
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 176
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 192
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 208
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 224
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+push constant 240
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.initTopRow 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 16
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 32
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 48
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 64
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 80
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 96
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 112
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 128
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 144
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 160
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 176
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 192
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 208
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 224
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 240
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 256
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 272
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 288
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 304
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 320
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 336
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 352
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 368
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 384
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 400
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 416
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 432
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 448
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 464
+push constant 0
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 480
+push constant 0
+call Brick.BOTTOM_TOP_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.initBottomRow 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 16
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 32
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 48
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 64
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 80
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 96
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 112
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 128
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 144
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 160
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 176
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 192
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 208
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 224
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 240
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 256
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 272
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 288
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 304
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 320
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 336
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 352
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 368
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 384
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 400
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 416
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 432
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 448
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 464
+push constant 240
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 480
+push constant 240
+call Brick.BOTTOM_TOP_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.initRightColumn 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 496
+push constant 0
+push constant 1
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 16
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 32
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 48
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 64
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 80
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 96
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 112
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 128
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 144
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 160
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 176
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 192
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 208
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 224
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 496
+push constant 240
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.render 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 0
+push local 1
+call DynamicArray.getIndexValue 2
+pop local 0
+push local 0
+call Brick.render 1
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function BrickRenderer.checkCollideWith 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 0
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 1
+push local 1
+push argument 1
+push argument 2
+call Brick.collideWith 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+return
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 1
+neg
+return
+function BrickRenderer.killBrick 1
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call DynamicArray.getIndexValue 2
+pop local 0
+push this 0
+push argument 1
+call DynamicArray.remove 2
+pop temp 0
+push local 0
+call Brick.die 1
+pop temp 0
+push local 0
+call Brick.dispose 1
+pop temp 0
+push constant 0
+return
+function BrickRenderer.dispose 2
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 0
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 1
+push local 1
+call Brick.dispose 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push this 0
+call DynamicArray.dispose 1
+pop temp 0
+push constant 0
+return
+function BrickRenderer.clearCell 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function BrickRenderer.hideGreeting 2
+push argument 0
+pop pointer 0
+push constant 96
+pop local 0
+push constant 32
+pop local 1
+push pointer 0
+push local 0
+push local 1
+call BrickRenderer.hideH 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideE 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideL1 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideL2 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideO 3
+pop local 0
+push constant 112
+pop local 0
+push constant 128
+pop local 1
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideG 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideU 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideY 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.hideS 3
+pop local 0
+push constant 0
+return
+function BrickRenderer.hideH 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.hideE 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.hideL 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.hideL1 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.hideL 3
+return
+function BrickRenderer.hideL2 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.hideL 3
+return
+function BrickRenderer.hideO 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 48
+add
+return
+function BrickRenderer.hideG 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 48
+add
+return
+function BrickRenderer.hideU 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.hideY 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.hideS 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+push constant 16
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call BrickRenderer.clearCell 3
+pop temp 0
+push pointer 0
+push argument 1
+push constant 32
+add
+push argument 2
+call BrickRenderer.clearCell 3
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initH 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initE 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initL1 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initL2 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initO 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 48
+add
+return
+function BrickRenderer.initG 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 48
+add
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 48
+add
+return
+function BrickRenderer.initU 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initY 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 16
+add
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call Brick.BOTTOM_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initS 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+push argument 2
+push constant 16
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 32
+add
+call Brick.BOTTOM_TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 16
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 48
+add
+call Brick.TOP_LEFT_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 1
+push constant 32
+add
+push argument 2
+push constant 64
+add
+call Brick.BOTTOM_TOP_RIGHT_LINES 0
+call Brick.new 3
+call DynamicArray.push_back 2
+pop temp 0
+push argument 1
+push constant 32
+add
+return
+function BrickRenderer.initGreeting 2
+push argument 0
+pop pointer 0
+push constant 96
+pop local 0
+push constant 32
+pop local 1
+push pointer 0
+push local 0
+push local 1
+call BrickRenderer.initH 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initE 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initL1 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initL2 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initO 3
+pop local 0
+push constant 112
+pop local 0
+push constant 128
+pop local 1
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initG 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initU 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initY 3
+pop local 0
+push pointer 0
+push local 0
+push constant 32
+add
+push local 1
+call BrickRenderer.initS 3
+pop local 0
+push constant 0
+return

@@ -1,0 +1,3206 @@
+function FinalBoss.new 0
+push constant 32
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop this 26
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push this 26
+call BattleCityGame.getBulletsRegister 1
+pop this 8
+push constant 0
+pop this 3
+push constant 1
+neg
+pop this 4
+push constant 1
+neg
+pop this 5
+push constant 10
+pop this 6
+push this 6
+pop this 7
+push constant 0
+pop this 11
+push constant 15
+pop this 12
+push constant 2
+pop this 25
+push this 25
+pop this 24
+call DynamicArray.new 0
+pop this 13
+push pointer 0
+call FinalBossGun.new 1
+pop this 14
+push pointer 0
+call FinalBossGun.new 1
+pop this 15
+push constant 100
+pop this 28
+push constant 1
+neg
+pop this 27
+push constant 1
+neg
+pop this 29
+push constant 30
+pop this 30
+push constant 0
+pop this 31
+push pointer 0
+return
+function FinalBoss.phase2 0
+push argument 0
+pop pointer 0
+push constant 2
+pop this 6
+push constant 5
+pop this 12
+push constant 0
+return
+function FinalBoss.phase3 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 6
+push constant 3
+pop this 12
+push constant 0
+return
+function FinalBoss.getHP 1
+push argument 0
+pop pointer 0
+push this 13
+call DynamicArray.getSize 1
+pop local 0
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push constant 1
+add
+pop local 0
+label IF_FALSE0
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 0
+push constant 1
+add
+pop local 0
+label IF_FALSE1
+push local 0
+return
+function FinalBoss.drawFill 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawGunUp 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawGunDown 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawGunRight 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 2047
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 2047
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawGunLeft 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 32
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawAIUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBoss.drawCommonPart 1
+pop temp 0
+push this 0
+push constant 32
+add
+pop this 20
+push this 1
+push constant 32
+add
+pop this 21
+push this 0
+push constant 48
+add
+pop this 22
+push this 1
+push constant 32
+add
+pop this 23
+push pointer 0
+push this 0
+push constant 32
+add
+push this 1
+push constant 32
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 48
+add
+push this 1
+push constant 32
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawAIRight 0
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBoss.drawCommonPart 1
+pop temp 0
+push this 0
+push constant 80
+add
+pop this 20
+push this 1
+push constant 64
+add
+pop this 21
+push this 0
+push constant 80
+add
+pop this 22
+push this 1
+push constant 80
+add
+pop this 23
+push pointer 0
+push this 0
+push constant 80
+add
+push this 1
+push constant 64
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 80
+add
+push this 1
+push constant 80
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawAIDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBoss.drawCommonPart 1
+pop temp 0
+push this 0
+push constant 32
+add
+pop this 20
+push this 1
+push constant 112
+add
+pop this 21
+push this 0
+push constant 48
+add
+pop this 22
+push this 1
+push constant 112
+add
+pop this 23
+push pointer 0
+push this 0
+push constant 32
+add
+push this 1
+push constant 112
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 48
+add
+push this 1
+push constant 112
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawAILeft 0
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBoss.drawCommonPart 1
+pop temp 0
+push this 0
+pop this 20
+push this 1
+push constant 64
+add
+pop this 21
+push this 0
+pop this 22
+push this 1
+push constant 80
+add
+pop this 23
+push pointer 0
+push this 0
+push this 1
+push constant 64
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push pointer 0
+push this 0
+push this 1
+push constant 80
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push constant 0
+return
+function FinalBoss.drawCommonPart 5
+push argument 0
+pop pointer 0
+push this 0
+push constant 16
+add
+pop this 16
+push this 1
+push constant 48
+add
+pop this 17
+push this 0
+push constant 64
+add
+pop this 18
+push this 1
+push constant 96
+add
+pop this 19
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+push constant 48
+pop local 3
+label WHILE_EXP0
+push local 0
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 1
+push constant 16
+pop local 2
+label WHILE_EXP1
+push local 1
+push constant 4
+lt
+not
+if-goto WHILE_END1
+push pointer 0
+push this 0
+push local 2
+add
+push this 1
+push local 3
+add
+call FinalBoss.drawFill 3
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+push local 2
+push constant 16
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 1
+add
+pop local 0
+push local 3
+push constant 16
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP2
+push local 0
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END2
+push this 13
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 4
+push local 4
+push this 0
+push this 1
+push this 3
+call FinalBossPartTank.renderBasedOnBoss 4
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP2
+label WHILE_END2
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 14
+push this 0
+push this 1
+push this 3
+call FinalBossGun.renderBasedOnBoss 4
+pop temp 0
+label IF_FALSE0
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 15
+push this 0
+push this 1
+push this 3
+call FinalBossGun.renderBasedOnBoss 4
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function FinalBoss.valueInRectRange 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 3
+push argument 5
+call FinalBoss.inRangeEquals 4
+push pointer 0
+push argument 2
+push argument 4
+push argument 6
+call FinalBoss.inRangeEquals 4
+and
+return
+function FinalBoss.clearCell 1
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.clearCurrCell 5
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+push constant 0
+pop local 1
+push constant 48
+pop local 3
+label WHILE_EXP0
+push local 0
+push constant 4
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 1
+push constant 16
+pop local 2
+label WHILE_EXP1
+push local 1
+push constant 4
+lt
+not
+if-goto WHILE_END1
+push pointer 0
+push this 0
+push local 2
+add
+push this 1
+push local 3
+add
+call FinalBoss.clearCell 3
+pop temp 0
+push local 1
+push constant 1
+add
+pop local 1
+push local 2
+push constant 16
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+push local 0
+push constant 1
+add
+pop local 0
+push local 3
+push constant 16
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+pop local 0
+label WHILE_EXP2
+push local 0
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END2
+push this 13
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 4
+push local 4
+call FinalBossPartTank.clearCurrCell 1
+pop temp 0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP2
+label WHILE_END2
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 14
+call FinalBossGun.clearCurrCell 1
+pop temp 0
+label IF_FALSE0
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 15
+call FinalBossGun.clearCurrCell 1
+pop temp 0
+label IF_FALSE1
+push this 3
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+push this 0
+push constant 32
+add
+push this 1
+push constant 112
+add
+call FinalBoss.clearCell 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 48
+add
+push this 1
+push constant 112
+add
+call FinalBoss.clearCell 3
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+push this 0
+push constant 32
+add
+push this 1
+push constant 32
+add
+call FinalBoss.clearCell 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 48
+add
+push this 1
+push constant 32
+add
+call FinalBoss.clearCell 3
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+push this 0
+push constant 80
+add
+push this 1
+push constant 64
+add
+call FinalBoss.clearCell 3
+pop temp 0
+push pointer 0
+push this 0
+push constant 80
+add
+push this 1
+push constant 80
+add
+call FinalBoss.clearCell 3
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+push this 0
+push this 1
+push constant 64
+add
+call FinalBoss.clearCell 3
+pop temp 0
+push pointer 0
+push this 0
+push this 1
+push constant 80
+add
+call FinalBoss.clearCell 3
+pop temp 0
+label IF_FALSE5
+label IF_END4
+label IF_END3
+label IF_END2
+push constant 0
+return
+function FinalBoss.isPlayerInsideBoom 1
+push argument 0
+pop pointer 0
+push this 26
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push local 0
+call Player.getX 1
+push local 0
+call Player.getY 1
+push argument 1
+push argument 2
+push argument 3
+push argument 4
+call FinalBoss.valueInRectRange 7
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+return
+function FinalBoss.isPlayerDiedCauseOfBoom 0
+push argument 0
+pop pointer 0
+push this 31
+return
+function FinalBoss.die 5
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop this 26
+push this 26
+call BattleCityGame.getBoomRenderer 1
+pop local 0
+push constant 0
+pop local 1
+push constant 0
+pop local 2
+push constant 48
+pop local 4
+label WHILE_EXP0
+push local 1
+push constant 5
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 2
+push constant 0
+pop local 3
+label WHILE_EXP1
+push local 2
+push constant 7
+lt
+not
+if-goto WHILE_END1
+push local 0
+push this 0
+push local 3
+add
+push this 1
+push local 4
+add
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 2
+push constant 1
+add
+pop local 2
+push local 3
+push constant 16
+add
+pop local 3
+goto WHILE_EXP1
+label WHILE_END1
+push local 1
+push constant 1
+add
+pop local 1
+push local 4
+push constant 16
+add
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+push pointer 0
+push this 0
+push this 1
+push constant 48
+add
+push this 0
+push local 3
+push constant 16
+sub
+add
+push this 1
+push local 4
+push constant 16
+sub
+add
+call FinalBoss.isPlayerInsideBoom 5
+pop this 31
+push constant 0
+return
+function FinalBoss.createPart 1
+push argument 0
+pop pointer 0
+call FinalBossPartTank.new 0
+pop local 0
+push local 0
+push argument 1
+push argument 2
+push argument 3
+call FinalBossPartTank.setLeftPart 4
+pop temp 0
+push local 0
+push argument 4
+push argument 5
+push argument 6
+call FinalBossPartTank.setRightPart 4
+pop temp 0
+push local 0
+push argument 7
+push argument 8
+push argument 9
+call FinalBossPartTank.setDownPart 4
+pop temp 0
+push local 0
+push argument 10
+push argument 11
+push argument 12
+call FinalBossPartTank.setUpPart 4
+pop temp 0
+push local 0
+return
+function FinalBoss.initParts 1
+push argument 0
+pop pointer 0
+push this 14
+push constant 16
+neg
+push constant 80
+call FinalBossGun.setLeftPart 3
+pop temp 0
+push this 14
+push constant 96
+push constant 64
+call FinalBossGun.setRightPart 3
+pop temp 0
+push this 14
+push constant 48
+push constant 128
+call FinalBossGun.setDownPart 3
+pop temp 0
+push this 14
+push constant 32
+push constant 16
+call FinalBossGun.setUpPart 3
+pop temp 0
+push this 15
+push constant 16
+neg
+push constant 64
+call FinalBossGun.setLeftPart 3
+pop temp 0
+push this 15
+push constant 96
+push constant 80
+call FinalBossGun.setRightPart 3
+pop temp 0
+push this 15
+push constant 32
+push constant 128
+call FinalBossGun.setDownPart 3
+pop temp 0
+push this 15
+push constant 48
+push constant 16
+call FinalBossGun.setUpPart 3
+pop temp 0
+push this 13
+push constant 14
+call DynamicArray.reserve 2
+pop temp 0
+push pointer 0
+push constant 0
+push constant 96
+call Utils.LEFT 0
+push constant 80
+push constant 48
+call Utils.RIGHT 0
+push constant 64
+push constant 112
+call Utils.DOWN 0
+push constant 16
+push constant 32
+call Utils.UP 0
+call FinalBoss.createPart 13
+pop local 0
+push local 0
+push constant 0
+call FinalBossPartTank.setShootBulletsDelay 2
+pop temp 0
+push this 13
+push local 0
+call DynamicArray.push_back 2
+pop temp 0
+push pointer 0
+push constant 0
+push constant 48
+call Utils.LEFT 0
+push constant 80
+push constant 96
+call Utils.RIGHT 0
+push constant 16
+push constant 112
+call Utils.DOWN 0
+push constant 64
+push constant 32
+call Utils.UP 0
+call FinalBoss.createPart 13
+pop local 0
+push local 0
+push constant 0
+call FinalBossPartTank.setShootBulletsDelay 2
+pop temp 0
+push this 13
+push local 0
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 16
+push constant 112
+call Utils.DOWN 0
+push constant 64
+push constant 32
+call Utils.UP 0
+push constant 80
+push constant 96
+call Utils.RIGHT 0
+push constant 0
+push constant 48
+call Utils.LEFT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 32
+push constant 112
+call Utils.DOWN 0
+push constant 48
+push constant 32
+call Utils.UP 0
+push constant 80
+push constant 80
+call Utils.RIGHT 0
+push constant 0
+push constant 64
+call Utils.LEFT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 48
+push constant 112
+call Utils.DOWN 0
+push constant 32
+push constant 32
+call Utils.UP 0
+push constant 80
+push constant 64
+call Utils.RIGHT 0
+push constant 0
+push constant 80
+call Utils.LEFT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 64
+push constant 112
+call Utils.DOWN 0
+push constant 16
+push constant 32
+call Utils.UP 0
+push constant 80
+push constant 48
+call Utils.RIGHT 0
+push constant 0
+push constant 96
+call Utils.LEFT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 16
+push constant 32
+call Utils.UP 0
+push constant 64
+push constant 112
+call Utils.DOWN 0
+push constant 0
+push constant 96
+call Utils.LEFT 0
+push constant 80
+push constant 48
+call Utils.RIGHT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 32
+push constant 32
+call Utils.UP 0
+push constant 48
+push constant 112
+call Utils.DOWN 0
+push constant 0
+push constant 80
+call Utils.LEFT 0
+push constant 80
+push constant 64
+call Utils.RIGHT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 48
+push constant 32
+call Utils.UP 0
+push constant 32
+push constant 112
+call Utils.DOWN 0
+push constant 0
+push constant 48
+call Utils.LEFT 0
+push constant 80
+push constant 80
+call Utils.RIGHT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 64
+push constant 32
+call Utils.UP 0
+push constant 16
+push constant 112
+call Utils.DOWN 0
+push constant 0
+push constant 64
+call Utils.LEFT 0
+push constant 80
+push constant 96
+call Utils.RIGHT 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 80
+push constant 96
+call Utils.RIGHT 0
+push constant 0
+push constant 48
+call Utils.LEFT 0
+push constant 64
+push constant 32
+call Utils.UP 0
+push constant 64
+push constant 112
+call Utils.DOWN 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 80
+push constant 80
+call Utils.RIGHT 0
+push constant 0
+push constant 64
+call Utils.LEFT 0
+push constant 48
+push constant 32
+call Utils.UP 0
+push constant 48
+push constant 112
+call Utils.DOWN 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 80
+push constant 64
+call Utils.RIGHT 0
+push constant 0
+push constant 80
+call Utils.LEFT 0
+push constant 32
+push constant 32
+call Utils.UP 0
+push constant 32
+push constant 112
+call Utils.DOWN 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push this 13
+push pointer 0
+push constant 80
+push constant 48
+call Utils.RIGHT 0
+push constant 0
+push constant 96
+call Utils.LEFT 0
+push constant 16
+push constant 32
+call Utils.UP 0
+push constant 16
+push constant 112
+call Utils.DOWN 0
+call FinalBoss.createPart 13
+call DynamicArray.push_back 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.init 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push argument 2
+pop this 1
+call AITank.verticalBehaviour 0
+pop this 4
+call AITank.startDownDir 0
+pop this 5
+push pointer 0
+call FinalBoss.initDirection 1
+pop temp 0
+push pointer 0
+call FinalBoss.initParts 1
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.setLocation 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 0
+push argument 2
+pop this 1
+push constant 0
+return
+function FinalBoss.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function FinalBoss.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function FinalBoss.inBody 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push this 16
+push this 17
+push this 18
+push this 19
+call FinalBoss.valueInRectRange 7
+return
+function FinalBoss.inFace 0
+push argument 0
+pop pointer 0
+push pointer 0
+push argument 1
+push argument 2
+push this 20
+push this 21
+push this 22
+push this 23
+call FinalBoss.valueInRectRange 7
+return
+function FinalBoss.getTankParts 0
+push argument 0
+pop pointer 0
+push this 13
+return
+function FinalBoss.ifNoGunsEndGame 0
+push argument 0
+pop pointer 0
+push this 14
+push constant 0
+eq
+push this 15
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 26
+push constant 0
+call BattleCityGame.killEnemy 2
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function FinalBoss.getLeftGun 0
+push argument 0
+pop pointer 0
+push this 14
+return
+function FinalBoss.getRightGun 0
+push argument 0
+pop pointer 0
+push this 15
+return
+function FinalBoss.killGun 0
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBoss.getHP 1
+push constant 2
+gt
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+call FinalBossGun.die 1
+pop temp 0
+push this 14
+push argument 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+pop this 14
+goto IF_END1
+label IF_FALSE1
+push this 15
+push argument 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+pop this 15
+label IF_FALSE2
+label IF_END1
+push pointer 0
+call FinalBoss.ifNoGunsEndGame 1
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function FinalBoss.collideWith 3
+push argument 0
+pop pointer 0
+push this 26
+call BattleCityGame.getPlayer 1
+pop local 2
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 13
+push local 1
+call DynamicArray.getIndexValue 2
+pop local 0
+push local 0
+push argument 1
+push argument 2
+call FinalBossPartTank.collideWith 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 14
+push argument 1
+push argument 2
+call FinalBossGun.collideWith 3
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+return
+label IF_FALSE2
+label IF_FALSE1
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 15
+push argument 1
+push argument 2
+call FinalBossGun.collideWith 3
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push constant 0
+not
+return
+label IF_FALSE4
+label IF_FALSE3
+push pointer 0
+push argument 1
+push argument 2
+call FinalBoss.inBody 3
+push pointer 0
+push argument 1
+push argument 2
+call FinalBoss.inFace 3
+or
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 0
+not
+return
+label IF_FALSE5
+push constant 0
+return
+function FinalBoss.moveUp 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+sub
+pop local 0
+push this 3
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 3
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call FinalBoss.setLocation 3
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.moveDown 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+add
+pop local 0
+push this 3
+push constant 1
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+pop this 3
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call FinalBoss.setLocation 3
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.moveRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+pop local 0
+push this 3
+push constant 2
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 2
+pop this 3
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call FinalBoss.setLocation 3
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.moveLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+sub
+pop local 0
+push this 3
+push constant 3
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 3
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call FinalBoss.setLocation 3
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.render 0
+push argument 0
+pop pointer 0
+push this 3
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call FinalBoss.drawAIUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call FinalBoss.drawAIDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call FinalBoss.drawAIRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call FinalBoss.drawAILeft 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 3
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function FinalBoss.fire 1
+push argument 0
+pop pointer 0
+call Bullet.new 0
+pop local 0
+push local 0
+push constant 0
+call Bullet.setMovementDelay 2
+pop temp 0
+push this 8
+push local 0
+push this 3
+push this 2
+push argument 1
+push argument 2
+call BulletsRegister.registerBullet 6
+pop temp 0
+push constant 0
+return
+function FinalBoss.checkCollideWithPlayer 1
+push argument 0
+pop pointer 0
+push this 26
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push argument 1
+push argument 2
+call Player.collideWith 3
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function FinalBoss.shootAllDirsExcept 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 13
+push local 0
+call DynamicArray.getIndexValue 2
+pop local 1
+push local 1
+call FinalBossPartTank.getDir 1
+push argument 1
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+call FinalBossPartTank.fire 1
+pop temp 0
+label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function FinalBoss.shootAllDirsLeft 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Utils.LEFT 0
+call FinalBoss.shootAllDirsExcept 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.shootAllDirsRight 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Utils.RIGHT 0
+call FinalBoss.shootAllDirsExcept 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.shootAllDirsUp 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Utils.UP 0
+call FinalBoss.shootAllDirsExcept 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.shootAllDirsDown 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Utils.DOWN 0
+call FinalBoss.shootAllDirsExcept 2
+pop temp 0
+push constant 0
+return
+function FinalBoss.shootFourDirections 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call FinalBoss.shootAllDirsLeft 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call FinalBoss.shootAllDirsRight 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call FinalBoss.shootAllDirsUp 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push pointer 0
+call FinalBoss.shootAllDirsDown 1
+pop temp 0
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function FinalBoss.initDirection 0
+push argument 0
+pop pointer 0
+push this 4
+push constant 0
+eq
+push this 5
+push constant 0
+eq
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 3
+goto IF_END0
+label IF_FALSE0
+push this 4
+push constant 1
+eq
+push this 5
+push constant 0
+eq
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 3
+pop this 3
+goto IF_END1
+label IF_FALSE1
+push this 4
+push constant 0
+eq
+push this 5
+push constant 1
+eq
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 1
+pop this 3
+goto IF_END2
+label IF_FALSE2
+push constant 2
+pop this 3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function FinalBoss.randomizeTypeAndDir 2
+push argument 0
+pop pointer 0
+push constant 99
+pop local 0
+push local 0
+call Random.randRange 1
+pop local 1
+push local 1
+push constant 0
+lt
+not
+push local 1
+push constant 25
+lt
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 4
+push constant 0
+pop this 5
+goto IF_END0
+label IF_FALSE0
+push local 1
+push constant 25
+lt
+not
+push local 1
+push constant 50
+lt
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+pop this 4
+push constant 0
+pop this 5
+goto IF_END1
+label IF_FALSE1
+push local 1
+push constant 50
+lt
+not
+push local 1
+push constant 75
+lt
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+pop this 4
+push constant 1
+pop this 5
+goto IF_END2
+label IF_FALSE2
+push constant 1
+pop this 4
+push constant 1
+pop this 5
+label IF_END2
+label IF_END1
+label IF_END0
+push pointer 0
+call FinalBoss.clearCurrCell 1
+pop temp 0
+push pointer 0
+call FinalBoss.initDirection 1
+pop temp 0
+push pointer 0
+call FinalBoss.render 1
+pop temp 0
+push constant 0
+return
+function FinalBoss.move 1
+push argument 0
+pop pointer 0
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 14
+pop local 0
+label IF_FALSE0
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 15
+pop local 0
+label IF_FALSE1
+push this 4
+call AITank.verticalBehaviour 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 5
+call AITank.startUpDir 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+call FinalBossGun.getY 1
+push this 2
+sub
+push constant 0
+lt
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call FinalBoss.moveUp 1
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push pointer 0
+call FinalBoss.randomizeTypeAndDir 1
+pop temp 0
+label IF_END4
+goto IF_END3
+label IF_FALSE3
+push this 5
+call AITank.startDownDir 0
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 0
+call FinalBossGun.getY 1
+push this 2
+add
+push constant 240
+gt
+not
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push pointer 0
+call FinalBoss.moveDown 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push pointer 0
+call FinalBoss.randomizeTypeAndDir 1
+pop temp 0
+label IF_END6
+label IF_FALSE5
+label IF_END3
+goto IF_END2
+label IF_FALSE2
+push this 5
+call AITank.startLeftDir 0
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 0
+call FinalBossGun.getX 1
+push this 2
+sub
+push constant 0
+lt
+not
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push pointer 0
+call FinalBoss.moveLeft 1
+pop temp 0
+goto IF_END8
+label IF_FALSE8
+push pointer 0
+call FinalBoss.randomizeTypeAndDir 1
+pop temp 0
+label IF_END8
+goto IF_END7
+label IF_FALSE7
+push this 5
+call AITank.startRightDir 0
+eq
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push local 0
+call FinalBossGun.getX 1
+push this 2
+add
+push constant 496
+gt
+not
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push pointer 0
+call FinalBoss.moveRight 1
+pop temp 0
+goto IF_END10
+label IF_FALSE10
+push pointer 0
+call FinalBoss.randomizeTypeAndDir 1
+pop temp 0
+label IF_END10
+label IF_FALSE9
+label IF_END7
+label IF_END2
+push pointer 0
+call FinalBoss.isPlayerInside 1
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push this 26
+call Player.SMACKED 0
+call BattleCityGame.killPlayer 2
+pop temp 0
+label IF_FALSE11
+push constant 0
+return
+function FinalBoss.getNextX 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.UP 0
+eq
+push this 3
+or
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push this 2
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 0
+push this 2
+add
+return
+label IF_END1
+label IF_END0
+function FinalBoss.getNextY 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.LEFT 0
+eq
+push this 3
+or
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+push this 2
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 1
+push this 2
+add
+return
+label IF_END1
+label IF_END0
+function FinalBoss.inRangeEquals 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+lt
+not
+push argument 1
+push argument 3
+gt
+not
+and
+return
+function FinalBoss.isFaceToPlayer 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 3
+sub
+call Math.abs 1
+push argument 2
+push argument 3
+sub
+call Math.abs 1
+gt
+return
+function FinalBoss.isPlayerOnPatrolLine 7
+push argument 0
+pop pointer 0
+push this 26
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call Player.getX 1
+pop local 1
+push local 0
+call Player.getY 1
+pop local 2
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 14
+call FinalBossGun.getY 1
+push constant 32
+sub
+pop local 3
+push this 14
+call FinalBossGun.getY 1
+push constant 16
+add
+pop local 4
+goto IF_END2
+label IF_FALSE2
+push this 15
+call FinalBossGun.getY 1
+push constant 16
+sub
+pop local 3
+push this 15
+call FinalBossGun.getY 1
+push constant 32
+add
+pop local 4
+label IF_END2
+goto IF_END1
+label IF_FALSE1
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 14
+call FinalBossGun.getY 1
+push constant 16
+sub
+pop local 3
+push this 14
+call FinalBossGun.getY 1
+push constant 32
+add
+pop local 4
+goto IF_END4
+label IF_FALSE4
+push this 15
+call FinalBossGun.getY 1
+push constant 32
+sub
+pop local 3
+push this 15
+call FinalBossGun.getY 1
+push constant 16
+add
+pop local 4
+label IF_END4
+goto IF_END3
+label IF_FALSE3
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 14
+call FinalBossGun.getX 1
+push constant 16
+sub
+pop local 5
+push this 14
+call FinalBossGun.getX 1
+push constant 32
+add
+pop local 6
+goto IF_END6
+label IF_FALSE6
+push this 15
+call FinalBossGun.getX 1
+push constant 32
+sub
+pop local 5
+push this 15
+call FinalBossGun.getX 1
+push constant 16
+add
+pop local 6
+label IF_END6
+goto IF_END5
+label IF_FALSE5
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push this 14
+call FinalBossGun.getX 1
+push constant 32
+sub
+pop local 5
+push this 14
+call FinalBossGun.getX 1
+push constant 16
+add
+pop local 6
+goto IF_END7
+label IF_FALSE7
+push this 15
+call FinalBossGun.getX 1
+push constant 16
+sub
+pop local 5
+push this 15
+call FinalBossGun.getX 1
+push constant 32
+add
+pop local 6
+label IF_END7
+label IF_END5
+label IF_END3
+label IF_END1
+push this 3
+call Utils.LEFT 0
+eq
+push this 3
+call Utils.RIGHT 0
+eq
+or
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push pointer 0
+push local 2
+push local 3
+push local 4
+call FinalBoss.inRangeEquals 4
+push pointer 0
+push this 0
+push pointer 0
+call FinalBoss.getNextX 1
+push local 1
+call FinalBoss.isFaceToPlayer 4
+and
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push constant 0
+not
+return
+label IF_FALSE9
+goto IF_END8
+label IF_FALSE8
+push pointer 0
+push local 1
+push local 5
+push local 6
+call FinalBoss.inRangeEquals 4
+push pointer 0
+push this 1
+push pointer 0
+call FinalBoss.getNextY 1
+push local 2
+call FinalBoss.isFaceToPlayer 4
+and
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push constant 0
+not
+return
+label IF_FALSE10
+label IF_END8
+label IF_FALSE0
+push constant 0
+return
+function FinalBoss.killTankOnIndex 2
+push argument 0
+pop pointer 0
+push this 13
+push argument 1
+call DynamicArray.getIndexValue 2
+pop local 0
+push this 13
+push argument 1
+call DynamicArray.remove 2
+pop temp 0
+push local 0
+call FinalBossPartTank.die 1
+pop temp 0
+push local 0
+call FinalBossPartTank.dispose 1
+pop temp 0
+push this 13
+call DynamicArray.getSize 1
+pop local 1
+push local 1
+push constant 8
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call FinalBoss.phase2 1
+pop temp 0
+label IF_FALSE0
+push local 1
+push constant 3
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call FinalBoss.phase3 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function FinalBoss.getShootOffsetX 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16
+neg
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 16
+return
+goto IF_END1
+label IF_FALSE1
+push constant 0
+return
+label IF_END1
+label IF_END0
+function FinalBoss.getShootOffsetY 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 16
+neg
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 16
+return
+goto IF_END1
+label IF_FALSE1
+push constant 0
+return
+label IF_END1
+label IF_END0
+function FinalBoss.isPlayerInside 1
+push argument 0
+pop pointer 0
+push this 26
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push local 0
+call Player.getX 1
+push local 0
+call Player.getY 1
+call FinalBoss.collideWith 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+return
+function FinalBoss.shootWithFace 2
+push argument 0
+pop pointer 0
+push constant 0
+pop local 1
+label WHILE_EXP0
+push local 1
+push this 13
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 13
+push local 1
+call DynamicArray.getIndexValue 2
+pop local 0
+push local 0
+call FinalBossPartTank.getDir 1
+push this 3
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push pointer 0
+call FinalBoss.getShootOffsetX 1
+call FinalBossPartTank.setShootOffsetX 2
+pop temp 0
+push local 0
+push pointer 0
+call FinalBoss.getShootOffsetY 1
+call FinalBossPartTank.setShootOffsetY 2
+pop temp 0
+push local 0
+call FinalBossPartTank.fire 1
+pop temp 0
+label IF_FALSE0
+push local 1
+push constant 1
+add
+pop local 1
+goto WHILE_EXP0
+label WHILE_END0
+push this 14
+push constant 0
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 14
+push pointer 0
+call FinalBoss.getShootOffsetX 1
+call FinalBossGun.setShootOffsetX 2
+pop temp 0
+push this 14
+push pointer 0
+call FinalBoss.getShootOffsetY 1
+call FinalBossGun.setShootOffsetY 2
+pop temp 0
+push this 14
+call FinalBossGun.fire 1
+pop temp 0
+label IF_FALSE1
+push this 15
+push constant 0
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 15
+push pointer 0
+call FinalBoss.getShootOffsetX 1
+call FinalBossGun.setShootOffsetX 2
+pop temp 0
+push this 15
+push pointer 0
+call FinalBoss.getShootOffsetY 1
+call FinalBossGun.setShootOffsetY 2
+pop temp 0
+push this 15
+call FinalBossGun.fire 1
+pop temp 0
+label IF_FALSE2
+push constant 0
+return
+function FinalBoss.prepareForSmackMove 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 6
+push constant 0
+return
+function FinalBoss.smack 0
+push argument 0
+pop pointer 0
+push this 7
+push this 6
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 7
+push constant 1
+add
+pop this 7
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.move 1
+pop temp 0
+push constant 0
+pop this 7
+label IF_END0
+push constant 0
+return
+function FinalBoss.tick 0
+push argument 0
+pop pointer 0
+push this 11
+push this 12
+lt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 11
+push constant 1
+add
+pop this 11
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call FinalBoss.shootFourDirections 1
+pop temp 0
+push constant 0
+pop this 11
+label IF_END0
+push pointer 0
+call FinalBoss.isPlayerOnPatrolLine 1
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 24
+push this 25
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call FinalBoss.shootWithFace 1
+pop temp 0
+push constant 0
+pop this 24
+goto IF_END2
+label IF_FALSE2
+push this 24
+push constant 1
+add
+pop this 24
+label IF_END2
+label IF_FALSE1
+push this 7
+push this 6
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 7
+push constant 1
+add
+pop this 7
+goto IF_END3
+label IF_FALSE3
+push pointer 0
+call FinalBoss.move 1
+pop temp 0
+push constant 0
+pop this 7
+label IF_END3
+push constant 0
+return

@@ -1,0 +1,882 @@
+function Bullet.new 0
+push constant 13
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop this 9
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 0
+pop this 2
+push constant 16
+pop this 4
+push constant 0
+pop this 5
+push constant 0
+pop this 6
+push constant 2
+pop this 10
+push constant 0
+pop this 12
+push this 12
+pop this 11
+push constant 0
+pop this 3
+push this 9
+call BattleCityGame.getBrickRenderer 1
+pop this 7
+push this 9
+call BattleCityGame.getBaseRenderer 1
+pop this 8
+push pointer 0
+return
+function Bullet.setMovementDelay 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 12
+push constant 0
+return
+function Bullet.setCellsMovement 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 10
+push constant 0
+return
+function Bullet.setPlayer 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 5
+push constant 0
+return
+function Bullet.setEnemy 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 6
+push constant 0
+return
+function Bullet.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Bullet.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Bullet.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Bullet.fireTime 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+call Utils.getScreenWidth 0
+push constant 16
+sub
+call Utils.clampValue 3
+pop this 0
+push argument 2
+push constant 0
+call Utils.getScreenHeight 0
+push constant 16
+sub
+call Utils.clampValue 3
+pop this 1
+push argument 3
+pop this 2
+push constant 0
+not
+pop this 3
+push pointer 0
+call Bullet.drawBullet 1
+pop temp 0
+push constant 0
+return
+function Bullet.drawBullet 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 224
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Bullet.fly 2
+push argument 0
+pop pointer 0
+push this 0
+pop local 0
+push this 1
+pop local 1
+push this 2
+call Utils.UP 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push this 4
+sub
+push constant 16
+neg
+call Utils.getScreenHeight 0
+call Utils.clampValue 3
+pop local 1
+goto IF_END0
+label IF_FALSE0
+push this 2
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+push this 4
+add
+push constant 16
+neg
+call Utils.getScreenHeight 0
+call Utils.clampValue 3
+pop local 1
+goto IF_END1
+label IF_FALSE1
+push this 2
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push this 4
+add
+push constant 16
+neg
+call Utils.getScreenWidth 0
+call Utils.clampValue 3
+pop local 0
+goto IF_END2
+label IF_FALSE2
+push this 2
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+push this 4
+sub
+push constant 16
+neg
+call Utils.getScreenWidth 0
+call Utils.clampValue 3
+pop local 0
+label IF_FALSE3
+label IF_END2
+label IF_END1
+label IF_END0
+push local 1
+push constant 16
+neg
+eq
+push local 1
+call Utils.getScreenHeight 0
+eq
+or
+push local 0
+push constant 16
+neg
+eq
+or
+push local 0
+call Utils.getScreenWidth 0
+eq
+or
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call Bullet.clearCurrCell 1
+pop temp 0
+push pointer 0
+call Bullet.die 1
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push local 0
+pop this 0
+push local 1
+pop this 1
+label IF_END4
+push constant 0
+return
+function Bullet.getNextX 0
+push argument 0
+pop pointer 0
+push this 2
+call Utils.UP 0
+eq
+push this 2
+or
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+return
+goto IF_END0
+label IF_FALSE0
+push this 2
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push this 4
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 0
+push this 4
+add
+return
+label IF_END1
+label IF_END0
+function Bullet.getNextY 0
+push argument 0
+pop pointer 0
+push this 2
+call Utils.LEFT 0
+eq
+push this 2
+or
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+return
+goto IF_END0
+label IF_FALSE0
+push this 2
+call Utils.UP 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+push this 4
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 1
+push this 4
+add
+return
+label IF_END1
+label IF_END0
+function Bullet.collideWithEnemyTank 5
+push argument 0
+pop pointer 0
+push this 9
+call BattleCityGame.getAITanks 1
+pop local 0
+push this 9
+call BattleCityGame.getWaveCounter 1
+call BattleCityGame.BOSS_WAVE 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+label WHILE_EXP0
+push local 4
+push local 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 4
+call DynamicArray.getIndexValue 2
+pop local 1
+push local 1
+push this 0
+push this 1
+call AITank.collideWith 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 9
+push local 4
+call BattleCityGame.killEnemy 2
+pop temp 0
+push pointer 0
+call Bullet.addScoreToPlayerForAI 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE1
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+goto IF_END0
+label IF_FALSE0
+push local 0
+call DynamicArray.getSize 1
+push constant 0
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push local 4
+call DynamicArray.getIndexValue 2
+pop local 3
+push local 3
+push this 0
+push this 1
+call FinalBoss.collideWith 3
+push this 9
+call BattleCityGame.isEndGame 1
+not
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 3
+call FinalBoss.getTankParts 1
+pop local 0
+label WHILE_EXP1
+push local 4
+push local 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END1
+push local 0
+push local 4
+call DynamicArray.getIndexValue 2
+pop local 2
+push this 0
+push local 2
+call FinalBossPartTank.getX 1
+eq
+push this 1
+push local 2
+call FinalBossPartTank.getY 1
+eq
+and
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 3
+push local 4
+call FinalBoss.killTankOnIndex 2
+pop temp 0
+push pointer 0
+call Bullet.addScoreToPlayerForAI 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE4
+push local 4
+push constant 1
+add
+pop local 4
+goto WHILE_EXP1
+label WHILE_END1
+push pointer 0
+push local 3
+call FinalBoss.getLeftGun 1
+call Bullet.collideWithTheGun 2
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 3
+push local 3
+call FinalBoss.getLeftGun 1
+call FinalBoss.killGun 2
+pop temp 0
+goto IF_END5
+label IF_FALSE5
+push pointer 0
+push local 3
+call FinalBoss.getRightGun 1
+call Bullet.collideWithTheGun 2
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 3
+push local 3
+call FinalBoss.getRightGun 1
+call FinalBoss.killGun 2
+pop temp 0
+label IF_FALSE6
+label IF_END5
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+label IF_END0
+push constant 0
+return
+function Bullet.collideWithTheGun 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push this 0
+push this 1
+call FinalBossGun.collideWith 3
+return
+label IF_FALSE0
+push constant 0
+return
+function Bullet.checkCollideWithOtherBullets 4
+push argument 0
+pop pointer 0
+push this 9
+call BattleCityGame.getBulletsRegister 1
+pop local 0
+push local 0
+call BulletsRegister.getBullets 1
+pop local 1
+push constant 0
+pop local 3
+label WHILE_EXP0
+push local 3
+push local 1
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 3
+call DynamicArray.getIndexValue 2
+pop local 2
+push local 2
+push pointer 0
+eq
+not
+push local 2
+push this 0
+push this 1
+call Bullet.collideWith 3
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push local 3
+call BulletsRegister.killBullet 2
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Bullet.collideWith 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+eq
+push argument 2
+push this 1
+eq
+and
+return
+function Bullet.checkCollideWithBrick 0
+push argument 0
+pop pointer 0
+push this 7
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 7
+push argument 1
+push argument 2
+call BrickRenderer.checkCollideWith 3
+return
+label IF_FALSE0
+push constant 0
+return
+function Bullet.addScoreToPlayer 2
+push argument 0
+pop pointer 0
+push this 5
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getScore 1
+pop local 1
+push local 0
+push local 1
+push argument 1
+add
+call BattleCityGame.setScore 2
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Bullet.addScoreToPlayerForBrick 0
+push argument 0
+pop pointer 0
+push pointer 0
+push constant 10
+call Bullet.addScoreToPlayer 2
+pop temp 0
+push constant 0
+return
+function Bullet.addScoreToPlayerForAI 0
+push argument 0
+pop pointer 0
+push pointer 0
+push constant 300
+call Bullet.addScoreToPlayer 2
+pop temp 0
+push constant 0
+return
+function Bullet.minusScoreToPlayerForBaseKill 1
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push this 7
+call BrickRenderer.getBricksSize 1
+push constant 0
+eq
+push local 0
+call BattleCityGame.getWaveCounter 1
+call BattleCityGame.PREPARE_TIME 0
+eq
+and
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push constant 3000
+neg
+call Bullet.addScoreToPlayer 2
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Bullet.collideWithPlayer 1
+push argument 0
+pop pointer 0
+push this 9
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push this 0
+push this 1
+call Player.collideWith 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 9
+call Player.KILLED_WITH_BULLET 0
+call BattleCityGame.killPlayer 2
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE1
+label IF_FALSE0
+push constant 0
+return
+function Bullet.checkCollide 1
+push argument 0
+pop pointer 0
+push pointer 0
+call Bullet.collideWithEnemyTank 1
+push pointer 0
+call Bullet.collideWithPlayer 1
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Bullet.die 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE0
+push pointer 0
+push this 0
+push this 1
+call Bullet.checkCollideWithBrick 3
+pop local 0
+push local 0
+push constant 1
+neg
+eq
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 7
+push local 0
+call BrickRenderer.killBrick 2
+pop temp 0
+push pointer 0
+call Bullet.die 1
+pop temp 0
+push pointer 0
+call Bullet.addScoreToPlayerForBrick 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE1
+push this 8
+push constant 0
+eq
+not
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 8
+push this 0
+push this 1
+call BaseRenderer.collideWith 3
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 8
+call BaseRenderer.die 1
+pop temp 0
+push pointer 0
+call Bullet.die 1
+pop temp 0
+push this 5
+push constant 0
+eq
+not
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call Bullet.minusScoreToPlayerForBaseKill 1
+pop temp 0
+push this 9
+call BattleCityGame.playerKilledBase 0
+call BattleCityGame.endGame 2
+pop temp 0
+goto IF_END4
+label IF_FALSE4
+push this 9
+call BattleCityGame.enemyKilledBase 0
+call BattleCityGame.endGame 2
+pop temp 0
+label IF_END4
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+push pointer 0
+call Bullet.checkCollideWithOtherBullets 1
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push pointer 0
+call Bullet.clearCurrCell 1
+pop temp 0
+push pointer 0
+call Bullet.die 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE5
+push constant 0
+return
+function Bullet.tick 0
+push argument 0
+pop pointer 0
+push this 3
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 11
+push this 12
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Bullet.checkCollide 1
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+return
+label IF_FALSE2
+push pointer 0
+call Bullet.clearCurrCell 1
+pop temp 0
+push pointer 0
+call Bullet.fly 1
+pop temp 0
+push pointer 0
+call Bullet.checkCollide 1
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+return
+label IF_FALSE3
+push this 3
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call Bullet.drawBullet 1
+pop temp 0
+label IF_FALSE4
+push constant 0
+pop this 11
+goto IF_END1
+label IF_FALSE1
+push this 11
+push constant 1
+add
+pop this 11
+label IF_END1
+label IF_FALSE0
+push constant 0
+return
+function Bullet.isAlive 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function Bullet.die 0
+push argument 0
+pop pointer 0
+push constant 0
+pop this 3
+push this 5
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 5
+call Player.notifyBulletDied 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 9
+call BattleCityGame.getWaveCounter 1
+call BattleCityGame.BOSS_WAVE 0
+eq
+not
+push this 6
+push constant 0
+eq
+not
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 6
+call AITank.notifyBulletDied 1
+pop temp 0
+label IF_FALSE1
+label IF_END0
+push constant 0
+return

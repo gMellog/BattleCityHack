@@ -1,0 +1,1860 @@
+function AITankThirdWave.new 1
+push constant 22
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push local 0
+call BattleCityGame.getBrickRenderer 1
+pop this 6
+push local 0
+call BattleCityGame.getBulletsRegister 1
+pop this 12
+push constant 0
+pop this 3
+push constant 0
+pop this 7
+push constant 1
+neg
+pop this 8
+push constant 1
+neg
+pop this 9
+push constant 5
+pop this 10
+push this 10
+pop this 11
+push constant 0
+pop this 18
+push constant 0
+pop this 19
+push constant 40
+pop this 20
+push constant 0
+pop this 4
+push constant 1
+pop this 5
+push constant 1
+neg
+pop this 21
+push pointer 0
+return
+function AITankThirdWave.killBaseBehaviour 0
+push constant 0
+return
+function AITankThirdWave.killPlayerBehaviour 0
+push constant 1
+return
+function AITankThirdWave.leftFromBase 0
+push constant 0
+return
+function AITankThirdWave.topFromBase 0
+push constant 1
+return
+function AITankThirdWave.rightFromBase 0
+push constant 2
+return
+function AITankThirdWave.FAST 0
+push constant 5
+return
+function AITankThirdWave.SLOW 0
+push constant 10
+return
+function AITankThirdWave.drawTankUp 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25159
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 26647
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1057
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 25543
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.drawTankDown 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 577
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2065
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 26599
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.drawTankLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 27392
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32760
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 24056
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25344
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.drawTankRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 214
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8122
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 198
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.die 2
+push argument 0
+pop pointer 0
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBoomRenderer 1
+pop local 1
+push local 1
+push this 0
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 1
+push this 0
+push constant 16
+sub
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 1
+push this 0
+push constant 16
+add
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 1
+push this 0
+push this 1
+push constant 16
+sub
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 1
+push this 0
+push constant 16
+sub
+push this 1
+push constant 16
+sub
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 1
+push this 0
+push constant 16
+add
+push this 1
+push constant 16
+sub
+call BoomRenderer.registerBoom 3
+pop temp 0
+push local 0
+call BattleCityGame.enemyKilledBase 0
+call BattleCityGame.endGame 2
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.calcDir 0
+push argument 0
+pop pointer 0
+push argument 1
+push argument 2
+sub
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+neg
+return
+goto IF_END0
+label IF_FALSE0
+push argument 1
+push argument 2
+sub
+push constant 0
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 1
+return
+goto IF_END1
+label IF_FALSE1
+push constant 0
+return
+label IF_END1
+label IF_END0
+function AITankThirdWave.calcRoute 6
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push this 8
+call AITankThirdWave.killBaseBehaviour 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+call BattleCityGame.getBaseRenderer 1
+pop local 1
+push this 9
+call AITankThirdWave.leftFromBase 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+call BaseRenderer.getBaseX 1
+push constant 16
+sub
+pop local 3
+push local 1
+call BaseRenderer.getBaseY 1
+pop local 4
+push constant 2
+pop this 17
+goto IF_END1
+label IF_FALSE1
+push this 9
+call AITankThirdWave.topFromBase 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+call BaseRenderer.getBaseX 1
+pop local 3
+push local 1
+call BaseRenderer.getBaseY 1
+push constant 16
+sub
+pop local 4
+push constant 1
+pop this 17
+goto IF_END2
+label IF_FALSE2
+push this 9
+call AITankThirdWave.rightFromBase 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 1
+call BaseRenderer.getBaseX 1
+push constant 16
+add
+pop local 3
+push local 1
+call BaseRenderer.getBaseY 1
+pop local 4
+push constant 3
+pop this 17
+label IF_FALSE3
+label IF_END2
+label IF_END1
+label IF_FALSE0
+push pointer 0
+push this 0
+push local 3
+call AITankThirdWave.calcDir 3
+pop this 14
+push pointer 0
+push this 1
+push local 4
+call AITankThirdWave.calcDir 3
+pop this 16
+push this 0
+push local 3
+sub
+call Math.abs 1
+push constant 16
+call Math.divide 2
+pop this 13
+push this 1
+push local 4
+sub
+call Math.abs 1
+push constant 16
+call Math.divide 2
+pop this 15
+push constant 0
+return
+function AITankThirdWave.init 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 1
+neg
+eq
+push this 1
+push constant 1
+neg
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push constant 0
+not
+pop this 7
+push argument 1
+pop this 8
+push argument 2
+pop this 9
+push pointer 0
+call AITankThirdWave.calcRoute 1
+pop temp 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.setSpeed 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function AITankThirdWave.getSpeed 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function AITankThirdWave.setLocation 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+push constant 496
+call Utils.clampValue 3
+pop this 0
+push argument 2
+push constant 0
+push constant 240
+call Utils.clampValue 3
+pop this 1
+push constant 0
+return
+function AITankThirdWave.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function AITankThirdWave.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function AITankThirdWave.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function AITankThirdWave.collideWith 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+eq
+push argument 2
+push this 1
+eq
+and
+return
+function AITankThirdWave.moveUp 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+sub
+pop local 0
+push this 3
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 3
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithBricks 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.fire 1
+pop temp 0
+push constant 0
+pop this 21
+push constant 0
+return
+label IF_FALSE1
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithPlayer 3
+not
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.setLocation 3
+pop temp 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE2
+push constant 0
+return
+function AITankThirdWave.moveDown 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+add
+pop local 0
+push this 3
+push constant 1
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+pop this 3
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithBricks 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.fire 1
+pop temp 0
+push constant 1
+pop this 21
+push constant 0
+return
+label IF_FALSE1
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithPlayer 3
+not
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call AITankThirdWave.setLocation 3
+pop temp 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE2
+push constant 0
+return
+function AITankThirdWave.moveRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+pop local 0
+push this 3
+push constant 2
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 2
+pop this 3
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithBricks 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.fire 1
+pop temp 0
+push constant 2
+pop this 21
+push constant 0
+return
+label IF_FALSE1
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithPlayer 3
+not
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.setLocation 3
+pop temp 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE2
+push constant 0
+return
+function AITankThirdWave.moveLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+sub
+pop local 0
+push this 3
+push constant 3
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 3
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithBricks 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.fire 1
+pop temp 0
+push constant 3
+pop this 21
+push constant 0
+return
+label IF_FALSE1
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithPlayer 3
+not
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call AITankThirdWave.setLocation 3
+pop temp 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push constant 0
+not
+return
+label IF_FALSE2
+push constant 0
+return
+function AITankThirdWave.checkCollideWithBricks 0
+push argument 0
+pop pointer 0
+push this 6
+push argument 1
+push argument 2
+call BrickRenderer.checkCollideWith 3
+push constant 1
+neg
+eq
+not
+return
+function AITankThirdWave.checkCollideWithBase 2
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBaseRenderer 1
+pop local 1
+push local 1
+push argument 1
+push argument 2
+call BaseRenderer.collideWith 3
+return
+function AITankThirdWave.render 0
+push argument 0
+pop pointer 0
+push this 3
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankThirdWave.drawTankUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.drawTankDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.drawTankRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankThirdWave.drawTankLeft 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push this 3
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call AITankThirdWave.clearCurrCell 1
+pop temp 0
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function AITankThirdWave.notifyBulletDied 0
+push argument 0
+pop pointer 0
+push this 4
+push constant 1
+sub
+push constant 0
+push this 5
+call Utils.clampValue 3
+pop this 4
+push constant 0
+return
+function AITankThirdWave.fire 1
+push argument 0
+pop pointer 0
+call Bullet.new 0
+pop local 0
+push local 0
+push pointer 0
+call Bullet.setEnemy 2
+pop temp 0
+push this 12
+push local 0
+push this 3
+push this 2
+push this 0
+push this 1
+call BulletsRegister.registerBullet 6
+pop temp 0
+push this 4
+push constant 1
+add
+pop this 4
+push constant 0
+pop this 11
+push constant 0
+return
+function AITankThirdWave.couldShoot 0
+push argument 0
+pop pointer 0
+push this 4
+push this 5
+lt
+return
+function AITankThirdWave.getNextX 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.UP 0
+eq
+push this 3
+or
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 0
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push this 2
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 0
+push this 2
+add
+return
+label IF_END1
+label IF_END0
+function AITankThirdWave.getNextY 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.LEFT 0
+eq
+push this 3
+or
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 1
+return
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 1
+push this 2
+sub
+return
+goto IF_END1
+label IF_FALSE1
+push this 1
+push this 2
+add
+return
+label IF_END1
+label IF_END0
+function AITankThirdWave.isBoundYTop 0
+push argument 0
+pop pointer 0
+push this 1
+push constant 0
+eq
+return
+function AITankThirdWave.isBoundYDown 0
+push argument 0
+pop pointer 0
+push this 1
+call Utils.getScreenHeight 0
+push constant 16
+sub
+eq
+return
+function AITankThirdWave.isBoundXLeft 0
+push argument 0
+pop pointer 0
+push this 0
+push constant 0
+eq
+return
+function AITankThirdWave.isBoundXRight 0
+push argument 0
+pop pointer 0
+push this 0
+call Utils.getScreenWidth 0
+push constant 16
+sub
+eq
+return
+function AITankThirdWave.isPlayerOnSameDirection 4
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getPlayer 1
+pop local 1
+push local 1
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+call Player.getX 1
+pop local 2
+push local 1
+call Player.getY 1
+pop local 3
+push this 3
+push constant 0
+eq
+push this 3
+push constant 1
+eq
+or
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 0
+push local 2
+eq
+push this 1
+push local 3
+sub
+call Math.abs 1
+push pointer 0
+call AITankThirdWave.getNextY 1
+push local 3
+sub
+call Math.abs 1
+gt
+and
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push constant 0
+not
+return
+label IF_FALSE2
+goto IF_END1
+label IF_FALSE1
+push this 1
+push local 3
+eq
+push this 0
+push local 2
+sub
+call Math.abs 1
+push pointer 0
+call AITankThirdWave.getNextX 1
+push local 2
+sub
+call Math.abs 1
+gt
+and
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_END1
+label IF_FALSE0
+push constant 0
+return
+function AITankThirdWave.checkCollideWithPlayer 2
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 1
+push local 1
+call BattleCityGame.getPlayer 1
+pop local 0
+push local 0
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push argument 1
+push argument 2
+call Player.collideWith 3
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function AITankThirdWave.checkCollideWithOtherTeammates 4
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getAITanks 1
+pop local 1
+push constant 0
+pop local 3
+label WHILE_EXP0
+push local 3
+push local 1
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push local 1
+push local 3
+call DynamicArray.getIndexValue 2
+pop local 2
+push local 2
+push pointer 0
+eq
+not
+push local 2
+push argument 1
+push argument 2
+call AITank.collideWith 3
+and
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+not
+return
+label IF_FALSE0
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function AITankThirdWave.moveHorizontally 1
+push argument 0
+pop pointer 0
+push this 14
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankThirdWave.moveLeft 1
+pop local 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call AITankThirdWave.moveRight 1
+pop local 0
+label IF_END0
+push local 0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 13
+push constant 1
+sub
+pop this 13
+label IF_FALSE1
+push constant 0
+return
+function AITankThirdWave.moveVertically 1
+push argument 0
+pop pointer 0
+push this 16
+push constant 1
+neg
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call AITankThirdWave.moveUp 1
+pop local 0
+goto IF_END0
+label IF_FALSE0
+push pointer 0
+call AITankThirdWave.moveDown 1
+pop local 0
+label IF_END0
+push local 0
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 15
+push constant 1
+sub
+pop this 15
+label IF_FALSE1
+push constant 0
+return
+function AITankThirdWave.moveToPoint 1
+push argument 0
+pop pointer 0
+push this 21
+push constant 1
+neg
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 21
+push constant 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call AITankThirdWave.moveUp 1
+pop temp 0
+push this 15
+push constant 1
+sub
+pop this 15
+goto IF_END1
+label IF_FALSE1
+push this 21
+push constant 1
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.moveDown 1
+pop temp 0
+push this 15
+push constant 1
+sub
+pop this 15
+goto IF_END2
+label IF_FALSE2
+push this 21
+push constant 2
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankThirdWave.moveRight 1
+pop temp 0
+push this 13
+push constant 1
+sub
+pop this 13
+goto IF_END3
+label IF_FALSE3
+push this 21
+push constant 3
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push pointer 0
+call AITankThirdWave.moveLeft 1
+pop temp 0
+push this 13
+push constant 1
+sub
+pop this 13
+label IF_FALSE4
+label IF_END3
+label IF_END2
+label IF_END1
+push constant 1
+neg
+pop this 21
+goto IF_END0
+label IF_FALSE0
+push this 13
+push constant 0
+eq
+not
+push this 15
+push constant 0
+eq
+not
+and
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+call Random.rand 0
+push constant 2
+call Utils.remainder 2
+pop local 0
+push local 0
+push constant 0
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push pointer 0
+call AITankThirdWave.moveHorizontally 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push pointer 0
+call AITankThirdWave.moveVertically 1
+pop temp 0
+label IF_END6
+goto IF_END5
+label IF_FALSE5
+push this 13
+push constant 0
+gt
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push pointer 0
+call AITankThirdWave.moveHorizontally 1
+pop temp 0
+goto IF_END7
+label IF_FALSE7
+push this 15
+push constant 0
+gt
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push pointer 0
+call AITankThirdWave.moveVertically 1
+pop temp 0
+goto IF_END8
+label IF_FALSE8
+push this 17
+pop this 3
+push constant 0
+not
+pop this 18
+label IF_END8
+label IF_END7
+label IF_END5
+label IF_END0
+push constant 0
+return
+function AITankThirdWave.setStopAnythingDelay 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 10
+push constant 0
+return
+function AITankThirdWave.tick 0
+push argument 0
+pop pointer 0
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push this 7
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 18
+not
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 11
+push this 10
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call AITankThirdWave.isPlayerOnSameDirection 1
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call AITankThirdWave.fire 1
+pop temp 0
+goto IF_END3
+label IF_FALSE3
+push pointer 0
+call AITankThirdWave.moveToPoint 1
+pop temp 0
+label IF_END3
+push constant 0
+pop this 11
+goto IF_END2
+label IF_FALSE2
+push this 11
+push constant 1
+add
+push constant 0
+push this 10
+call Utils.clampValue 3
+pop this 11
+label IF_END2
+goto IF_END1
+label IF_FALSE1
+push this 19
+push this 20
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 19
+push constant 20
+call Utils.remainder 2
+push constant 0
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push constant 4
+pop this 3
+goto IF_END5
+label IF_FALSE5
+push this 19
+push constant 20
+call Utils.remainder 2
+push constant 10
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 17
+pop this 3
+label IF_FALSE6
+label IF_END5
+push pointer 0
+call AITankThirdWave.render 1
+pop temp 0
+push this 19
+push constant 1
+add
+pop this 19
+goto IF_END4
+label IF_FALSE4
+push this 19
+push this 20
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push pointer 0
+call AITankThirdWave.die 1
+pop temp 0
+label IF_FALSE7
+label IF_END4
+label IF_END1
+label IF_FALSE0
+push constant 0
+return

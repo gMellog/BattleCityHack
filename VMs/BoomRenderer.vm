@@ -1,0 +1,341 @@
+function BoomRenderer.new 0
+push constant 2
+call Memory.alloc 1
+pop pointer 0
+call DynamicArray.new 0
+pop this 0
+push constant 1
+pop this 1
+push pointer 0
+return
+function BoomRenderer.dispose 0
+push argument 0
+pop pointer 0
+push this 0
+call DynamicArray.dispose 1
+pop temp 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function BoomRenderer.registerBoom 0
+push argument 0
+pop pointer 0
+push this 0
+push argument 1
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push argument 2
+call DynamicArray.push_back 2
+pop temp 0
+push this 0
+push constant 0
+call DynamicArray.push_back 2
+pop temp 0
+push pointer 0
+push argument 1
+push argument 2
+call BoomRenderer.drawBoom 3
+pop temp 0
+push constant 0
+return
+function BoomRenderer.tick 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push this 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push this 0
+push local 0
+push constant 2
+add
+call DynamicArray.getIndexValue 2
+push this 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+push this 0
+push local 0
+call DynamicArray.getIndexValue 2
+push this 0
+push local 0
+push constant 1
+add
+call DynamicArray.getIndexValue 2
+call BoomRenderer.clearBoomPlace 3
+pop temp 0
+push this 0
+push local 0
+call DynamicArray.remove 2
+pop temp 0
+push this 0
+push local 0
+call DynamicArray.remove 2
+pop temp 0
+push this 0
+push local 0
+call DynamicArray.remove 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 0
+push this 0
+push local 0
+push constant 2
+add
+call DynamicArray.getIndexValue 2
+push constant 1
+add
+push local 0
+push constant 2
+add
+call DynamicArray.setIndexValue 3
+pop temp 0
+push local 0
+push constant 3
+add
+pop local 0
+label IF_END0
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function BoomRenderer.drawBoom 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 2
+push constant 32
+call Math.multiply 2
+add
+push argument 1
+push constant 16
+call Math.divide 2
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 15933
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 7225
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 3185
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 31198
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 15772
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 8184
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 4080
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 31007
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 4641
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 2116
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 16376
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16304
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 14776
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 29628
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 26527
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 14961
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function BoomRenderer.clearBoomPlace 1
+push argument 0
+pop pointer 0
+push constant 16384
+push argument 2
+push constant 32
+call Math.multiply 2
+add
+push argument 1
+push constant 16
+call Math.divide 2
+add
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return

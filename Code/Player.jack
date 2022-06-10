@@ -1,0 +1,470 @@
+
+
+class Player {
+    
+	field int x;
+	field int y;
+
+	field int speed;
+	field int shootsBullets;
+	field int maxShootsBullets;
+	
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field BrickRenderer brickRenderer;
+	field BulletsRegister bulletsRegister;
+
+    constructor Player new()
+    {
+		var BattleCityGame game;
+		
+		let game = BattleCityGame.get();
+
+		let brickRenderer = game.getBrickRenderer();
+		let bulletsRegister = game.getBulletsRegister();
+		
+		do init();
+		
+
+		return this;    
+    }
+
+	function int KILLED_WITH_BULLET()
+	{
+		return 0;
+	}
+
+	function int SMACKED()
+	{
+		return 1;
+	}
+
+	function int KILLED_WITH_BOOM()
+	{
+		return 2;
+	}
+
+	method void init()
+	{
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let shootsBullets = 0;
+		let maxShootsBullets = 3;
+		let direction = Utils.UP();
+		
+		return;
+	}
+
+	method void setSpeed(int newSpeed)
+	{
+		let speed = newSpeed;
+		return;
+	}
+
+	method int getSpeed()
+	{
+		return speed;
+	}
+	
+    method void setLocation(int pX, int pY)
+    {	
+		let x = Utils.clampValue(pX, 0, 496);
+		let y = Utils.clampValue(pY, 0, 240);
+
+        return;
+    }
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method void drawTankUp()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 384);
+	    do Memory.poke(memAddress + 96, 384);
+	    do Memory.poke(memAddress + 128, 384);
+	    do Memory.poke(memAddress + 160, 384);
+	    do Memory.poke(memAddress + 192, -3697);
+	    do Memory.poke(memAddress + 224, -24583);
+	    do Memory.poke(memAddress + 256, -1);
+	    do Memory.poke(memAddress + 288, -24583);
+	    do Memory.poke(memAddress + 320, -1);
+	    do Memory.poke(memAddress + 352, -24583);
+	    do Memory.poke(memAddress + 384, -1);
+	    do Memory.poke(memAddress + 416, -24583);
+	    do Memory.poke(memAddress + 448, -4081);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawTankDown()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, -4081);
+	    do Memory.poke(memAddress + 64, -24583);
+	    do Memory.poke(memAddress + 96, -1);
+	    do Memory.poke(memAddress + 128, -24583);
+	    do Memory.poke(memAddress + 160, -1);
+	    do Memory.poke(memAddress + 192, -24583);
+	    do Memory.poke(memAddress + 224, -1);
+	    do Memory.poke(memAddress + 256, -24583);
+	    do Memory.poke(memAddress + 288, -3697);
+	    do Memory.poke(memAddress + 320, 384);
+	    do Memory.poke(memAddress + 352, 384);
+	    do Memory.poke(memAddress + 384, 384);
+	    do Memory.poke(memAddress + 416, 384);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+		
+		return;
+	}
+
+	method void drawTankLeft()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 32704);
+	    do Memory.poke(memAddress + 32, 21824);
+	    do Memory.poke(memAddress + 64, 21824);
+	    do Memory.poke(memAddress + 96, 32704);
+	    do Memory.poke(memAddress + 128, 16256);
+	    do Memory.poke(memAddress + 160, 16256);
+	    do Memory.poke(memAddress + 192, 16256);
+	    do Memory.poke(memAddress + 224, 16380);
+	    do Memory.poke(memAddress + 256, 16380);
+	    do Memory.poke(memAddress + 288, 16256);
+	    do Memory.poke(memAddress + 320, 16256);
+	    do Memory.poke(memAddress + 352, 16256);
+	    do Memory.poke(memAddress + 384, 32704);
+	    do Memory.poke(memAddress + 416, 21824);
+	    do Memory.poke(memAddress + 448, 21824);
+	    do Memory.poke(memAddress + 480, 32704);
+		
+		return;
+	}
+
+	method void drawTankRight()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 1022);
+	    do Memory.poke(memAddress + 32, 682);
+	    do Memory.poke(memAddress + 64, 682);
+	    do Memory.poke(memAddress + 96, 1022);
+	    do Memory.poke(memAddress + 128, 508);
+	    do Memory.poke(memAddress + 160, 508);
+	    do Memory.poke(memAddress + 192, 508);
+	    do Memory.poke(memAddress + 224, 16380);
+	    do Memory.poke(memAddress + 256, 16380);
+	    do Memory.poke(memAddress + 288, 508);
+	    do Memory.poke(memAddress + 320, 508);
+	    do Memory.poke(memAddress + 352, 508);
+	    do Memory.poke(memAddress + 384, 1022);
+	    do Memory.poke(memAddress + 416, 682);
+	    do Memory.poke(memAddress + 448, 1022);
+	    do Memory.poke(memAddress + 480, 1022);
+		
+		return;
+	}
+
+	method void clearCurrCell()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method boolean collideWith(int pX, int pY)
+    {
+        return (pX = x) & (pY = y);
+    }
+
+	method boolean checkCollideWithBase(int pX, int pY)
+	{
+		var BattleCityGame game;
+		var BaseRenderer baseRenderer;
+
+		let game = BattleCityGame.get();
+		let baseRenderer = game.getBaseRenderer();
+
+		if(~(baseRenderer = null))
+		{
+			return baseRenderer.collideWith(pX, pY);
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+
+	method boolean checkCollideWithBricks(int pX, int pY)
+	{
+		return ~(brickRenderer.checkCollideWith(pX,pY) = -1);
+	}
+
+	method boolean checkCollideWithEnemy(int pX, int pY)
+	{
+		var DynamicArray enemies;
+		var BattleCityGame game;
+		var int i;
+		var AITank aiTank;
+		var FinalBoss boss;
+
+		let game = BattleCityGame.get();
+
+		let enemies = game.getAITanks();
+		if(~(game.getWaveCounter() = BattleCityGame.BOSS_WAVE()))
+		{
+
+			let i = 0;
+
+			while(i < enemies.getSize())
+			{
+				let aiTank = enemies.getIndexValue(i);
+
+				if(aiTank.collideWith(pX,pY))
+				{
+					return true;	
+				}
+			
+				let i = i + 1;
+			}
+		}
+		else
+		{
+			if(enemies.getSize() > 0)
+			{
+				let boss = enemies.getIndexValue(i);
+
+				if(boss.collideWith(pX,pY))
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+	
+
+	method void die(int reason)
+	{
+		var BattleCityGame game;
+        var BoomRenderer boomRenderer;
+
+		let game = BattleCityGame.get();
+
+		if( (reason = Player.KILLED_WITH_BULLET()) | (reason = Player.KILLED_WITH_BOOM()) )
+		{
+			do clearCurrCell();
+			do render();
+
+			let boomRenderer = game.getBoomRenderer();
+        
+			do boomRenderer.registerBoom(x, y);
+		}
+
+		return;
+	}
+
+	method void moveUp()
+	{	
+		var int newY;
+		let newY = y - speed;
+
+		if(~(direction = 0))
+		{
+			let direction = 0;
+			do render();
+		}
+		
+		if(~(checkCollideWithBricks(x, newY)) & (~checkCollideWithEnemy(x,newY)) & (~checkCollideWithBase(x, newY)) )
+		{
+			do clearCurrCell();
+			do setLocation(x, newY);
+			do render();
+		}
+
+		return;
+	}
+
+	method void moveDown()
+	{
+		var int newY;
+		let newY = y + speed;
+
+		if(~(direction = 1))
+		{
+			let direction = 1;
+			do render();
+		}
+		
+		if(~(checkCollideWithBricks(x, newY)) & (~checkCollideWithEnemy(x, newY)) & (~checkCollideWithBase(x, newY)) )
+		{
+			do clearCurrCell();
+			do setLocation(x, newY);
+			do render();
+		}
+		
+		return;
+	}
+
+	method void moveRight()
+	{		
+		var int newX;
+		let newX = x + speed;
+
+		if(~(direction = 2))
+		{
+			let direction = 2;
+			do render();
+		}
+
+		if((~checkCollideWithBricks(newX, y)) & (~checkCollideWithEnemy(newX, y)) & (~checkCollideWithBase(newX, y)) )
+		{
+			do clearCurrCell();
+			do setLocation(newX, y);
+			do render();
+		}
+
+		return;
+	}
+
+
+	method void moveLeft()
+	{
+		var int newX;
+		let newX = x - speed;
+
+		if(~(direction = 3))
+		{
+			let direction = 3;
+			do render();
+		}
+		
+		if((~checkCollideWithBricks(newX, y)) & (~checkCollideWithEnemy(newX, y)) & (~checkCollideWithBase(newX, y)))
+		{
+			do clearCurrCell();
+			do setLocation(newX, y);
+			do render();
+		}
+		
+		return;
+	}
+	
+    method void render()
+    {   
+		
+		if(direction = 0)
+		{
+			do drawTankUp();
+		}
+		else 
+		{
+			if(direction = 1)
+			{
+				do drawTankDown();
+			}
+			else
+			{
+				if(direction = 2)
+				{
+					do drawTankRight();
+				}
+				else
+				{
+					if(direction = 3)
+					{
+						do drawTankLeft();
+					}
+				}
+			}
+		}
+		
+		return;
+    }
+
+	method void notifyBulletDied()
+	{
+		let shootsBullets = Utils.clampValue(shootsBullets - 1, 0, maxShootsBullets);
+		return;
+	}
+
+	method void fire()
+	{
+		var Bullet bullet;
+
+		if(shootsBullets = maxShootsBullets)
+		{
+			return;
+		}
+
+		let bullet = Bullet.new();
+		do bullet.setPlayer(this);
+		
+		do bulletsRegister.registerBullet(bullet, direction, speed, x, y);
+		let shootsBullets = shootsBullets + 1;
+	
+		
+		return;
+	}
+
+	method void setDir(int newDir)
+	{
+		let direction = newDir;
+		return;
+	}
+
+	method void tick()
+	{
+		do render();
+		return;
+	}
+}
+
+

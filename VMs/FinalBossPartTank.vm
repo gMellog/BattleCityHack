@@ -1,0 +1,844 @@
+function FinalBossPartTank.new 1
+push constant 20
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push local 0
+call BattleCityGame.getBulletsRegister 1
+pop this 4
+push constant 0
+pop this 3
+push constant 3
+pop this 17
+push constant 0
+pop this 18
+push constant 0
+pop this 19
+push pointer 0
+return
+function FinalBossPartTank.drawTankUp 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25159
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 26647
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1057
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 25543
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.drawTankDown 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 577
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 2065
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 26599
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.drawTankLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 27392
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 32760
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 24056
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 25344
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 32512
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 10880
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 128
+neg
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.drawTankRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 214
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 8190
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 8122
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 198
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 254
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 427
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 511
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.die 2
+push argument 0
+pop pointer 0
+push pointer 0
+call FinalBossPartTank.clearCurrCell 1
+pop temp 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBoomRenderer 1
+pop local 1
+push local 1
+push this 0
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.setLeftPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 5
+push argument 2
+pop this 6
+push argument 3
+pop this 13
+push constant 0
+return
+function FinalBossPartTank.setRightPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 7
+push argument 2
+pop this 8
+push argument 3
+pop this 14
+push constant 0
+return
+function FinalBossPartTank.setUpPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 9
+push argument 2
+pop this 10
+push argument 3
+pop this 16
+push constant 0
+return
+function FinalBossPartTank.setDownPart 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 11
+push argument 2
+pop this 12
+push argument 3
+pop this 15
+push constant 0
+return
+function FinalBossPartTank.setShootBulletsDelay 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 17
+push constant 0
+return
+function FinalBossPartTank.renderBasedOnBoss 0
+push argument 0
+pop pointer 0
+push argument 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 13
+pop this 3
+push argument 1
+push this 5
+add
+pop this 0
+push argument 2
+push this 6
+add
+pop this 1
+goto IF_END0
+label IF_FALSE0
+push argument 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 14
+pop this 3
+push argument 1
+push this 7
+add
+pop this 0
+push argument 2
+push this 8
+add
+pop this 1
+goto IF_END1
+label IF_FALSE1
+push argument 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 16
+pop this 3
+push argument 1
+push this 9
+add
+pop this 0
+push argument 2
+push this 10
+add
+pop this 1
+goto IF_END2
+label IF_FALSE2
+push this 15
+pop this 3
+push argument 1
+push this 11
+add
+pop this 0
+push argument 2
+push this 12
+add
+pop this 1
+label IF_END2
+label IF_END1
+label IF_END0
+push pointer 0
+call FinalBossPartTank.render 1
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.getDir 0
+push argument 0
+pop pointer 0
+push this 3
+return
+function FinalBossPartTank.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function FinalBossPartTank.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function FinalBossPartTank.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function FinalBossPartTank.collideWith 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+eq
+push argument 2
+push this 1
+eq
+and
+return
+function FinalBossPartTank.render 0
+push argument 0
+pop pointer 0
+push this 3
+call Utils.UP 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call FinalBossPartTank.drawTankUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 3
+call Utils.DOWN 0
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call FinalBossPartTank.drawTankDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 3
+call Utils.RIGHT 0
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call FinalBossPartTank.drawTankRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 3
+call Utils.LEFT 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call FinalBossPartTank.drawTankLeft 1
+pop temp 0
+label IF_FALSE3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function FinalBossPartTank.setShootOffsetX 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 18
+push constant 0
+return
+function FinalBossPartTank.setShootOffsetY 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 19
+push constant 0
+return
+function FinalBossPartTank.fire 1
+push argument 0
+pop pointer 0
+call Bullet.new 0
+pop local 0
+push local 0
+push constant 0
+call Bullet.setMovementDelay 2
+pop temp 0
+push this 4
+push local 0
+push this 3
+push this 2
+push this 18
+push this 0
+add
+push this 19
+push this 1
+add
+call BulletsRegister.registerBullet 6
+pop temp 0
+push constant 0
+return

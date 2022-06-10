@@ -1,0 +1,1448 @@
+
+class BattleCityGame {
+	
+	static BattleCityGame game;
+
+	field Player player;
+	field boolean _endGame;
+	field int keyPressed;
+	field int escKey;
+	field int leftArrowKey;
+	field int rightArrowKey;
+	field int upArrowKey;
+	field int downArrowKey;
+	field int fireKey;
+	field BrickRenderer brickRenderer;
+	field BaseRenderer baseRenderer;
+	field BoomRenderer boomRenderer;
+	field int deltaTime;
+
+	field DynamicArray aiTanks;
+	field boolean options;
+	field int enter;
+
+	field int killedEnemies;
+	field int aiTanksMax;
+
+	field BulletsRegister bulletsRegister;
+
+	field int playerRespawnOutputCounter;
+	field int playerRespawnWaitingCounter;
+	field int playerRespawnWaitingUntil;
+
+	field int playerLivesCounter;
+	
+	field int exitState;
+
+	field int score;
+
+	field int lastKeyPressed;
+
+	field int waveCounter;
+
+	field int waveHoldCounter;
+	field int waveHoldTime;
+
+	field int playerTappedKeys;
+	field int sumTappedKeys;
+
+	field int prepareWaveStage;
+
+	field int baseX;
+	field int baseY;
+
+	field boolean playerInputOn;
+
+	field Teaser teaser;
+
+	constructor BattleCityGame new()
+	{
+		let game = this;
+
+		let _endGame = false;
+		let keyPressed = 0;
+		let escKey = 140;
+		let rightArrowKey = 132;
+		let leftArrowKey = 130;
+		let upArrowKey = 131;
+		let downArrowKey = 133;
+		let brickRenderer = BrickRenderer.new();
+
+		let baseX = 256;
+		let baseY = 224;
+
+		let baseRenderer = BaseRenderer.new(baseX, baseY);
+		let boomRenderer = BoomRenderer.new();
+		let fireKey = 32;
+		let deltaTime = 50;
+		let options = false;
+		let enter = 128;
+		let aiTanks = DynamicArray.new();
+		let bulletsRegister = BulletsRegister.new();
+		let playerLivesCounter = 3;
+
+		let waveCounter = 0;
+
+		do Random.setSeed(3);
+
+		let waveHoldCounter = -1;
+		let waveHoldTime = 1000;
+
+		let score = 0;
+		let lastKeyPressed = 0;
+		
+		let killedEnemies = 0;
+
+		let playerTappedKeys = 0;
+		let prepareWaveStage = BattleCityGame.PREPARE_MESSAGE();
+
+		do createPlayer();
+
+		let playerRespawnOutputCounter = 3;
+		let playerRespawnWaitingUntil = 900;
+		let playerRespawnWaitingCounter = -1;
+		
+		let playerInputOn = true;
+		let teaser = null;
+
+		do nextWave();
+
+
+		return this;
+	}
+
+	method void notifyEndTeaser()
+	{
+		let waveCounter = BattleCityGame.BOSS_WAVE();
+		do startBoss();
+		do teaser.dispose();
+		let teaser = null;
+
+		return;
+	}
+
+	method void victoryMessage()
+	{
+		var int key;
+
+		do Output.moveCursor(7,25);
+		do Output.printString("V I C T O R Y!");
+		
+		do Output.moveCursor(18,18);
+		do Output.printString("(PRESS ANY BUTTON TO CONTINUE)");
+
+		
+		let key = Keyboard.keyPressed();
+		while(~(key = 0))
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		while(~key)
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		return;
+	}
+
+	method int getWaveCounter()
+	{
+		return waveCounter;
+	}
+
+	function int BOSS_WAVE()
+	{
+		return 5;
+	}
+
+	function int MAX_PLAYER_TAPPED_KEYS()
+	{
+		return 20;
+	}
+
+	function int PREPARE_TIME()
+	{
+		return 4;
+	}
+
+	function int playerKilledBase()
+	{
+		return 0;
+	}
+
+	function int enemyKilledBase()
+	{
+		return 1;
+	}
+
+	function int playerWon()
+	{
+		return 2;
+	}
+	
+	function int playerOutOfLives()
+	{
+		return 3;
+	}
+
+	function int loseOptionsState()
+	{
+		return 0;
+	}
+
+	function int winState()
+	{
+		return 1;
+	}
+
+	function int exitWithPauseState()
+	{
+		return 2;
+	}
+
+	function int enemyKilledBaseState()
+	{
+		return 3;
+	}
+
+	method boolean isEndGame()
+	{
+		return _endGame;
+	}
+
+	method void firstAIWaveTick()
+	{
+		var int i;
+		var AITank aiTank;
+		let i = 0;
+
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.tick();
+
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	
+	method void secondAIWaveTick()
+	{
+		var int i;
+		var AITankSecondWave aiTank;
+		let i = 0;
+
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.tick();
+
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	
+	method void thirdAIWaveTick()
+	{
+		var int i;
+		var AITankThirdWave aiTank;
+		let i = 0;
+
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.tick();
+
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	
+	method void bossWaveTick()
+	{
+		var FinalBoss boss;
+
+		if(aiTanks.getSize() > 0)
+		{
+			let boss = aiTanks.getIndexValue(0);
+			do boss.tick();
+		}
+
+		return;
+	}
+
+
+	method void callAITicks()
+	{
+		if(waveCounter = 1)
+		{
+			do firstAIWaveTick();
+		}
+		else
+		{
+			if(waveCounter = 2)
+			{
+				do secondAIWaveTick();
+			}
+			else
+			{
+				if(waveCounter = 3)
+				{
+					do thirdAIWaveTick();
+				}
+				else
+				{
+					if(waveCounter = 5)
+					{
+						do bossWaveTick();
+					}
+				}
+			}
+		}
+
+		return;
+	}
+
+	method void clearFirstWave()
+	{
+		var int i;
+		var AITank aiTank;
+	   
+		let i = 0;
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.dispose();
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	method void clearSecondWave()
+	{
+		var int i;
+		var AITankSecondWave aiTank;
+	   
+		let i = 0;
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.dispose();
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	method void clearThirdWave()
+	{
+		var int i;
+		var AITank aiTank;
+	   
+		let i = 0;
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.dispose();
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	method void clearBoss()
+	{
+		var int i;
+		var FinalBoss aiTank;
+	   
+		let i = 0;
+		while(i < aiTanks.getSize())
+		{
+			let aiTank = aiTanks.getIndexValue(i);
+			do aiTank.dispose();
+			let i = i + 1;
+		}
+
+		return;
+	}
+
+	method void clearAITanks()
+	{
+		if(waveCounter = 1)
+		{
+			do clearFirstWave();
+		}
+		else
+		{
+			if(waveCounter = 2)
+			{
+				do clearSecondWave();
+			}
+			else
+			{
+				if(waveCounter = 3)
+				{
+					do clearThirdWave();
+				}
+				else
+				{
+					do clearBoss();
+				}
+			}
+		}
+
+		return;
+	}
+
+	method void prepareTimeMessage()
+	{
+		var int key;
+
+		do brickRenderer.hideGreeting();
+
+		do Output.moveCursor(6,19);
+		do Output.printString("Okay, now you should destroy");
+		
+		do Output.moveCursor(8,19);
+		do Output.printString("every object on the map, but");
+		
+		do Output.moveCursor(10,26);
+		do Output.printString("in proper order.");
+
+		do Output.moveCursor(12,26);
+		do Output.printString("Don't mess up!");
+		
+		do Output.moveCursor(15,21);
+		do Output.printString("(PRESS ENTER TO CONTINUE)");
+		
+		let key = 0;
+
+		while( ~(key = enter) )
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		do Output.moveCursor(6,19);
+		do Output.printString("                            ");
+		
+		do Output.moveCursor(8,19);
+		do Output.printString("                            ");
+		
+		do Output.moveCursor(10,26);
+		do Output.printString("                               ");
+		
+		do Output.moveCursor(12,26);
+		do Output.printString("                  ");
+
+		do Output.moveCursor(15,18);
+		do Output.printString("                                   ");
+		
+		do brickRenderer.render();
+
+		return;
+	}
+
+	method void nextWave()
+	{
+		let waveCounter = waveCounter + 1;
+		do showWave();
+
+		return;
+	}
+
+	method void showWave()
+	{
+
+		if(~(waveCounter > 3))
+		{
+			let playerInputOn = false;
+			do Output.moveCursor(10,30);
+			do Output.printInt(waveCounter);
+			do Output.printString(" wave");
+
+		}
+		else
+		{
+			do Output.moveCursor(10,27);
+			do Output.printString("PREPARE TIME");
+			let playerInputOn = false;
+		}
+		
+		let waveHoldCounter = 0;
+	
+		return;
+	}
+
+	method void hideWave()
+	{
+		do Output.moveCursor(10,30);
+		do Output.printString("                   ");
+		do brickRenderer.render();
+
+		return;
+	}
+
+	method void spawnWave()
+	{
+		if(waveCounter = 1)
+		{
+			do createAITank(352, 224, 16, AITank.verticalBehaviour(), AITank.startUpDir());
+			do createAITank(432, 96, 16, AITank.horizontalBehaviour(), AITank.startLeftDir());
+			do createAITank(448, 16, 16, AITank.horizontalBehaviour(), AITank.startRightDir());
+			do createAITank(16, 16, 16, AITank.verticalBehaviour(), AITank.startRightDir());
+			do createAITank(48, 128, 16, AITank.horizontalBehaviour(), AITank.startRightDir());
+		}
+		else
+		{
+			if(waveCounter = 2)
+			{
+				do createAITankSecondWave(48, 128, 16, AITank.horizontalBehaviour(), AITank.startRightDir());
+				do createAITankSecondWave(64, 32, 16, AITank.verticalBehaviour(), AITank.startDownDir());
+				do createAITankSecondWave(480, 48, 16, AITank.horizontalBehaviour(), AITank.startLeftDir());
+				do createAITankSecondWave(320, 80, 16, AITank.horizontalBehaviour(), AITank.startRightDir());
+				do createAITankSecondWave(272, 112, 16, AITank.verticalBehaviour(), AITank.startUpDir());
+			}
+			else
+			{
+				if(waveCounter = 3)
+				{
+					do createAITankThirdWave(16, 16, AITankThirdWave.killBaseBehaviour(), AITankThirdWave.leftFromBase(), AITankThirdWave.FAST());
+					do createAITankThirdWave(480, 16, AITankThirdWave.killBaseBehaviour(), AITankThirdWave.topFromBase(), AITankThirdWave.FAST());
+					do createAITankThirdWave(320, 80, AITankThirdWave.killBaseBehaviour(), AITankThirdWave.rightFromBase(), AITankThirdWave.SLOW());
+					do createAITankThirdWave(16, 224, AITankThirdWave.killBaseBehaviour(), AITankThirdWave.leftFromBase(), AITankThirdWave.FAST());
+					do createAITankThirdWave(480, 224, AITankThirdWave.killBaseBehaviour(), AITankThirdWave.rightFromBase(), AITankThirdWave.FAST());
+				}
+				else
+				{
+					if(waveCounter = BattleCityGame.BOSS_WAVE())
+					{
+						do createFinalBoss();
+					}
+				}
+			}
+		}
+
+
+		let killedEnemies = 0;
+		let aiTanksMax = aiTanks.getSize();
+
+		return;
+	}
+
+	function void mentionRules()
+	{
+		var int key;
+
+		do Output.moveCursor(3,4);
+		do Output.printString("Welcome to Battle City game made by Sviatoslav Gaikovich");
+
+		do Output.moveCursor(5,4);
+		do Output.printString("Here are the rules: shoot in anything except your own base");
+
+		do Output.moveCursor(7,4);
+		do Output.printString("You have to survive 3 waves and beat the final boss");
+
+		do Output.moveCursor(9,11);
+		do Output.printString("There is score system so you will get for");
+		
+		do Output.moveCursor(11,16);
+		do Output.printString("1. Brick +10");
+
+		do Output.moveCursor(13,16);
+		do Output.printString("2. Enemy tank +300");
+
+		do Output.moveCursor(15,16);
+		do Output.printString("3. Kill own base -3000");
+
+		do Output.moveCursor(17,11);
+		do Output.printString("So be carefull, don't destroy your base");
+
+		do Output.moveCursor(19,18);
+		do Output.printString("(PRESS ANY BUTTON TO START)");
+		
+		let key = 0;
+
+		while(~key)
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		while(~(key = 0))
+		{
+			let key = Keyboard.keyPressed();
+		}
+		
+		do Screen.clearScreen();
+
+		return;
+	}
+
+	method void setScore(int newScore)
+	{
+		let score = newScore;
+		return;
+	}
+
+	method int getScore()
+	{
+		return score;
+	}
+
+	method void drawPause()
+	{
+		do Output.moveCursor(10,5);
+		do Output.printString("PAUSE");
+
+		do Output.moveCursor(12,5);
+		do Output.printString("Score: ");
+		do Output.printInt(score);
+
+
+		do Output.moveCursor(14,5);
+		do Output.printString("Lives: ");
+		do Output.printInt(playerLivesCounter);
+
+		do Output.moveCursor(16,5);
+		do Output.printString("* Exit?");
+
+		do Output.moveCursor(18,3);
+		do Output.printString("PRESS ESC");
+		do Output.moveCursor(20,9);
+		do Output.printString("TO RESUME!");
+
+		return;
+	}
+
+	method void clearPause()
+	{
+		do Output.moveCursor(10,5);
+		do Output.printString("     ");
+
+		do Output.moveCursor(12,5);
+		do Output.printString("     ");
+		do Output.printString("          ");
+
+
+		do Output.moveCursor(14,5);
+		do Output.printString("       ");
+		do Output.printString("   ");
+
+		
+		do Output.moveCursor(16,5);
+		do Output.printString("       ");
+
+		do Output.moveCursor(18,3);
+		do Output.printString("         ");
+		do Output.moveCursor(20,9);
+		do Output.printString("          ");
+
+		return;
+	}
+
+
+	method void createPlayer()
+	{
+		let player = Player.new();
+		do initSettingsForPlayer();
+		return;
+	}
+
+	method void initSettingsForPlayer()
+	{
+		do player.init();
+		do player.setLocation(208,208);
+
+		return;
+	}
+	
+	method void printRespawnCounter()
+	{
+		do Output.moveCursor(19,25);
+		do Output.printInt(playerRespawnOutputCounter);
+		return;
+	}
+
+	method void clearRespawnCounter()
+	{
+		do Output.moveCursor(19,25);
+		do Output.printString("");
+
+		return;
+	}
+
+	method void killPlayer(int reason)
+	{
+		do player.die(reason);
+		do player.dispose();
+		let player = null;
+
+		let playerLivesCounter = playerLivesCounter - 1;
+
+		if(playerLivesCounter = 0)
+		{
+			do endGame(BattleCityGame.playerOutOfLives());	
+		}
+		else
+		{
+			let playerRespawnWaitingCounter = 0;
+		}
+
+		return;
+	}
+
+	method void createAITank(int x, int y, int speed, int behType, int behDir)
+	{
+		var AITank tank;
+
+		let tank = AITank.new();
+		do tank.setLocation(x, y);
+		do tank.init(speed, behType, behDir);
+
+		do aiTanks.push_back(tank);
+
+		return;
+	}
+
+	method void createAITankSecondWave(int x, int y, int speed, int behType, int behDir)
+	{
+		var AITankSecondWave tank;
+
+		let tank = AITankSecondWave.new();
+		do tank.setLocation(x, y);
+		do tank.init(speed, behType, behDir);
+
+		do aiTanks.push_back(tank);
+
+		return;
+	}
+
+	method void createAITankThirdWave(int x, int y, int behType, int behDir, int stopAnythingDelay)
+	{
+		var AITankThirdWave tank;
+
+		let tank = AITankThirdWave.new();
+		do tank.setLocation(x, y);
+		do tank.init(behType, behDir);
+		do tank.setStopAnythingDelay(stopAnythingDelay);
+
+		do aiTanks.push_back(tank);
+
+		return;
+	}
+
+	
+	method void createFinalBoss()
+	{
+		var FinalBoss boss;
+		let boss = FinalBoss.new();
+		do boss.init(224, 32);
+		do aiTanks.push_back(boss);
+
+		return;
+	}
+	
+
+	method int getAIIndex(int address)
+	{
+		var int i;
+
+		let i = 0;
+		while(i < aiTanks.getSize())
+		{
+			if(this = aiTanks.getIndexValue(i))
+			{
+				return i;
+			}
+
+			let i = i + 1;
+		}
+
+		return -1;
+	}
+
+	method void victory()
+	{
+			do victoryMessage();
+			let score = score + 10000;
+			do endGame(BattleCityGame.playerWon());
+
+			return;
+	}
+
+	method void killBoss(int index)
+	{	
+		var FinalBoss boss;
+
+		let boss = aiTanks.getIndexValue(index);
+		
+		do boss.die();
+
+		if(boss.isPlayerDiedCauseOfBoom())
+		{
+			do killPlayer(Player.KILLED_WITH_BOOM());
+		}
+		else
+		{
+			do victory();
+		}
+
+		return;
+	}
+
+	method void killEnemy(int index)
+	{
+		var AITank tank;
+		if(~(waveCounter = BattleCityGame.BOSS_WAVE()))
+		{
+			let tank = aiTanks.getIndexValue(index);
+			do tank.die();
+			do aiTanks.remove(index);
+			do tank.dispose();
+
+			let killedEnemies = killedEnemies + 1;
+
+			if(killedEnemies = aiTanksMax)
+			{
+				do nextWave();
+			}
+		}
+		else
+		{
+			do killBoss(index);
+		}
+
+		return;
+	}
+
+	method boolean loseOptions()
+	{	
+		var int option;
+		var String yesMessage;
+		var String noMessage;
+		
+		if(exitState = BattleCityGame.playerKilledBase())
+		{
+			do Output.moveCursor(2,16);
+			do Output.printString("OH DAMN, YOU'VE KILLED YOUR BASE!!!");
+			do Output.moveCursor(11,23);
+			do Output.printString("WHAT'S WRONG WITH YOU?");
+		}
+		else
+		{
+			if(exitState = BattleCityGame.playerOutOfLives())
+			{
+				do Output.moveCursor(2,25);
+				do Output.printString("That's alright");
+				do Output.moveCursor(11,26);
+				do Output.printString("Shit happens");
+			}
+			else
+			{
+				if(exitState = BattleCityGame.enemyKilledBase())
+				{
+						do Output.moveCursor(12,20);
+						do Output.printString("You don't have to surrender!");
+				}
+			}
+		}
+
+		do Sys.wait(2000);
+		do Output.moveCursor(12,5);
+		do Output.printString("Try again?");
+
+		if(exitState = BattleCityGame.playerKilledBase())
+		{
+			let yesMessage = "OH YES!";
+			let noMessage = "Nope,sry";
+		}
+		else
+		{
+			if(exitState = BattleCityGame.playerOutOfLives())
+			{
+				let yesMessage = "Of course!";
+				let noMessage = "Maybe tomorrow";
+			}
+			else 
+			{
+				if(exitState = BattleCityGame.enemyKilledBase())
+				{
+					let yesMessage = "LET'S GO!";
+					let noMessage = "No, i'm scared";
+				}
+			}
+		}
+
+		do Output.moveCursor(14,6);
+		do Output.printString(yesMessage);
+		do Output.moveCursor(16,6);
+		do Output.printString(noMessage);
+
+		do Output.moveCursor(14,5);
+		do Output.printString("*");
+
+		do Output.moveCursor(18,5);
+		do Output.printString("Final score: ");
+		do Output.moveCursor(20,7);
+		do Output.printInt(score);
+
+		
+		let option = 0;
+
+		while(true)
+		{
+			while(~keyPressed)
+			{
+				let keyPressed = Keyboard.keyPressed();
+			}
+
+			if(keyPressed = upArrowKey)
+			{
+				do Output.moveCursor(16,5);
+				do Output.printString("");
+				let option = 0;
+				do Output.moveCursor(14,5);
+				do Output.printString("*");
+			}
+
+			if(keyPressed = downArrowKey)
+			{
+				do Output.moveCursor(14,5);
+				do Output.printString("");
+				let option = 1;
+			    do Output.moveCursor(16,5);
+				do Output.printString("*");
+			}
+
+			if(keyPressed = enter)
+			{
+				return option = 0;
+			}
+
+			while(~(keyPressed = 0))
+			{	
+				let keyPressed = Keyboard.keyPressed();
+			}
+		}
+
+		return false;
+	}
+
+	method boolean winTime()
+	{
+		var int key;
+
+		do Screen.clearScreen();
+
+		do Output.moveCursor(8,19);
+		do Output.printString("Congratulations, you won!");
+		do Output.moveCursor(10,19);
+		do Output.printString("You deserve a real honour!");
+		
+		do Output.moveCursor(12,26);
+		do Output.printString("Final score: ");
+		do Output.moveCursor(13,30);
+		do Output.printInt(score);
+
+		do Output.moveCursor(15,19);
+		do Output.printString("(PRESS ANY BUTTON TO EXIT)");
+		
+		let key = Keyboard.keyPressed();
+
+		while(~(key = 0))
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		while(~key)
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		return false;
+	}
+
+	method boolean exitWithPause()
+	{
+		var int key;
+
+		do Screen.clearScreen();
+
+		do Output.moveCursor(8,23);
+		do Output.printString("OH, ALRIGHT MATE");
+		do Output.moveCursor(10,24);
+		do Output.printString("GOOD LUCK THEN!");
+
+		do Output.moveCursor(12,26);
+		do Output.printString("Final score: ");
+		do Output.moveCursor(14,31);
+		do Output.printInt(score);
+
+		do Output.moveCursor(16,19);
+		do Output.printString("(PRESS ANY BUTTON TO EXIT)");
+		
+		let key = Keyboard.keyPressed();
+		while( ~(key = 0) )
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		let key = 0;
+
+		while(~key)
+		{
+			let key = Keyboard.keyPressed();
+		}
+
+		return false;
+	}
+
+	method boolean chooseOptions()
+	{
+		if( (exitState = BattleCityGame.loseOptionsState()) | (exitState = BattleCityGame.playerOutOfLives()) | (exitState = BattleCityGame.enemyKilledBase()))
+		{
+			return loseOptions();
+		}
+		else
+		{
+			if(exitState = BattleCityGame.playerWon())
+			{
+				return winTime();
+			}
+			else
+			{
+				if(exitState = BattleCityGame.exitWithPauseState())
+				{
+					return exitWithPause();
+				}
+			}
+		}
+
+		return false;
+	}
+
+	method boolean bossTime(int state)
+	{
+		return ((state = BattleCityGame.playerKilledBase() ) & (brickRenderer.getBricksSize() = 0));
+	}
+
+	method void startBoss()
+	{
+			do Output.moveCursor(10,27);
+			do Output.printString("BOSS TIME");
+
+			let waveHoldCounter = 0;
+			let waveCounter = BattleCityGame.BOSS_WAVE();
+			let waveHoldTime = 1250;
+
+			return;
+	}
+
+	function int PREPARE_MESSAGE()
+	{
+		return 0;
+	}
+
+	function int MOVE_TO_TEASER_POINT()
+	{
+		return 1;
+	}
+
+	method void hideMoveToPointLabel()
+	{
+		do Output.moveCursor(10,27);
+		do Output.printString("             ");
+		return;
+	}
+
+	method void endGame(int state)
+	{
+		if(bossTime(state))
+		{	
+			do baseRenderer.dispose();
+			let baseRenderer = null;
+			let prepareWaveStage = BattleCityGame.MOVE_TO_TEASER_POINT();
+
+			do Output.moveCursor(10,27);
+			do Output.printString("MOVE TO POINT");
+
+			let waveHoldCounter = 0;
+			let waveHoldTime = 1250;
+
+			let playerInputOn = false;
+
+
+		}
+		else
+		{
+			let exitState = state;
+			let _endGame = true;
+		}
+
+		return;
+	}
+	
+	method BoomRenderer getBoomRenderer()
+	{
+		return boomRenderer;
+	}
+
+	method boolean handlePause()
+	{
+		var int keyPressed;
+		
+		do drawPause();
+
+		let keyPressed = Keyboard.keyPressed();
+
+		while(~(keyPressed = 0))
+		{
+			let keyPressed = Keyboard.keyPressed();
+		}
+
+		let keyPressed = 0;
+
+		while(~( (keyPressed = escKey) | (keyPressed = enter) ) )
+		{
+			
+			while(~keyPressed)
+			{
+				let keyPressed = Keyboard.keyPressed();
+			}
+
+			if(keyPressed = escKey)
+			{
+				do clearPause();
+				return false;
+			}
+
+			if(keyPressed = enter)
+			{
+				return true;
+			}
+
+			while(~(keyPressed = 0))
+			{
+				let keyPressed = Keyboard.keyPressed();	
+			}
+		}
+
+		return false;
+	}
+
+	method void showAddScoreValue(int value)
+	{
+		do Output.moveCursor(12,5);
+		do Output.printString("Score: ");
+
+		if( (value & (~32767)) = 0 )
+		{
+			do Output.printString("+");
+		}
+
+		do Output.printInt(value);
+
+		return;
+	}
+
+	method void counterKeysForSeed(int keyPressed)
+	{
+		if(~(keyPressed = 0) & (~(playerTappedKeys = BattleCityGame.MAX_PLAYER_TAPPED_KEYS())) )
+		{
+			let sumTappedKeys = sumTappedKeys + keyPressed;
+			let playerTappedKeys = playerTappedKeys + 1;
+
+			if(playerTappedKeys = BattleCityGame.MAX_PLAYER_TAPPED_KEYS())
+			{
+				do Random.setSeed(sumTappedKeys);
+				let playerTappedKeys = 0;
+			}
+		}
+
+		return;
+	}
+
+	method void startGame()
+	{
+		var boolean exitPause;
+
+		while(~_endGame)
+		{
+			let keyPressed = Keyboard.keyPressed();
+			
+			do counterKeysForSeed(keyPressed);
+
+			if(keyPressed = escKey)
+			{
+				let exitPause = handlePause();
+
+				if(exitPause)
+				{
+					let exitState = BattleCityGame.exitWithPauseState();
+					let _endGame = true;
+					return;
+				}
+				
+				//somehow without it we will see blinking annoying pause menu
+				while(~(keyPressed = 0))
+				{
+					let keyPressed = Keyboard.keyPressed();
+				}
+			}
+
+			if(~(player = null))
+			{
+
+				if(playerInputOn)
+				{
+					if(keyPressed = rightArrowKey)
+					{
+						do player.moveRight();
+					}
+					else
+					{
+						if(keyPressed = leftArrowKey)
+						{	
+							do player.moveLeft();
+						}
+						else
+						{
+							if(keyPressed = upArrowKey)
+							{
+								do player.moveUp();
+							}
+							else
+							{
+								if(keyPressed = downArrowKey)
+								{
+									do player.moveDown();
+								}
+								else
+								{
+									if((keyPressed = fireKey) & (~(lastKeyPressed = fireKey)) )
+									{
+										do player.fire();
+									}
+								}
+							}
+						}
+					}
+				}
+
+				do player.tick();
+
+			}
+
+
+			do callAITicks();
+			do boomRenderer.tick();
+			do bulletsRegister.tick();
+			
+			do tick();
+			
+			let lastKeyPressed = keyPressed;
+			do Sys.wait(deltaTime);
+		}
+
+		return;
+	}
+
+	method BrickRenderer getBrickRenderer()
+	{
+		return brickRenderer;
+	}
+
+	method BulletsRegister getBulletsRegister()
+	{
+		return bulletsRegister;
+	}
+
+	method DynamicArray getAITanks()
+	{
+		return aiTanks;
+	}
+
+	method BaseRenderer getBaseRenderer()
+	{
+		return baseRenderer;
+	}
+
+	method void dispose()
+	{ 
+		do brickRenderer.dispose();
+		do boomRenderer.dispose();
+
+		if(~(baseRenderer = null))
+		{
+			do baseRenderer.dispose();
+		}
+
+		do clearAITanks();
+		do aiTanks.dispose();
+	
+		if(~(player = null))
+		{
+			do player.dispose();
+		}
+
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method Player getPlayer()
+	{
+		return player;
+	}
+
+	method void respawnPlayerIfNeeded()
+	{
+		var FinalBoss boss;
+
+		if(~(playerRespawnWaitingCounter = -1))
+		{
+			if(playerRespawnWaitingCounter < playerRespawnWaitingUntil)
+			{
+				let playerRespawnWaitingCounter = playerRespawnWaitingCounter + deltaTime;
+
+				if(playerRespawnWaitingCounter > 0)
+				{
+					if(Utils.remainder(playerRespawnWaitingCounter, playerRespawnWaitingUntil / 3) = 0)
+					{
+						do printRespawnCounter();
+						let playerRespawnOutputCounter = playerRespawnOutputCounter - 1;
+					}
+				}
+			}
+			else
+			{
+				let playerRespawnWaitingCounter = -1;
+				do printRespawnCounter();
+				do clearRespawnCounter();
+
+				let playerRespawnOutputCounter = 3;
+
+				do createPlayer();
+				
+
+				if((waveCounter = BattleCityGame.BOSS_WAVE()) & (aiTanks.getSize() > 0))
+				{
+					let boss = aiTanks.getIndexValue(0);
+					if(boss.isPlayerDiedCauseOfBoom())
+					{
+						do victory();
+					}
+				}
+			}
+		}
+		
+		return;
+	}
+
+	method void drawTeaserPoint()
+	{
+		do Screen.setColor(true);		
+		do Screen.drawLine(baseX, baseY, baseX + 16, baseY + 16);
+		do Screen.drawLine(baseX + 16, baseY, baseX, baseY + 16);
+		
+		return;
+	}
+
+	method void hideTeaserPoint()
+	{
+		do Screen.setColor(false);
+		do Screen.drawLine(baseX, baseY, baseX + 16, baseY + 16);
+		do Screen.drawLine(baseX + 16, baseY, baseX, baseY + 16);
+		
+		return;
+	}
+
+
+	method void tick()
+	{	
+
+		do respawnPlayerIfNeeded();
+
+	
+		if(~(waveHoldCounter = -1))
+		{
+			if(waveHoldCounter < waveHoldTime)
+			{
+				let waveHoldCounter = waveHoldCounter + deltaTime;
+			}
+			else
+			{
+				let waveHoldCounter = -1;
+				
+				if(waveCounter < 4)
+				{
+					do hideWave();
+					do spawnWave();
+				}
+				else
+				{
+					if(waveCounter = 4)
+					{
+						if(prepareWaveStage = BattleCityGame.PREPARE_MESSAGE())
+						{
+							let playerInputOn = true;
+							do prepareTimeMessage();
+						}
+					}
+					else
+					{
+						if(waveCounter = 5)
+						{
+							do Output.moveCursor(10,27);
+							do Output.printString("                    ");
+							do spawnWave();
+						}
+					}
+				}
+
+				let playerInputOn = true;
+			}
+		}
+
+		if((waveCounter = 4) & (prepareWaveStage = BattleCityGame.MOVE_TO_TEASER_POINT()))
+		{
+			if((player.getX() = baseX) & (player.getY() = baseY))
+			{
+
+				do hideTeaserPoint();
+				do hideMoveToPointLabel();
+
+				do player.setDir(Utils.UP());
+				let playerInputOn = false;
+				let prepareWaveStage = 3;
+				let teaser = Teaser.new();
+			}
+			else
+			{
+				do drawTeaserPoint();
+			}
+		}
+
+		if(~(teaser = null))
+		{
+			do teaser.tick();
+		}
+
+		return;
+	}
+
+	function BattleCityGame get()
+	{
+		return game;		
+	}   
+
+}
+
+
+

@@ -1,0 +1,344 @@
+
+
+class FinalBossGun {
+    
+    field int x;
+	field int y;
+	field int speed;
+
+	//0 - UP, 1 - DOWN, 2 - RIGHT, 3 - LEFT
+	field int direction;
+
+	field BulletsRegister bulletsRegister;
+
+	field int leftOffsetX;
+	field int leftOffsetY;
+
+	field int rightOffsetX;
+	field int rightOffsetY;
+
+	field int upOffsetX;
+	field int upOffsetY;
+
+	field int downOffsetX;
+	field int downOffsetY;
+
+	field int shootOffsetX;
+	field int shootOffsetY;
+
+	field FinalBoss finalBoss;
+
+    constructor FinalBossGun new(FinalBoss boss)
+    {
+		var BattleCityGame game;
+
+		let game = BattleCityGame.get();
+
+		let finalBoss = boss;
+
+		let x = -1;
+		let y = -1;
+		let speed = 16;
+
+		let bulletsRegister = game.getBulletsRegister();
+
+		let direction = 0;
+
+		let shootOffsetX = 0;
+		let shootOffsetY = 0;
+
+		return this;    
+    }
+
+	method void drawGunUp()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 384);
+		do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, 384);
+		do Memory.poke(memAddress + 256, 384);
+		do Memory.poke(memAddress + 288, 384);
+		do Memory.poke(memAddress + 320, 384);
+		do Memory.poke(memAddress + 352, 384);
+		do Memory.poke(memAddress + 384, 384);
+		do Memory.poke(memAddress + 416, 384);
+		do Memory.poke(memAddress + 448, 384);
+		do Memory.poke(memAddress + 480, 384);
+
+		return;
+	}
+
+	method void drawGunDown()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 384);
+		do Memory.poke(memAddress + 32, 384);
+		do Memory.poke(memAddress + 64, 384);
+		do Memory.poke(memAddress + 96, 384);
+		do Memory.poke(memAddress + 128, 384);
+		do Memory.poke(memAddress + 160, 384);
+		do Memory.poke(memAddress + 192, 384);
+		do Memory.poke(memAddress + 224, 384);
+		do Memory.poke(memAddress + 256, 384);
+		do Memory.poke(memAddress + 288, 384);
+		do Memory.poke(memAddress + 320, 384);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawGunRight()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 0);
+		do Memory.poke(memAddress + 224, 2047);
+		do Memory.poke(memAddress + 256, 2047);
+		do Memory.poke(memAddress + 288, 0);
+		do Memory.poke(memAddress + 320, 0);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void drawGunLeft()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 0);
+		do Memory.poke(memAddress + 224, -32);
+		do Memory.poke(memAddress + 256, -32);
+		do Memory.poke(memAddress + 288, 0);
+		do Memory.poke(memAddress + 320, 0);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void clearCurrCell()
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void die()
+	{
+
+		var BattleCityGame game;
+        var BoomRenderer boomRenderer;
+		
+        do clearCurrCell();
+
+        let game = BattleCityGame.get();
+		
+		let boomRenderer = game.getBoomRenderer();
+		
+		do boomRenderer.registerBoom(x, y);
+		
+		return;
+	}
+
+	method void setLeftPart(int pX, int pY)
+	{
+		let leftOffsetX = pX;
+		let leftOffsetY = pY;
+
+		return;
+	}
+
+	method void setRightPart(int pX, int pY)
+	{
+		let rightOffsetX = pX;
+		let rightOffsetY = pY;
+
+		return;
+	}
+
+	method void setUpPart(int pX, int pY)
+	{
+		let upOffsetX = pX;
+		let upOffsetY = pY;
+
+		return;
+	}
+
+	method void setDownPart(int pX, int pY)
+	{
+		let downOffsetX = pX;
+		let downOffsetY = pY;
+
+		return;
+	}
+
+	method void renderBasedOnBoss(int bossX, int bossY, int bossDir)
+	{
+		if(bossDir = Utils.LEFT())
+		{
+			let x = bossX + leftOffsetX;
+			let y = bossY + leftOffsetY;
+		}
+		else
+		{
+			if(bossDir = Utils.RIGHT())
+			{
+				let x = bossX + rightOffsetX;
+				let y = bossY + rightOffsetY;
+			}
+			else
+			{
+				if(bossDir = Utils.UP())
+				{
+					let x = bossX + upOffsetX;
+					let y = bossY + upOffsetY;
+				}
+				else
+				{
+					let x = bossX + downOffsetX;
+					let y = bossY + downOffsetY;
+				}
+			}
+		}
+
+		let direction = bossDir;
+		do render();
+		
+		return;
+	}
+
+	method int getDir()
+	{
+		return direction;
+	}
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method int getX()
+	{
+		return x;
+	}
+
+	method int getY()
+	{
+		return y;
+	}
+
+	method boolean collideWith(int pX, int pY)
+    {	
+        return (pX = x) & (pY = y);
+    }
+
+    method void render()
+    {	
+		if(direction = Utils.UP())
+		{
+			do drawGunUp();
+		}
+		else 
+		{
+			if(direction = Utils.DOWN())
+			{
+				do drawGunDown();
+			}
+			else
+			{
+				if(direction = Utils.RIGHT())
+				{
+					do drawGunRight();
+				}
+				else
+				{
+					if(direction = Utils.LEFT())
+					{
+						do drawGunLeft();
+					}
+				}
+			}
+		}
+		
+		return;
+    }
+
+	method void setShootOffsetX(int newShootOffsetX)
+	{
+		let shootOffsetX = newShootOffsetX;
+		return;
+	}
+
+	method void setShootOffsetY(int newShootOffsetY)
+	{
+		let shootOffsetY = newShootOffsetY;
+		return;
+	}
+
+	method void fire()
+	{
+		var Bullet bullet;
+	
+		let bullet = Bullet.new();
+		do bullet.setMovementDelay(0);
+
+		do bulletsRegister.registerBullet(bullet, direction, speed, shootOffsetX + x, shootOffsetY + y);
+
+		return;
+	}
+}
+
+

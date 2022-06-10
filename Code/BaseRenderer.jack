@@ -1,0 +1,101 @@
+class BaseRenderer {
+    
+	field int x;
+	field int y;
+
+    constructor BaseRenderer new(int pX, int pY)
+    {
+		let x = pX;
+		let y = pY;
+
+		do drawBase();
+
+        return this;    
+    }
+	
+	method void drawBase()
+	{
+		var int memAddress;
+        let memAddress = 16384 + (y * 32) + (x / 16);
+
+		do Memory.poke(memAddress + 0, 480);
+		do Memory.poke(memAddress + 32, 29511);
+		do Memory.poke(memAddress + 64, 6604);
+		do Memory.poke(memAddress + 96, 32223);
+		do Memory.poke(memAddress + 128, 7644);
+		do Memory.poke(memAddress + 160, 32223);
+		do Memory.poke(memAddress + 192, 7644);
+		do Memory.poke(memAddress + 224, 14326);
+		do Memory.poke(memAddress + 256, 5588);
+		do Memory.poke(memAddress + 288, 8188);
+		do Memory.poke(memAddress + 320, 3544);
+		do Memory.poke(memAddress + 352, 448);
+		do Memory.poke(memAddress + 384, 448);
+		do Memory.poke(memAddress + 416, 992);
+		do Memory.poke(memAddress + 448, 4088);
+		do Memory.poke(memAddress + 480, 15838);
+
+		return;
+	}
+	
+    method void clearBase()
+    {
+        var int memAddress;
+        let memAddress = 16384 + (y * 32) + (x / 16);
+
+        do Memory.poke(memAddress + 0, 0);
+		do Memory.poke(memAddress + 32, 0);
+		do Memory.poke(memAddress + 64, 0);
+		do Memory.poke(memAddress + 96, 0);
+		do Memory.poke(memAddress + 128, 0);
+		do Memory.poke(memAddress + 160, 0);
+		do Memory.poke(memAddress + 192, 0);
+		do Memory.poke(memAddress + 224, 0);
+		do Memory.poke(memAddress + 256, 0);
+		do Memory.poke(memAddress + 288, 0);
+		do Memory.poke(memAddress + 320, 0);
+		do Memory.poke(memAddress + 352, 0);
+		do Memory.poke(memAddress + 384, 0);
+		do Memory.poke(memAddress + 416, 0);
+		do Memory.poke(memAddress + 448, 0);
+		do Memory.poke(memAddress + 480, 0);
+        return;
+    }
+
+
+    method void dispose()
+	{
+		do Memory.deAlloc(this);
+		return;
+	}
+
+	method void die()
+	{
+		var BattleCityGame game;
+        var BoomRenderer boomRenderer;
+
+        do clearBase();
+
+        let game = BattleCityGame.get();
+        let boomRenderer = game.getBoomRenderer();
+        
+        do boomRenderer.registerBoom(x, y);
+
+		return;
+	}
+
+	method int getBaseX()
+	{
+		return x;
+	}
+
+	method int getBaseY()
+	{
+		return y;
+	}
+
+	method boolean collideWith(int pX, int pY)
+    {
+		return (pX = x) & (pY = y);
+    }
+}

@@ -1,0 +1,631 @@
+class BrickRenderer {
+    
+	field DynamicArray bricks;
+
+    constructor BrickRenderer new()
+	{
+
+		let bricks = DynamicArray.new();
+		do bricks.reserve(128);
+
+		do initLeftColumn();
+		do initTopRow();
+		do initBottomRow();
+		do initRightColumn();
+		do initBaseBricks();
+		do initGreeting();
+
+        return this;    
+    }	
+
+	method int getBricksSize()
+	{
+		return bricks.getSize();
+	}
+	
+	method void initBaseBricks()
+	{	
+		do bricks.push_back(Brick.new(240, 224, Brick.TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(240, 208, Brick.TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(256, 208, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(272,208, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(272,224, Brick.LEFT_RIGHT_LINES()));
+
+		return;
+	}
+
+	method void initLeftColumn()
+	{
+		do bricks.push_back(Brick.new(0,0, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(0,64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,80, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,96, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,112, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(0,128, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,144, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,160, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,176, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(0,192, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,208, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,224, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(0,240, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		return;
+	}
+
+	method void initTopRow()
+	{
+		do bricks.push_back(Brick.new(16,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(32,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(48,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(64,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(80,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(96,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(112,0, Brick.BOTTOM_TOP_RIGHT_LINES()));	
+		do bricks.push_back(Brick.new(128,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(144,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(160,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(176,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(192,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(208,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(224,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(240,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(256,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(272,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(288,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(304,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(320,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(336,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(352,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(368,0, Brick.BOTTOM_TOP_RIGHT_LINES()));	
+		do bricks.push_back(Brick.new(384,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(400,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(416,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(432,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(448,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(464,0, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(480,0, Brick.BOTTOM_TOP_LINES()));
+
+		return;
+	}
+
+	method void initBottomRow()
+	{
+		do bricks.push_back(Brick.new(16,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(32,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(48,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(64,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(80,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(96,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(112,240, Brick.BOTTOM_TOP_RIGHT_LINES()));	
+		do bricks.push_back(Brick.new(128,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(144,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(160,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(176,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(192,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(208,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(224,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(240,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(256,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(272,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(288,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(304,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(320,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(336,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(352,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(368,240, Brick.BOTTOM_TOP_RIGHT_LINES()));	
+		do bricks.push_back(Brick.new(384,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(400,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(416,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(432,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(448,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(464,240, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(480,240, Brick.BOTTOM_TOP_LINES()));
+
+		return;
+	}
+
+	method void initRightColumn()
+	{
+		do bricks.push_back(Brick.new(496,0, 1));
+		do bricks.push_back(Brick.new(496,16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(496,64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,80, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,96, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,112, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(496,128, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,144, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,160, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,176, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(496,192, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,208, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,224, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(496,240, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		return;
+	}
+
+	method void render()
+	{
+		var Brick brick;
+		var int i;
+
+		let i = 0;
+
+		while(i < bricks.getSize())
+		{
+			let brick = bricks.getIndexValue(i);
+
+			do brick.render();
+			
+			let i = i + 1;
+		}
+		
+		return;
+	}
+
+	method int checkCollideWith(int x, int y)
+	{
+		var int i;
+		var Brick brick;
+		
+		let i = 0;
+		while(i < bricks.getSize())
+		{
+			let brick = bricks.getIndexValue(i);
+
+			if(brick.collideWith(x, y))
+			{
+				return i;
+			}
+			let i = i + 1;
+		}
+
+		return -1;
+	}
+
+	method void killBrick(int index)
+	{
+		var Brick brick;
+		
+		let brick = bricks.getIndexValue(index);
+
+		do bricks.remove(index);
+		do brick.die();
+		do brick.dispose();
+
+		return;
+	}
+
+
+    method void dispose()
+	{
+		var int i;
+		var Brick brick;
+
+		do Memory.deAlloc(this);
+		let i = 0; 
+		while(i < bricks.getSize())
+		{
+			let brick = bricks.getIndexValue(i);
+			do brick.dispose();
+			let i = i + 1;
+		}
+
+		do bricks.dispose();
+
+		return;
+	}
+
+	method void clearCell(int x, int y)
+	{
+		var int memAddress;	
+		let memAddress = Utils.getMemAddress(x,y);
+
+		do Memory.poke(memAddress + 0, 0);
+	    do Memory.poke(memAddress + 32, 0);
+	    do Memory.poke(memAddress + 64, 0);
+	    do Memory.poke(memAddress + 96, 0);
+	    do Memory.poke(memAddress + 128, 0);
+	    do Memory.poke(memAddress + 160, 0);
+	    do Memory.poke(memAddress + 192, 0);
+	    do Memory.poke(memAddress + 224, 0);
+	    do Memory.poke(memAddress + 256, 0);
+	    do Memory.poke(memAddress + 288, 0);
+	    do Memory.poke(memAddress + 320, 0);
+	    do Memory.poke(memAddress + 352, 0);
+	    do Memory.poke(memAddress + 384, 0);
+	    do Memory.poke(memAddress + 416, 0);
+	    do Memory.poke(memAddress + 448, 0);
+	    do Memory.poke(memAddress + 480, 0);
+
+		return;
+	}
+
+	method void hideGreeting()
+	{
+		var int offsetX;
+		var int offsetY;
+
+		let offsetX = 96;
+		let offsetY = 32;
+
+		let offsetX = hideH(offsetX, offsetY);
+		let offsetX = hideE(offsetX + 32, offsetY);
+		let offsetX = hideL1(offsetX + 32, offsetY);
+		let offsetX = hideL2(offsetX + 32, offsetY);
+		let offsetX = hideO(offsetX + 32, offsetY);
+
+		let offsetX = 112;
+		let offsetY = 128;
+
+		let offsetX = hideG(offsetX + 32, offsetY);
+		let offsetX = hideU(offsetX + 32, offsetY);
+		let offsetX = hideY(offsetX + 32, offsetY);
+		let offsetX = hideS(offsetX + 32, offsetY);
+		
+		return;
+	}
+
+
+	method int hideH(int startX, int startY)
+	{
+		do clearCell(startX, startY + 64);
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY + 32);
+
+		do clearCell(startX + 32, startY + 64);
+		do clearCell(startX + 32, startY + 48);
+		do clearCell(startX + 32, startY + 32);
+		do clearCell(startX + 32, startY + 16);
+		do clearCell(startX + 32, startY);
+
+		return startX + 32;
+	}
+
+
+	method int hideE(int startX, int startY)
+	{
+		do clearCell(startX, startY + 64);
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY + 64);
+		do clearCell(startX + 16, startY + 32);
+		do clearCell(startX + 16, startY);
+
+		do clearCell(startX + 32, startY + 64);
+		do clearCell(startX + 32, startY + 32);
+		do clearCell(startX + 32, startY);
+
+		return startX + 32;
+	}
+
+
+	method int hideL(int startX, int startY)
+	{
+		do clearCell(startX, startY + 64);
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY + 64);
+		do clearCell(startX + 32, startY + 64);
+
+		return startX + 32;
+	}
+
+
+	method int hideL1(int startX, int startY)
+	{
+		return hideL(startX, startY);
+	}
+
+
+	method int hideL2(int startX, int startY)
+	{
+		return hideL(startX, startY);
+	}
+
+	method int hideO(int startX, int startY)
+	{
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+
+		do clearCell(startX + 16, startY + 64);
+		do clearCell(startX + 16, startY);
+
+		do clearCell(startX + 32, startY + 64);
+		do clearCell(startX + 32, startY);
+
+		do clearCell(startX + 48, startY + 48);
+		do clearCell(startX + 48, startY + 32);
+		do clearCell(startX + 48, startY + 16);
+
+		return startX + 48;
+	}
+
+	method int hideG(int startX, int startY)
+	{
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 48);
+
+		do clearCell(startX + 16, startY);
+		do clearCell(startX + 16, startY + 32);
+		do clearCell(startX + 16, startY + 64);
+
+		do clearCell(startX + 32, startY);
+		do clearCell(startX + 32, startY + 32);
+		do clearCell(startX + 32, startY + 64);
+
+		do clearCell(startX + 48, startY + 32);
+		do clearCell(startX + 48, startY + 48);
+
+		return startX + 48;
+	}
+
+	method int hideU(int startX, int startY)
+	{
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY + 64);
+
+		do clearCell(startX + 32, startY + 48);
+		do clearCell(startX + 32, startY + 32);
+		do clearCell(startX + 32, startY + 16);
+		do clearCell(startX + 32, startY);
+
+		return startX + 32;
+	}
+
+	method int hideY(int startX, int startY)
+	{
+		do clearCell(startX, startY + 64);
+		do clearCell(startX, startY + 48);
+		do clearCell(startX, startY + 32);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY + 32);
+		do clearCell(startX + 16, startY + 64);
+
+		do clearCell(startX + 32, startY + 48);
+		do clearCell(startX + 32, startY + 32);
+		do clearCell(startX + 32, startY + 16);
+		do clearCell(startX + 32, startY);
+
+		return startX + 32;
+	}
+
+	method int hideS(int startX, int startY)
+	{
+		do clearCell(startX, startY + 64);
+		do clearCell(startX, startY + 16);
+		do clearCell(startX, startY);
+
+		do clearCell(startX + 16, startY);
+		do clearCell(startX + 16, startY + 32);
+		do clearCell(startX + 16, startY + 64);
+
+		do clearCell(startX + 32, startY + 64);
+		do clearCell(startX + 32, startY + 48);
+		do clearCell(startX + 32, startY);
+
+		return startX + 32;
+	}
+
+
+	method int initH(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+	
+		do bricks.push_back(Brick.new(startX + 16, startY + 32, Brick.BOTTOM_TOP_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initE(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initL1(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+	
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));		
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initL2(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+	
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));		
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initO(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+	
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 48, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 48, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 48, startY + 16, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+
+		return startX + 48;
+	}
+
+	method int initG(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 16, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 48, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 48, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		return startX + 48;
+	}
+
+	method int initU(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.TOP_LEFT_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initY(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 32, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 16, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 16, Brick.TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 32, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 48, Brick.BOTTOM_LEFT_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method int initS(int startX, int startY)
+	{
+		do bricks.push_back(Brick.new(startX, startY + 16, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX, startY + 64, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		
+		do bricks.push_back(Brick.new(startX + 16, startY, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 32, Brick.BOTTOM_TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 16, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		do bricks.push_back(Brick.new(startX + 32, startY, Brick.BOTTOM_TOP_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 48, Brick.TOP_LEFT_RIGHT_LINES()));
+		do bricks.push_back(Brick.new(startX + 32, startY + 64, Brick.BOTTOM_TOP_RIGHT_LINES()));
+
+		return startX + 32;
+	}
+
+	method void initGreeting()
+	{	
+		var int offsetX;
+		var int offsetY;
+
+		let offsetX = 96;
+		let offsetY = 32;
+
+		let offsetX = initH(offsetX, offsetY);
+		let offsetX = initE(offsetX + 32, offsetY);
+		let offsetX = initL1(offsetX + 32, offsetY);
+		let offsetX = initL2(offsetX + 32, offsetY);
+		let offsetX = initO(offsetX + 32, offsetY);
+
+		let offsetX = 112;
+		let offsetY = 128;
+
+		let offsetX = initG(offsetX + 32, offsetY);
+		let offsetX = initU(offsetX + 32, offsetY);
+		let offsetX = initY(offsetX + 32, offsetY);
+		let offsetX = initS(offsetX + 32, offsetY);
+
+		return;
+	}
+}

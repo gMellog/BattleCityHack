@@ -1,0 +1,1113 @@
+function Player.new 1
+push constant 8
+call Memory.alloc 1
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBrickRenderer 1
+pop this 6
+push local 0
+call BattleCityGame.getBulletsRegister 1
+pop this 7
+push pointer 0
+call Player.init 1
+pop temp 0
+push pointer 0
+return
+function Player.KILLED_WITH_BULLET 0
+push constant 0
+return
+function Player.SMACKED 0
+push constant 1
+return
+function Player.KILLED_WITH_BOOM 0
+push constant 2
+return
+function Player.init 0
+push argument 0
+pop pointer 0
+push constant 1
+neg
+pop this 0
+push constant 1
+neg
+pop this 1
+push constant 16
+pop this 2
+push constant 0
+pop this 3
+push constant 3
+pop this 4
+call Utils.UP 0
+pop this 5
+push constant 0
+return
+function Player.setSpeed 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 2
+push constant 0
+return
+function Player.getSpeed 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Player.setLocation 0
+push argument 0
+pop pointer 0
+push argument 1
+push constant 0
+push constant 496
+call Utils.clampValue 3
+pop this 0
+push argument 2
+push constant 0
+push constant 240
+call Utils.clampValue 3
+pop this 1
+push constant 0
+return
+function Player.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
+return
+function Player.getX 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Player.getY 0
+push argument 0
+pop pointer 0
+push this 1
+return
+function Player.drawTankUp 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawTankDown 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 4081
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 1
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 24583
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 3697
+neg
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 384
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawTankLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 21824
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 21824
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 16256
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 21824
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 21824
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 32704
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.drawTankRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 682
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 682
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 16380
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 508
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 682
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 1022
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.clearCurrCell 1
+push argument 0
+pop pointer 0
+push this 0
+push this 1
+call Utils.getMemAddress 2
+pop local 0
+push local 0
+push constant 0
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 32
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 64
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 96
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 128
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 160
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 192
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 224
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 256
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 288
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 320
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 352
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 384
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 416
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 448
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push local 0
+push constant 480
+add
+push constant 0
+call Memory.poke 2
+pop temp 0
+push constant 0
+return
+function Player.collideWith 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+eq
+push argument 2
+push this 1
+eq
+and
+return
+function Player.checkCollideWithBase 2
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push local 0
+call BattleCityGame.getBaseRenderer 1
+pop local 1
+push local 1
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push argument 1
+push argument 2
+call BaseRenderer.collideWith 3
+return
+goto IF_END0
+label IF_FALSE0
+push constant 0
+return
+label IF_END0
+function Player.checkCollideWithBricks 0
+push argument 0
+pop pointer 0
+push this 6
+push argument 1
+push argument 2
+call BrickRenderer.checkCollideWith 3
+push constant 1
+neg
+eq
+not
+return
+function Player.checkCollideWithEnemy 5
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 1
+push local 1
+call BattleCityGame.getAITanks 1
+pop local 0
+push local 1
+call BattleCityGame.getWaveCounter 1
+call BattleCityGame.BOSS_WAVE 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop local 2
+label WHILE_EXP0
+push local 2
+push local 0
+call DynamicArray.getSize 1
+lt
+not
+if-goto WHILE_END0
+push local 0
+push local 2
+call DynamicArray.getIndexValue 2
+pop local 3
+push local 3
+push argument 1
+push argument 2
+call AITank.collideWith 3
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+return
+label IF_FALSE1
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP0
+label WHILE_END0
+goto IF_END0
+label IF_FALSE0
+push local 0
+call DynamicArray.getSize 1
+push constant 0
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 0
+push local 2
+call DynamicArray.getIndexValue 2
+pop local 4
+push local 4
+push argument 1
+push argument 2
+call FinalBoss.collideWith 3
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 0
+not
+return
+label IF_FALSE3
+label IF_FALSE2
+label IF_END0
+push constant 0
+return
+function Player.die 2
+push argument 0
+pop pointer 0
+call BattleCityGame.get 0
+pop local 0
+push argument 1
+call Player.KILLED_WITH_BULLET 0
+eq
+push argument 1
+call Player.KILLED_WITH_BOOM 0
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Player.clearCurrCell 1
+pop temp 0
+push pointer 0
+call Player.render 1
+pop temp 0
+push local 0
+call BattleCityGame.getBoomRenderer 1
+pop local 1
+push local 1
+push this 0
+push this 1
+call BoomRenderer.registerBoom 3
+pop temp 0
+label IF_FALSE0
+push constant 0
+return
+function Player.moveUp 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+sub
+pop local 0
+push this 5
+push constant 0
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+pop this 5
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithBricks 3
+not
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithEnemy 3
+not
+and
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Player.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call Player.setLocation 3
+pop temp 0
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function Player.moveDown 1
+push argument 0
+pop pointer 0
+push this 1
+push this 2
+add
+pop local 0
+push this 5
+push constant 1
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 1
+pop this 5
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithBricks 3
+not
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithEnemy 3
+not
+and
+push pointer 0
+push this 0
+push local 0
+call Player.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Player.clearCurrCell 1
+pop temp 0
+push pointer 0
+push this 0
+push local 0
+call Player.setLocation 3
+pop temp 0
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function Player.moveRight 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+add
+pop local 0
+push this 5
+push constant 2
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 2
+pop this 5
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithBricks 3
+not
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithEnemy 3
+not
+and
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Player.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call Player.setLocation 3
+pop temp 0
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function Player.moveLeft 1
+push argument 0
+pop pointer 0
+push this 0
+push this 2
+sub
+pop local 0
+push this 5
+push constant 3
+eq
+not
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 3
+pop this 5
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE0
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithBricks 3
+not
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithEnemy 3
+not
+and
+push pointer 0
+push local 0
+push this 1
+call Player.checkCollideWithBase 3
+not
+and
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Player.clearCurrCell 1
+pop temp 0
+push pointer 0
+push local 0
+push this 1
+call Player.setLocation 3
+pop temp 0
+push pointer 0
+call Player.render 1
+pop temp 0
+label IF_FALSE1
+push constant 0
+return
+function Player.render 0
+push argument 0
+pop pointer 0
+push this 5
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push pointer 0
+call Player.drawTankUp 1
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push this 5
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push pointer 0
+call Player.drawTankDown 1
+pop temp 0
+goto IF_END1
+label IF_FALSE1
+push this 5
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push pointer 0
+call Player.drawTankRight 1
+pop temp 0
+goto IF_END2
+label IF_FALSE2
+push this 5
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push pointer 0
+call Player.drawTankLeft 1
+pop temp 0
+label IF_FALSE3
+label IF_END2
+label IF_END1
+label IF_END0
+push constant 0
+return
+function Player.notifyBulletDied 0
+push argument 0
+pop pointer 0
+push this 3
+push constant 1
+sub
+push constant 0
+push this 4
+call Utils.clampValue 3
+pop this 3
+push constant 0
+return
+function Player.fire 1
+push argument 0
+pop pointer 0
+push this 3
+push this 4
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+call Bullet.new 0
+pop local 0
+push local 0
+push pointer 0
+call Bullet.setPlayer 2
+pop temp 0
+push this 7
+push local 0
+push this 5
+push this 2
+push this 0
+push this 1
+call BulletsRegister.registerBullet 6
+pop temp 0
+push this 3
+push constant 1
+add
+pop this 3
+push constant 0
+return
+function Player.setDir 0
+push argument 0
+pop pointer 0
+push argument 1
+pop this 5
+push constant 0
+return
+function Player.tick 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Player.render 1
+pop temp 0
+push constant 0
+return
